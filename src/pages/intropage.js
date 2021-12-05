@@ -16,7 +16,7 @@ export class Intro extends AbstractPage {
 
             <div class="padding-16 center">
 
-                <button onclick='${() => gotoPage("verifier")}' class="btn color-primary hover-color-primary
+                <button onclick='${() => gotoPage("verifier")}' class="btn color-secondary hover-color-secondary
                     xlarge round-xlarge focus-visible-only">
                     ${T("Start verifying")}
                 </button>

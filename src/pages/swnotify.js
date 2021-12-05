@@ -27,7 +27,7 @@ export class SWNotify extends AbstractPage {
         
                 <div class="w3-padding-16">
         
-                    <button @click=${()=>window.location.reload()} class="w3-button btn-color-primary btn-hover-color-primary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
+                    <button @click=${()=>window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
         
                 </div>
         

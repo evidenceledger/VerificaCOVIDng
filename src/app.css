@@ -9,6 +9,21 @@
     }
 }
 :root {font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
+/* :root {
+    --forecolor-primary:  white!important;
+    --bgcolor-primary:  #919597!important;
+} */
+:root {
+    --fore-color-secondary:  #04FF00!important;
+    --bg-color-secondary:  #102a3a!important;
+    --fore-color-primary:  white!important;
+    --bg-color-primary:  #102a3a!important;
+}
+.color-primary,.hover-color-primary:hover{color: var(--fore-color-primary); background-color:var(--bg-color-primary)}
+.color-secondary,.hover-color-secondary:hover{color: var(--fore-color-secondary); background-color:var(--bg-color-secondary)}
+
+
+
 html{overflow-x:hidden;box-sizing: border-box;}
 *, *::before, *::after {
   box-sizing: inherit;
@@ -45,13 +60,12 @@ img{vertical-align:middle}
 .bar{width:100%;overflow:hidden;}
 .bar .bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
 .bar-block .bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
-.color-primary,.hover-color-primary:hover{color: white!important;background-color:#919597!important}
 .xlarge{font-size:24px!important}
 .large{font-size:18px!important}
-.btn{border:none;display:inline-block;padding:16px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
-.btn-menu{border:none;display:inline-block;padding:16px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
+.btn{border:none;display:inline-block;padding:16px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;text-align:center;cursor:pointer;white-space:nowrap}
+.btn-menu{border:none;display:inline-block;padding:16px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;text-align:center;cursor:pointer;white-space:nowrap}
 .btn-menu{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}   
-.btn-menu{color:white!important;background-color: #919597!important}
+.btn-menu{color:var(--header-forecolor);background-color: var(--header-bgcolor)}
 .round-xlarge{border-radius:16px}
 .focus-visible-only:focus-visible {outline: 2px solid black !important;}
 .right{float:right!important}

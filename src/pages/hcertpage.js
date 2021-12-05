@@ -72,7 +72,7 @@ export class DisplayHcert extends AbstractPage {
         let fullPage = html`
         ${thehtml}
         <div class="sect-white">
-            <button @click=${()=> gotoPage("verifier")} class="w3-button btn-color-primary btn-hover-color-primary
+            <button @click=${()=> gotoPage("verifier")} class="btn color-secondary hover-color-secondary
             w3-xlarge w3-round-xlarge">
             ${T("Verify another")}</button>
         </div>

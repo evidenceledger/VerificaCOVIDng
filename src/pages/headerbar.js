@@ -36,7 +36,7 @@ export function HeaderBar() {
     
     let theHtml = html`
         <div class="bar xlarge color-primary">
-            <div class="bar-item" onclick="${() => resetAndGoHome()}" style="color: white;padding:10px">VerificaCOVID.gencat.cat
+            <div class="bar-item" onclick="${() => resetAndGoHome()}" style="padding:10px">Evidenceledger
             </div>
             <a onclick="${() => toggleMenu()}" class="bar-item btn-menu right focus-visible-only">☰</a>
         </div>
