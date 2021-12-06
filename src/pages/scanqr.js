@@ -32,7 +32,10 @@ export class ScanQrPage extends AbstractPage {
 
     }
 
-    async enter() {
+    async enter(displayPage) {
+        console.log("SCANQR Enter: ", displayPage)
+
+        if (!displayPage) {displayPage = "displayhcert"}
 
         // If debugging, just try to decode the test QR
         if (debugging) {
@@ -92,7 +95,7 @@ export class ScanQrPage extends AbstractPage {
                     // Stop scanning
                     controls.stop()
                     // And process the scanned QR code
-                    processQRpiece(result)
+                    processQRpiece(result, displayPage)
                 }
 
             }
@@ -121,7 +124,7 @@ const QR_URL = 1
 const QR_MULTI = 2
 const QR_HC1 = 3
 
-async function processQRpiece(readerResult) {
+async function processQRpiece(readerResult, displayPage) {
     let qrData = readerResult.text
 
     let qrType = detectQRtype(readerResult)
@@ -137,7 +140,8 @@ async function processQRpiece(readerResult) {
 
     // Handle HCERT data
     if (qrType === QR_HC1) {
-        gotoPage("displayhcert", qrData)
+        console.log("Going to ", displayPage)
+        gotoPage(displayPage, qrData)
         return true;
     }
 

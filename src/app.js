@@ -409,7 +409,7 @@ window.addEventListener('load', async (event) => {
 
     }
 
-    // Show current page and execute logic on page transition
+    // Go to the home page of the application
     await goHome();
 
 });

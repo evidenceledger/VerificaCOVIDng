@@ -17,10 +17,10 @@ function resetAndGoHome(e) {
         goHome()
     }
 }
-function gotoPage(target) {
+function gotoPage(target, params) {
     console.log("Trying to go to page", target)
     if (window.gotoPage) {
-        window.gotoPage(target)
+        window.gotoPage(target, params)
     }
 }
 function T(e) {
@@ -42,7 +42,7 @@ export function HeaderBar() {
         </div>
         
         <div class="bar-block xlarge color-primary hide" id="mobileMenu">
-            <a onclick='${() => gotoPage("refreshKeys")}' class="bar-item large btn-menu focus-visible-only">${T("Update public keys")}</a>
+            <a onclick='${() => gotoPage("verifier", "AskUserToStoreQR")}' class="bar-item large btn-menu focus-visible-only">${T("Scan my QR code")}</a>
             <a onclick='${() => gotoPage("selectLanguage")}'
                 class="bar-item large btn-menu focus-visible-only">${T("Language")}</a>
             <a onclick='${() => gotoPage("selectCamera")}' class="bar-item large btn-menu focus-visible-only">${T("Camera")}</a>

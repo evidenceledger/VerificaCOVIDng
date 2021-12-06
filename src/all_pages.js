@@ -13,11 +13,13 @@ import { RefreshKeys } from './pages/refreshkeys'
 import { SelectLanguage } from "./i18n/i18";
 import { Help } from './pages/help';
 import { DisplayHcert } from './pages/hcertpage'
+import { DisplayMyHcert } from "./pages/myhcertpage";
+import { MicroWallet, AskUserToStoreQR } from "./pages/microwallet";
 import { SelectCamera } from './pages/selectcamera';
 import { SWNotify } from "./pages/swnotify";
 import { Page404 } from './pages/page404'
 
-export var homePage = "intro"
+export var homePage = "MicroWallet"
 
 export var pageDefs = [
     {
@@ -47,6 +49,18 @@ export var pageDefs = [
     {
         name: "displayhcert",
         className: DisplayHcert
+    },
+    {
+        name: "displaymyhcert",
+        className: DisplayMyHcert
+    },
+    {
+        name: "MicroWallet",
+        className: MicroWallet
+    },
+    {
+        name: "AskUserToStoreQR",
+        className: AskUserToStoreQR
     },
     {
         name: "selectCamera",
