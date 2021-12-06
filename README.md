@@ -28,7 +28,7 @@ After building the application will be available in the `docs` subdirectory.
 
 The app is fully static so it can be deployed to any web server or CDN.
 
-## Customisation
+## Branding and simple customisations
 
 ### Customising the colors
 
@@ -42,6 +42,26 @@ Main display characteristics can be modified in `src/app.css`. For simple modifi
 The `primary` colors are used mainly for the header bar and drop-down menu.
 
 The `secondary` colors are used for the buttons.
+
+Additionally, you may have to modify the following:
+
+- HTML theme color defined in file `src/index.html`, in the tag `<meta name="theme-color" content="#919597">`.
+- `background_color` and `theme_color` entries in the file `src/public/manifest.webmanifest`.
+
+### Modifying the icons of the application
+
+You should replace the icons of the application with your icons. Those can be found in the `src/public` directory.
+
+The `src/public` directory is special: all files in this directory are copied unmodified and unprocessed into the root destination directory (by default the `docs` directory) when building the application for production.
+
+The relevant image files are the following:
+
+- favicon.ico
+- icon-152.png
+- icon-192.png
+- icon-512.png
+- apple-touch-icon.png
+
 
 ### Customising the header title or adding a header icon
 
@@ -75,9 +95,26 @@ However, there are some objects where the key starts with the letter `$` like in
 
 Adding a new language involves two steps:
 
-1. Adding translation objects in the file `translations`.
-2. Adding a new option for that language in the file `src/i18n/i18.js`.
+1. Adding translation objects in the file `translations.js`.
+2. Adding a new option to choose the language in the file `src/i18n/i18.js`.
 
 The `src/i18n/i18.js` file contains the code for switching languages, which is available as a page in the drop-down menu. Adding a new language is just a copy/paste and modification of the code for an existing language.
 
 The icon refresenting the flag for the new language should be put in the `src/i18n/flags` directory. Optimum dimensions for the icon are 50x33 pixels.
+
+## Modification of verification rules of the certificate
+
+We distinguish between the `technical verification rules` and the `business verification rules`.
+
+The `technical verification rules` are typically a core part of the application and should not be different across instances. They include thingas like: 
+
+- Decoding the QR and applying formal verifications to check that it contains the relevant items specified by the EU DCC format.
+- Verifying that the digital signature is correct and that the public key of the digital certificate used to sign the EU DCC is included in the official trusted list of public keys published by the countries.
+
+The `business verification rules` are applied after the technical verification of the EU DCC and are typically related to dates of issuance vs. date of verification, number of doses required, etc.
+
+The `technical verification rules` are very stable and should change only if some technical problem is found and fixed.
+
+However, the `business verification rules` can be modified depending on the evolution of the pandemia or the region where they have to be applied.
+
+`Business verification rules` tend to be very simple and they are defined in the file `src/components/verifications.js`. It should be straightforward to understand the current rules and adapt them to your needs. 
