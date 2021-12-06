@@ -82,9 +82,9 @@ export class DisplayMyHcert extends AbstractPage {
         let fullPage = html`
         ${thehtml}
         <div class="sect-white">
-            <button @click=${()=> gotoPage("verifier")} class="btn color-secondary hover-color-secondary
+            <button @click=${()=> gotoPage("DisplayQR")} class="btn color-secondary hover-color-secondary
             w3-xlarge w3-round-xlarge">
-            ${T("Verify another")}</button>
+            ${T("Display QR")}</button>
         </div>
         `
         this.render(fullPage)

@@ -15,11 +15,12 @@ import { Help } from './pages/help';
 import { DisplayHcert } from './pages/hcertpage'
 import { DisplayMyHcert } from "./pages/myhcertpage";
 import { MicroWallet, AskUserToStoreQR } from "./pages/microwallet";
+import { DisplayQR } from "./pages/displayqr";
 import { SelectCamera } from './pages/selectcamera';
 import { SWNotify } from "./pages/swnotify";
 import { Page404 } from './pages/page404'
 
-export var homePage = "MicroWallet"
+export var homePage = "intro"
 
 export var pageDefs = [
     {
@@ -61,6 +62,10 @@ export var pageDefs = [
     {
         name: "AskUserToStoreQR",
         className: AskUserToStoreQR
+    },
+    {
+        name: "DisplayQR",
+        className: DisplayQR
     },
     {
         name: "selectCamera",
