@@ -140,7 +140,8 @@ import valueSets from "./json/value-sets.json"
 import ukRawKeys from "./json/uk_jwk_keys.json"
 
 // Set the initial value of the EU Trusted List, to be refreshed later
-var eu_trusted_keys = eu_jwk_keys
+// Use a global scope variable so it can be refreshed later
+window.eu_trusted_keys = eu_jwk_keys
 
 // Search for a public key in the several trusted lists
 async function getTrustedKey(kid) {
@@ -155,7 +156,7 @@ async function getTrustedKey(kid) {
     if (!kid) { log.myerror("kid is undefined"); return undefinedKey; }
     
     // First, try to get it from the PRODUCTION EU list
-    let entry = eu_trusted_keys[kid]
+    let entry = window.eu_trusted_keys[kid]
     if (entry) {
         console.log(`kid "${kid}" found in EU_PRO trusted list`)
         return {

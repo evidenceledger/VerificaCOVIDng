@@ -11,7 +11,7 @@ export class RefreshKeys extends AbstractPage {
 
     async enter() {
 
-        refreshTrustedKeys()
+        await refreshTrustedKeys()
 
         let theHtml = html`
         <div class="container">
@@ -47,8 +47,7 @@ async function refreshTrustedKeys() {
         log.myerror("fetch for TL failed");
         return;
     }
-    let eu_trusted_keys = await response.json()
+    window.eu_trusted_keys = await response.json()
     return;
 }
-
 window.refreshTrustedKeys = refreshTrustedKeys
