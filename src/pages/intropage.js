@@ -20,8 +20,6 @@ export class Intro extends AbstractPage {
                     xlarge round-xlarge focus-visible-only">
                     ${T("Start verifying")}
                 </button>
-                <br/><br/>
-                <a style="font-weight: bold" onclick='gotoPage("faqs")' href="javascript:void(0)">${T("Frequently asked questions (FAQS)")}</a>
 
             </div>
         </div>`;
