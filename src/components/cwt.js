@@ -190,7 +190,9 @@ class DGCKey {
     }
 
     static async verify(key, signature, bytes) {
+        console.log("KEy====", key)
         if (key.type != "public") {
+            console.log(key)
             throw new Error("Not a public key");
         }
 
@@ -1292,7 +1294,7 @@ export class CWT {
 
                     console.log(k)    
                     // Verify the CWT with the verification key
-                    verified = await CWT.verifyCWT(data, k);
+                    verified = await CWT.verifyCWT(data, k.publicKey);
     
                 } else if (k.list === "UK_PRO") {
     

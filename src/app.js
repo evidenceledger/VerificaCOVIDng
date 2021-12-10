@@ -107,11 +107,6 @@ window.goHome = goHome
 export async function gotoPage(pageName, pageData) {
     console.log("Inside gotoPage:", pageName)
 
-    // Make sure the target page always receives an object even if empty
-    if (!pageData) {
-        pageData = {}
-    }
-
     // If pageName is not a registered page, go to the 404 error page
     if (pages.get(pageName) === undefined) {
         console.error("Target page does not exist: ", pageName);
@@ -218,6 +213,7 @@ async function getTrustedKey(kid) {
     // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
 
     // Wait on the promise to process keys to make sure the keys are preprocessed
+    console.log("Waiting for Trusted Keys to be preprocessed")
     await window.promiseLoadKeys
 
     let entry = window.eu_trusted_keys[kid]
