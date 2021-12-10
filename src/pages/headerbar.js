@@ -46,8 +46,8 @@ export function HeaderBar() {
             <a onclick='${() => gotoPage("selectLanguage")}'
                 class="bar-item large btn-menu focus-visible-only">${T("Language")}</a>
             <a onclick='${() => gotoPage("selectCamera")}' class="bar-item large btn-menu focus-visible-only">${T("Camera")}</a>
-            <a onclick='${() => gotoPage("faqs")}' class="bar-item large btn-menu focus-visible-only">${T("FAQS")}</a>
-            <a onclick='${() => gotoPage("help")}' class="bar-item large btn-menu focus-visible-only">${T("Help")}</a>
+            <a onclick='${() => gotoPage("termsOfUse")}' class="bar-item large btn-menu focus-visible-only">${T("Terms & Conditions")}</a>
+            <a onclick='${() => gotoPage("privacyPolicy")}' class="bar-item large btn-menu focus-visible-only">${T("Privacy policy")}</a>
         </div>
       `;
 

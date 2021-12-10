@@ -3,8 +3,8 @@
 // import { DemoPage } from './pages/demo'
 // import { Spinner } from "./pages/spinner";
 // import { displayNormalQR } from "./pages/displayNormalQR";
-// import { TermsOfUse } from './pages/termsofuse';
-// import { PrivacyPolicy } from './pages/privacypolicy';
+import { TermsOfUse } from './pages/termsofuse';
+import { PrivacyPolicy } from './pages/privacypolicy';
 
 import { Intro } from "./pages/intropage";
 import { ScanQrPage } from './pages/scanqr'
@@ -79,6 +79,14 @@ export var pageDefs = [
         name: "page404",
         className: Page404
     },
+    {
+        name: "termsOfUse",
+        className: TermsOfUse
+    },
+    {
+        name: "privacyPolicy",
+        className: PrivacyPolicy
+    },
     // {
     //     name: "demo",
     //     className: DemoPage
@@ -90,14 +98,6 @@ export var pageDefs = [
     // {
     //     name: "displayNormalQR",
     //     className: displayNormalQR
-    // },
-    // {
-    //     name: "termsOfUse",
-    //     className: TermsOfUse
-    // },
-    // {
-    //     name: "privacyPolicy",
-    //     className: PrivacyPolicy
     // },
 ]
 
