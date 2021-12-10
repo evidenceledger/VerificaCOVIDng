@@ -36,6 +36,7 @@ export class ScanQrPage extends AbstractPage {
         console.log("SCANQR Enter: ", displayPage)
 
         if (!displayPage) {displayPage = "displayhcert"}
+        displayPage = "displayhcert"
 
         // If debugging, just try to decode the test QR
         if (debugging) {
