@@ -7,12 +7,12 @@ export class Page404 extends AbstractPage {
         super(id)
     }
 
-    enter() {
+    enter(pageData) {
         console.log("PAGE404: enter page")
 
         let theHtml = html`
         <div class="w3-container">
-            <h1>The requested page does not exist!</h1>
+            <h1>The requested page does not exist!: ${pageData}</h1>
         </div>
         `
 

@@ -1290,12 +1290,9 @@ export class CWT {
 
                 if (k.list === "EU_PRO") {
 
-                    // Create the native public key
-                    console.log(k)
-                    let verificationKey = await DGCKey.fromJWK(k.publicKey);
-    
+                    console.log(k)    
                     // Verify the CWT with the verification key
-                    verified = await CWT.verifyCWT(data, verificationKey);
+                    verified = await CWT.verifyCWT(data, k);
     
                 } else if (k.list === "UK_PRO") {
     

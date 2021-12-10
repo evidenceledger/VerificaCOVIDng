@@ -1,6 +1,9 @@
 // Get the build date of the application
 import buildDate from './version.txt?raw'
 
+// Import support for x509 certificates
+import * as x509 from "@peculiar/x509";
+
 // Store the version in global Window object and in local storage
 window.appVersion = buildDate
 window.localStorage.setItem("VERSION", appVersion)
@@ -17,7 +20,6 @@ var pages = new Map();
 
 // Register a new page name, associated to a class instance
 export function route(pageName, classInstance) {
-    console.log("ROUTER: register page:", pageName)
     pages.set(pageName, classInstance)
 }
 // Make it available in the global scope
@@ -42,7 +44,6 @@ window.addEventListener("popstate", async function (event) {
         pageName = state.pageName;
         pageData = state.pageData;
     }
-    console.log("Popstate: ", pageName);
 
     // Process the page transition
     await processPageEntered(pageName, pageData, true);
@@ -67,8 +68,10 @@ async function processPageEntered(pageName, pageData, historyData) {
 
     let targetPage = pages.get(pageName)  
 
-    // If the target page is not a registered page, go to the page404 page
+    // If the target page is not a registered page, go to the page404 page,
+    // passing the target page as pageData
     if (targetPage === undefined) {
+        pageData = pageName
         pageName = "page404"
     }
 
@@ -122,7 +125,7 @@ export async function gotoPage(pageName, pageData) {
     );
 
     // Process the page transition
-    await processPageEntered(pageName, pageData);
+    await processPageEntered(pageName, pageData, false);
 }
 window.gotoPage = gotoPage
 
@@ -132,16 +135,62 @@ window.gotoPage = gotoPage
 // **************************************
 
 // Embed the trusted lists
-import eu_jwk_keys from "./json/eu_jwk_keys.json"
+//import eu_jwk_keys from "./json/eu_jwk_keys.json"
+import spanish_tl from './json/spanish_tl.json'
 import prePublicKeys from "./json/pre_jwk_keys.json"
 import valueSets from "./json/value-sets.json"
+
+async function importKey(certPem) {
+    const cert = new x509.X509Certificate(certPem);
+    const pubk = cert.publicKey.rawData
+    var publicKey
+    try {
+        publicKey = await window.crypto.subtle.importKey(
+            "spki",
+            pubk,
+            {
+                name: "ECDSA",
+                namedCurve: "P-256"
+            },
+            true,
+            ["verify"]
+        );
+        
+    } catch (error) {
+        try {
+            publicKey = await window.crypto.subtle.importKey(
+                "spki",
+                pubk,
+                {
+                    name: "RSA-PSS",
+                    hash: "SHA-256"
+                },
+                true,
+                ["verify"]
+            );
+    
+        } catch (error) {
+            throw "Key is neither RSA not ECDSA key type"
+        }
+    }
+    return publicKey
+}
+
+async function preprocessTL(tl_in) {
+    let tl_out = {}
+    for (let i = 0; i < tl_in.length; i = i + 1) {
+        let kid = tl_in[i]["kid"]
+        let certPem = tl_in[i]["certificado"]
+        let pubKey = await importKey(certPem)
+        tl_out[kid] = pubKey
+    }
+    window.eu_trusted_keys = tl_out
+    console.log("Public Keys Loaded")
+}
 
 // https://covid-status.service.nhsx.nhs.uk/pubkeys/keys.json
 import ukRawKeys from "./json/uk_jwk_keys.json"
 
-// Set the initial value of the EU Trusted List, to be refreshed later
-// Use a global scope variable so it can be refreshed later
-window.eu_trusted_keys = eu_jwk_keys
 
 // Search for a public key in the several trusted lists
 async function getTrustedKey(kid) {
@@ -156,17 +205,33 @@ async function getTrustedKey(kid) {
     if (!kid) { log.myerror("kid is undefined"); return undefinedKey; }
     
     // First, try to get it from the PRODUCTION EU list
+    // let entry = window.eu_trusted_keys[kid]
+    // if (entry) {
+    //     console.log(`kid "${kid}" found in EU_PRO trusted list`)
+    //     return {
+    //         kid: kid,
+    //         publicKey: entry.jwk,
+    //         list: "EU_PRO",
+    //         format: "jwk"
+    //     }
+    // }
+    // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+
+    // Wait on the promise to process keys to make sure the keys are preprocessed
+    await window.promiseLoadKeys
+
     let entry = window.eu_trusted_keys[kid]
     if (entry) {
         console.log(`kid "${kid}" found in EU_PRO trusted list`)
         return {
             kid: kid,
-            publicKey: entry.jwk,
+            publicKey: entry,
             list: "EU_PRO",
-            format: "jwk"
+            format: "native"
         }
     }
     log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+
 
     // Now check in the PRODUCTION listfrom the UK
     for (let i = 0; i < ukRawKeys.length; i++) {
@@ -341,6 +406,11 @@ window.addEventListener('load', async (event) => {
         console.log("In production")
     }
 
+
+    // Set the initial value of the EU Trusted List, to be refreshed later
+    // Use a global scope variable so it can be refreshed later
+    //window.eu_trusted_keys = eu_jwk_keys
+    window.promiseLoadKeys = preprocessTL(spanish_tl)
 
     // Lazy-load the pages of the application
     var pagesModule = await import("./all_pages.js")
