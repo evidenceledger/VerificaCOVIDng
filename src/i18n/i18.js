@@ -8,10 +8,10 @@ import frflag from './flags/fr.png'
 import deflag from './flags/de.png'
 import itflag from './flags/it.png'
 
-export class SelectLanguage extends AbstractPage {
+export default class SelectLanguage extends AbstractPage {
 
-    constructor(domElem) {
-        super(domElem)
+    constructor(id) {
+        super("SelectLanguage")
     }
 
     enter() {
@@ -89,4 +89,3 @@ export class SelectLanguage extends AbstractPage {
         window.goHome()
     }
 }
-

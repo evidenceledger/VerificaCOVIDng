@@ -1,9 +1,8 @@
-//import { gotoPage } from "../router";
-var gotoPage = window.gotoPage
 import { html } from 'uhtml';
 import {log} from '../log'
 import { BrowserQRCodeReader } from '@zxing/browser';
 import { AbstractPage } from './abstractpage'
+import { getPreferredVideoDevice, getPlatformOS } from '../components/camerainfo'
 
 // This is to facilitate debugging of certificates
 var testQRdata = "HC1:NC"
@@ -15,11 +14,19 @@ var testQR = {
 // Set the QR raw data above and enable debugging setting this flag to true
 var debugging = false
 
-export class ScanQrPage extends AbstractPage {
+const QR_UNKNOWN = 0
+const QR_URL = 1
+const QR_MULTI = 2
+const QR_HC1 = 3
+
+export default class ScanQrPage extends AbstractPage {
+    codeReader;     // Instance of QR Code Reader reused across invocations
+    controls;
+    videoElem;      // DOMElement where the video is displayed, reused across invocations
+    selectedCameraId;   // The last used camera ID
 
     constructor(id) {
-        console.log("SCANQR: Inside constructor")
-        super(id);
+        super("ScanQrPage");
 
         // Initialize the QR library
         this.codeReader = new BrowserQRCodeReader()
@@ -36,29 +43,46 @@ export class ScanQrPage extends AbstractPage {
         console.log("SCANQR Enter: ", displayPage)
 
         if (!displayPage) {
-            displayPage = "displayhcert"
+            displayPage = "DisplayHcert"
+            console.log()
         }
-
 
         // If debugging, just try to decode the test QR
         if (debugging) {
-            await processQRpiece(testQR, displayPage)
+            await this.processQRpiece(testQR, displayPage)
             return
         }
 
-        // Use this camera if the user selected it sometime in the past
+        // Use the camera explicitly configured by the user
         var selectedCameraId = localStorage.getItem("selectedCamera")
+
+        // If nothing configured, try to use last one used, if any
+        if (!selectedCameraId) {
+            selectedCameraId = this.selectedCameraId
+        }
  
-        // Otherwise, try to select the most appropriate camera for scanning a QR
-        if (selectedCameraId == null) {
-            let preferredCamera = await window.getPreferredVideoDevice()
-            if (preferredCamera != undefined) {
-                selectedCameraId = preferredCamera.deviceId
+        // If we are in Android and this is the first time, try to select the most appropriate camera
+        // This will request permission from the user
+        if (!selectedCameraId && ("Android" == getPlatformOS())) {
+            let allVideoDevices;
+            try {
+                allVideoDevices = await getPreferredVideoDevice()
+            } catch (error) {
+                console.error("Error requesting camera access", error)
             }
+            if (allVideoDevices && allVideoDevices.defaultPreferredCamera) {
+                selectedCameraId = allVideoDevices.defaultPreferredCamera.deviceId
+            }
+
+            if (!selectedCameraId) {
+                this.render(this.messageNoCameraPermissions())
+                return;
+            }
+    
         }
-        if (selectedCameraId == null) {
-            selectedCameraId == undefined
-        }
+
+        // Record the currently selected camera
+        this.selectedCameraId = selectedCameraId
 
         let theHtml = html`${this.videoElem}`;
 
@@ -66,7 +90,7 @@ export class ScanQrPage extends AbstractPage {
         this.render(theHtml)
 
         let constraints;
-        if (selectedCameraId == undefined) {
+        if (!selectedCameraId) {
             constraints = {
                 audio: false,
                 video: {
@@ -86,23 +110,35 @@ export class ScanQrPage extends AbstractPage {
 
         // Call the QR decoder using the video element just created
         // If cameraQR is undefined, the decoder will choose the appropriate camera
-        this.controls = await this.codeReader.decodeFromConstraints(constraints, this.videoElem, (result, err, controls) => {
-            if (result) {
-                // Successful decode
-                console.log("RESULT", result)
+        try {
 
-                // Only decode Health Certificates
-                let qrType = detectQRtype(result)
-
-                if (qrType === QR_HC1) {
-                    // Stop scanning
-                    controls.stop()
-                    // And process the scanned QR code
-                    processQRpiece(result, displayPage)
+//            this.controls = await this.codeReader.decodeFromConstraints(constraints, this.videoElem, (result, err, controls) => {
+            window.controls = await this.codeReader.decodeFromConstraints(constraints, this.videoElem, (result, err, controls) => {
+                if (result) {
+                    // Successful decode
+                    console.log("RESULT", result)
+    
+                    // Only decode Health Certificates
+                    let qrType = this.detectQRtype(result)
+                    console.log("QRTYPE", qrType)
+    
+                    if (qrType === QR_HC1) {
+                        // Stop scanning
+                        controls.stop()
+                        // And process the scanned QR code
+                        this.processQRpiece(result, displayPage)
+                    }
+    
                 }
+            })
 
-            }
-        })
+        } catch (error) {
+            console.log("No permissions from user")
+            theHtml = this.messageNoCameraPermissions()
+            this.render(theHtml)
+            return;
+
+        }
 
     }
 
@@ -113,65 +149,88 @@ export class ScanQrPage extends AbstractPage {
     
     async exit() {
         // Reset the decoder just in case the camera was still working
-        if (this.controls) {
-            this.controls.stop()
-        }
+        // if (this.controls) {
+        //     this.controls.stop()
+        // }
         this.videoElem.style.display = "none"
     }
 
+    async processQRpiece(readerResult, displayPage) {
+        let qrData = readerResult.text
+    
+        let qrType = this.detectQRtype(readerResult)
+        console.log("QRTYPE", qrType)
+        if (qrType !== QR_HC1) {
+            return false;
+        }
+    
+        // Display data of a normal QR
+        if (qrType === QR_UNKNOWN || qrType === QR_URL) {
+            this.gotoPage("DisplayNormalQR", qrData)
+            return true;
+        }
+    
+        // Handle HCERT data
+        if (qrType === QR_HC1) {
+            console.log("Going to ", displayPage)
+            this.gotoPage(displayPage, qrData)
+            return true;
+        }
+    
+    }
+    
+    detectQRtype(readerResult) {
+        // Try to detect the type of data received
+        let qrData = readerResult.text
+      
+        console.log("detectQRtype:", qrData);
+        if (!qrData.startsWith) {
+            log.myerror("detectQRtype: data is not string")
+        }
+      
+        if (qrData.startsWith("https")) {
+          // We require secure connections
+          // Normal QR: we receive a URL where the real data is located
+          return QR_URL;
+        } else if (qrData.startsWith("multi|w3cvc|")) {
+          // A multi-piece JWT
+          return QR_MULTI;
+        } else if (qrData.startsWith("HC1:")) {
+          return QR_HC1;
+        } else {
+            return QR_UNKNOWN
+        }
+    }
+    
+    messageNoCameraPermissions() {
+
+        let theHtml = html`
+        <div class="container">
+            <div class="w3-card-4 w3-center" style="margin-top:100px;">
+        
+                <header class="w3-container color-primary" style="padding:10px">
+                    <h1>${T("No camera access")}</h1>
+                </header>
+        
+                <div class="w3-container w3-padding-16">
+                    <p>${T("You need to allow camera access to be able to scan a QR.")}</p>
+                    <p>${T("Please click Accept to refresh the page.")}</p>
+                </div>
+        
+                <div class="w3-padding-16">
+        
+                    <button @click=${()=>window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
+        
+                </div>
+        
+            </div>
+        </div>
+        `
+        return theHtml
+
+    }
+
 }
 
 
-const QR_UNKNOWN = 0
-const QR_URL = 1
-const QR_MULTI = 2
-const QR_HC1 = 3
-
-async function processQRpiece(readerResult, displayPage) {
-    let qrData = readerResult.text
-
-    let qrType = detectQRtype(readerResult)
-    if (qrType !== QR_HC1) {
-        return false;
-    }
-
-    // Display data of a normal QR
-    if (qrType === QR_UNKNOWN || qrType === QR_URL) {
-        gotoPage("displayNormalQR", qrData)
-        return true;
-    }
-
-    // Handle HCERT data
-    if (qrType === QR_HC1) {
-        console.log("Going to ", displayPage)
-        gotoPage(displayPage, qrData)
-        return true;
-    }
-
-}
-
-
-
-function detectQRtype(readerResult) {
-    // Try to detect the type of data received
-    let qrData = readerResult.text
-  
-    console.log("detectQRtype:", qrData);
-    if (!qrData.startsWith) {
-        log.myerror("detectQRtype: data is not string")
-    }
-  
-    if (qrData.startsWith("https")) {
-      // We require secure connections
-      // Normal QR: we receive a URL where the real data is located
-      return QR_URL;
-    } else if (qrData.startsWith("multi|w3cvc|")) {
-      // A multi-piece JWT
-      return QR_MULTI;
-    } else if (qrData.startsWith("HC1:")) {
-      return QR_HC1;
-    } else {
-        return QR_UNKNOWN
-    }
-}
 

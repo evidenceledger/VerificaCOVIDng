@@ -1,22 +1,9 @@
-import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
-import legalpng from '../img/legal.png'
-
-
-export default class TermsOfUse extends AbstractPage {
-
-    constructor(id) {
-        super("TermsOfUse")
-    }
-
-    enter() {
-
-        let theHtml = html`
+import{A as t}from"./index.aae5c249.js";import{h as s}from"./vendor.f8864ac5.js";import{l as i}from"./legal.ec5a9509.js";class h extends t{constructor(e){super("TermsOfUse")}enter(){let e=s`
 
 <div class="sect-white" style="text-align:left">
 
 <h1>Terms of Use</h1>
-<img src=${legalpng} alt="" style="width:20%" >
+<img src=${i} alt="" style="width:20%" >
 
 <h3>Identification:</h3>
 <p>
@@ -79,8 +66,4 @@ Any dispute arising or related to the Webiste will be governed by the Spanish La
 
 
 
-`
-
-        this.render(theHtml)
-    }
-}
+`;this.render(e)}}export{h as default};

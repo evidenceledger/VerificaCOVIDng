@@ -1,31 +1,35 @@
 import { AbstractPage } from '../pages/abstractpage'
 import { html } from 'uhtml';
+import { getPreferredVideoDevice } from '../components/camerainfo'
 
-export class SelectCamera extends AbstractPage {
+export default class SelectCamera extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("SelectCamera")
     }
 
     async enter() {
         console.log("Select camera")
 
-        var preferredLabel = "Undefined"
-        let preferredCamera = await getPreferredVideoDevice()
-        if (preferredCamera) {
-            preferredLabel = preferredCamera.label
-        }
-
-        if (window.videoDevices.length == 0) {
+        let preferredVideoDevices = await getPreferredVideoDevice()
+        console.log(preferredVideoDevices)
+        if (!preferredVideoDevices) {
             this.render(html`<p>No camera available</p>`)
             return;
         }
+
+        let preferredLabel;
+        if (preferredVideoDevices.defaultPreferredCamera) {
+            preferredLabel = preferredVideoDevices.defaultPreferredCamera.label
+
+        }
+        let videoDevices = preferredVideoDevices.videoDevices
 
         let theHtml = html`
         <div class="container padding-16">
 
             <ul class="w3-ul w3-card-4">
-            ${window.videoDevices.map((camera) =>
+            ${videoDevices.map((camera) =>
 
                 html`
                 <li class="bar">
@@ -49,40 +53,6 @@ export class SelectCamera extends AbstractPage {
         window.selectedCamera = l
         localStorage.setItem("selectedCamera", l)
         window.history.back()
-        window.initialHeader();
     }
 
-    async checkCamera() {
-        let stream;
-        let constraints = {
-            audio: false,
-            video: {
-                width: { ideal: 1080, max: 1920 },
-                facingMode: "environment"
-            }
-        }
-
-
-        try {
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-            let track = stream.getVideoTracks()[0]
-            let settings = track.getSettings()
-            console.log(settings)
-            let s = `${settings.width}x${settings.height}`
-            return s;
-        }
-        catch {
-            // Ignored
-        }
-        finally {
-            if (stream !== undefined) {
-                stream.getVideoTracks().forEach((track) => {
-                    track.stop();
-                });
-            }
-        }
-
-
-    }
 }
-

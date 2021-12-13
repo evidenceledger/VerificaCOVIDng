@@ -3,10 +3,10 @@ import { html } from 'uhtml';
 import { HeaderBar } from './headerbar';
 
 
-export class RefreshKeys extends AbstractPage {
+export default class RefreshKeys extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("RefreshKeys")
     }
 
     async enter() {

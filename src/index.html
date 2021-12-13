@@ -38,18 +38,10 @@
 </header>
 
 <main>
-    <div class="mb-100"></div>
-    <div class="loader"></div>
 </main>
 
 <footer>
 </footer>
-
-<script type="module">
-import {render, html, svg} from 'uhtml';
-import {HeaderBar} from './pages/headerbar.js'
-HeaderBar();
-</script>
 
 <script type="module">
 // *******************************************************
@@ -76,7 +68,13 @@ function T(key) {
     return translated
 }
 window.T = T
+
+import { render, html } from 'uhtml';
+import { HeaderBar, DefaultIntroPage } from './pages/headerbar.js'
+HeaderBar();
+DefaultIntroPage()
 </script>
+
 
 </body>
 

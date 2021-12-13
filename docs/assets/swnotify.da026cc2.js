@@ -1,17 +1,4 @@
-import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml'
-
-var gotoPage = window.gotoPage
-
-export default class SWNotify extends AbstractPage {
-
-    constructor(id) {
-        super("SWNotify")
-    }
-
-    enter() {
-
-        let theHtml = html`
+import{A as a}from"./index.aae5c249.js";import{h as t}from"./vendor.f8864ac5.js";class i extends a{constructor(e){super("SWNotify")}enter(){let e=t`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
@@ -32,8 +19,4 @@ export default class SWNotify extends AbstractPage {
         
             </div>
         </div>
-        `
-
-        this.render(theHtml)
-    }
-}
+        `;this.render(e)}}export{i as default};

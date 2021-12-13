@@ -1,20 +1,42 @@
 import { HeaderBar } from './headerbar'
+import * as router from '../router';
 import {render, html, svg} from 'uhtml';
 
 
 export class AbstractPage {
+    domElem;        // The DOM Element that holds the page
+    pageName;       // The name of the page for routing
 
     constructor(id) {
-        // Subclasses can choose its tag name, the default is a <div>
-        if (this.tagName === undefined) {
-            this.tagName = "div"
-        }
-        // Create a tag to contain the page
-        this.domElem = document.createElement(this.tagName)
-        // Set the id of the page for routing
-        if (id) { this.domElem.id = id }
+
+        // Create a <div> tag to contain the page
+        this.domElem = document.createElement('div')
+
+        // Set the id and name of the page for routing
+        this.pageName = id
+        this.domElem.id = this.pageName
+
+        // Register in the router
+        console.log(this)
+        router.route(this.pageName, this)
+
         // The page starts hidden
         this.domElem.style.display = "none"
+
+        // Insert into the DOM inside the <main> element
+        var mainElem = document.querySelector('main')
+        mainElem.appendChild(this.domElem)
+
+    }
+
+    async goHome() {
+        // This is a utility function to help subclasses
+        await router.goHome()
+    }
+
+    async gotoPage(pageName, pageData) {
+        // This is a utility function to help subclasses
+        await router.gotoPage(pageName, pageData)
     }
 
     render(theHtml) {

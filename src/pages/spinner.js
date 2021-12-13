@@ -1,10 +1,10 @@
 import { AbstractPage } from './abstractpage'
 
-export class Spinner extends AbstractPage {
+export default class Spinner extends AbstractPage {
 
     constructor(id) {
         console.log("SPINNER: inside constructor")
-        super(id)
+        super("Spinner")
     }
 
     enter(pageData) {
@@ -12,4 +12,3 @@ export class Spinner extends AbstractPage {
         window.location.reload()
     }
 }
-

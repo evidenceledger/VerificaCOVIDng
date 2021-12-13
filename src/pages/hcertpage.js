@@ -7,13 +7,10 @@ import ok_image from "../img/ok.png"
 import error_image from "../img/error.png"
 import warning_image from "../img/warning.png"
 
-var gotoPage = window.gotoPage
-
-export class DisplayHcert extends AbstractPage {
+export default class DisplayHcert extends AbstractPage {
 
     constructor(id) {
-        console.log("HCERT: Constructor")
-        super(id)
+        super("DisplayHcert")
     }
 
     async enter(qrContent) {
@@ -72,7 +69,7 @@ export class DisplayHcert extends AbstractPage {
         let fullPage = html`
         ${thehtml}
         <div class="sect-white">
-            <button @click=${()=> gotoPage("verifier")} class="btn color-secondary hover-color-secondary
+            <button @click=${()=> this.gotoPage("ScanQrPage")} class="btn color-secondary hover-color-secondary
             w3-xlarge w3-round-xlarge">
             ${T("Verify another")}</button>
         </div>
@@ -138,5 +135,3 @@ export class DisplayHcert extends AbstractPage {
     }
 
 }
-
-

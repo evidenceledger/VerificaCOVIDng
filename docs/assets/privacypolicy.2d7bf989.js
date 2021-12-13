@@ -1,22 +1,9 @@
-import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
-import legalpng from '../img/legal.png'
-
-
-export default class PrivacyPolicy extends AbstractPage {
-
-    constructor(id) {
-        super("PrivacyPolicy")
-    }
-
-    enter() {
-
-        let theHtml = html`
+import{A as t}from"./index.aae5c249.js";import{h as a}from"./vendor.f8864ac5.js";import{l as i}from"./legal.ec5a9509.js";class h extends t{constructor(e){super("PrivacyPolicy")}enter(){let e=a`
 
 <div class="sect-white" style="text-align:left">
 
 <h1>Privacy Policy</h1>
-<img src=${legalpng} alt="" style="width:20%" >
+<img src=${i} alt="" style="width:20%" >
 
 <h1>Privacy Policy</h1>
 <p>
@@ -89,8 +76,4 @@ If the user would like to obtain more information of the Website’s Privacy Pol
 
 
 
-`
-
-        this.render(theHtml)
-    }
-}
+`;this.render(e)}}export{h as default};

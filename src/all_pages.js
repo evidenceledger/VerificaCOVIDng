@@ -1,103 +1,59 @@
+import * as router from './router'
 
-// Import the components implementing the pages
-// import { DemoPage } from './pages/demo'
-// import { Spinner } from "./pages/spinner";
-// import { displayNormalQR } from "./pages/displayNormalQR";
-import { TermsOfUse } from './pages/termsofuse';
-import { PrivacyPolicy } from './pages/privacypolicy';
+export async function loadAllPages() {
+    
+    // Import first the 404 error page and home page
+    let module404 = await import('./pages/page404')
+    let moduleHome = await import('./pages/intropage')
 
-import { Intro } from "./pages/intropage";
-import { ScanQrPage } from './pages/scanqr'
-import { Faqs } from './pages/faqs';
-import { RefreshKeys } from './pages/refreshkeys'
-import { SelectLanguage } from "./i18n/i18";
-import { Help } from './pages/help';
-import { DisplayHcert } from './pages/hcertpage'
-import { DisplayMyHcert } from "./pages/myhcertpage";
-import { MicroWallet, AskUserToStoreQR } from "./pages/microwallet";
-import { DisplayQR } from "./pages/displayqr";
-import { SelectCamera } from './pages/selectcamera';
-import { SWNotify } from "./pages/swnotify";
-import { Page404 } from './pages/page404'
+    // All pages go inside the <main> element
+    var mainElem = document.querySelector('main')
+    mainElem.innerHTML = ''
 
-export var homePage = "intro"
+    // Register the 404 and home pages
+    let homePageName = registerPage(moduleHome, mainElem)
+    registerPage(module404, mainElem)
 
-export var pageDefs = [
-    {
-        name: "intro",
-        className: Intro
-    },
-    {
-        name: "verifier",
-        className: ScanQrPage
-    },
-    {
-        name: "faqs",
-        className: Faqs
-    },
-    {
-        name: "refreshKeys",
-        className: RefreshKeys
-    },
-    {
-        name: "selectLanguage",
-        className: SelectLanguage
-    },
-    {
-        name: "help",
-        className: Help
-    },
-    {
-        name: "displayhcert",
-        className: DisplayHcert
-    },
-    {
-        name: "displaymyhcert",
-        className: DisplayMyHcert
-    },
-    {
-        name: "MicroWallet",
-        className: MicroWallet
-    },
-    {
-        name: "AskUserToStoreQR",
-        className: AskUserToStoreQR
-    },
-    {
-        name: "DisplayQR",
-        className: DisplayQR
-    },
-    {
-        name: "selectCamera",
-        className: SelectCamera
-    },
-    {
-        name: "swnotify",
-        className: SWNotify
-    },
-    {
-        name: "page404",
-        className: Page404
-    },
-    {
-        name: "termsOfUse",
-        className: TermsOfUse
-    },
-    {
-        name: "privacyPolicy",
-        className: PrivacyPolicy
-    },
-    // {
-    //     name: "demo",
-    //     className: DemoPage
-    // },
-    // {
-    //     name: "spinner",
-    //     className: Spinner
-    // },
-    // {
-    //     name: "displayNormalQR",
-    //     className: displayNormalQR
-    // },
-]
+    // Set the home page
+    router.setHomePage(homePageName)
+
+    // Display immediately the home page
+    await router.gotoPage("Intro");
+
+    // List all other pages of the application
+    var pageFiles = [
+        await import('./pages/scanqr'),
+        await import('./pages/faqs'),
+        await import('./pages/refreshkeys'),
+        await import('./i18n/i18'),
+        await import('./pages/help'),
+        await import('./pages/hcertpage'),
+        await import('./pages/myhcertpage'),
+        await import('./pages/microwallet'),
+        await import('./pages/displayqr'),
+        await import('./pages/selectcamera'),
+        await import('./pages/swnotify'),
+        await import('./pages/termsofuse'),
+        await import('./pages/privacypolicy')    
+    ]
+    
+    // Register all pages in the Router
+    for (let i = 0; i < pageFiles.length; i++) {
+        let module = pageFiles[i]
+        registerPage(module, mainElem)    
+    }    
+
+}
+
+function registerPage(module, mainElem) {
+
+    let pageClass = module.default
+
+    let pageInstance = new pageClass()
+    let pageName = pageClass.name
+    console.log(pageName)
+
+    return pageName
+
+}
 

@@ -1,14 +1,20 @@
 import { html } from 'uhtml';
 import { AbstractPage } from './abstractpage'
+import './scanqr'
 
-
-export class Intro extends AbstractPage {
+export default class Intro extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("Intro")
     }
 
     enter() {
+
+        // Reset the decoder just in case the camera was still working
+        if (window.controls) {
+            window.controls.stop()
+        }
+
 
         let theHtml = html`<div class="sect-white">
             <h2 class="margin-bottom" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
@@ -16,7 +22,7 @@ export class Intro extends AbstractPage {
 
             <div class="padding-16 center">
 
-                <button onclick='${() => gotoPage("verifier")}' class="btn color-secondary hover-color-secondary
+                <button onclick='${() => this.gotoPage("ScanQrPage")}' class="btn color-secondary hover-color-secondary
                     xlarge round-xlarge focus-visible-only">
                     ${T("Start verifying")}
                 </button>
@@ -27,4 +33,3 @@ export class Intro extends AbstractPage {
         this.render(theHtml)
     }
 }
-

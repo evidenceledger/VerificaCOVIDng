@@ -9,6 +9,9 @@ export default defineConfig(({ command, mode }) => {
         // config options
         root: "src",
         base: "./",
+        json: {
+            stringify: true
+        },
         build: {
             minify: "esbuild",
             outDir: "../docs",

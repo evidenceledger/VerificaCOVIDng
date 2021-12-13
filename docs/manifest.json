@@ -1,34 +1,195 @@
 {
   "index.html": {
-    "file": "assets/index.56f7ce60.js",
+    "file": "assets/index.aae5c249.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
-      "_vendor.bc32b010.js"
+      "_vendor.f8864ac5.js"
     ],
     "dynamicImports": [
-      "all_pages.js",
+      "pages/intropage.js",
+      "pages/scanqr.js",
+      "pages/faqs.js",
+      "pages/refreshkeys.js",
+      "i18n/i18.js",
+      "pages/help.js",
+      "pages/hcertpage.js",
+      "pages/myhcertpage.js",
+      "pages/microwallet.js",
+      "pages/displayqr.js",
+      "pages/selectcamera.js",
+      "pages/swnotify.js",
+      "pages/termsofuse.js",
+      "pages/privacypolicy.js",
       "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs"
     ],
     "css": [
       "assets/index.85b8ad63.css"
     ]
   },
-  "_vendor.bc32b010.js": {
-    "file": "assets/vendor.bc32b010.js"
-  },
-  "all_pages.js": {
-    "file": "assets/all_pages.dc38ee88.js",
-    "src": "all_pages.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.bc32b010.js"
-    ]
+  "_vendor.f8864ac5.js": {
+    "file": "assets/vendor.f8864ac5.js"
   },
   "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs": {
     "file": "assets/workbox-window.prod.es5.a2fa118e.js",
     "src": "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs",
     "isDynamicEntry": true
+  },
+  "pages/intropage.js": {
+    "file": "assets/intropage.2d7f41b2.js",
+    "src": "pages/intropage.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.f8864ac5.js",
+      "index.html",
+      "_BrowserQRCodeReader.076087ed.js",
+      "_camerainfo.bed069c7.js"
+    ]
+  },
+  "_BrowserQRCodeReader.076087ed.js": {
+    "file": "assets/BrowserQRCodeReader.076087ed.js"
+  },
+  "_camerainfo.bed069c7.js": {
+    "file": "assets/camerainfo.bed069c7.js"
+  },
+  "pages/scanqr.js": {
+    "file": "assets/scanqr.9d3f7bb0.js",
+    "src": "pages/scanqr.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.f8864ac5.js",
+      "index.html",
+      "_BrowserQRCodeReader.076087ed.js",
+      "_camerainfo.bed069c7.js"
+    ]
+  },
+  "pages/faqs.js": {
+    "file": "assets/faqs.979301c9.js",
+    "src": "pages/faqs.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js"
+    ]
+  },
+  "pages/refreshkeys.js": {
+    "file": "assets/refreshkeys.5e6717d2.js",
+    "src": "pages/refreshkeys.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js"
+    ]
+  },
+  "i18n/i18.js": {
+    "file": "assets/i18.d1ea4d45.js",
+    "src": "i18n/i18.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js"
+    ]
+  },
+  "pages/help.js": {
+    "file": "assets/help.60e1f9c3.js",
+    "src": "pages/help.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js"
+    ]
+  },
+  "pages/hcertpage.js": {
+    "file": "assets/hcertpage.41298c6d.js",
+    "src": "pages/hcertpage.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.f8864ac5.js",
+      "index.html",
+      "_warning.40d5977d.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "_warning.40d5977d.js": {
+    "file": "assets/warning.40d5977d.js",
+    "imports": [
+      "index.html",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "__commonjsHelpers.4e997714.js": {
+    "file": "assets/_commonjsHelpers.4e997714.js"
+  },
+  "pages/myhcertpage.js": {
+    "file": "assets/myhcertpage.86bc0572.js",
+    "src": "pages/myhcertpage.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.f8864ac5.js",
+      "index.html",
+      "_warning.40d5977d.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "pages/microwallet.js": {
+    "file": "assets/microwallet.7c67717b.js",
+    "src": "pages/microwallet.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_vendor.f8864ac5.js",
+      "index.html"
+    ]
+  },
+  "pages/displayqr.js": {
+    "file": "assets/displayqr.d75e3203.js",
+    "src": "pages/displayqr.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js",
+      "__commonjsHelpers.4e997714.js"
+    ]
+  },
+  "pages/selectcamera.js": {
+    "file": "assets/selectcamera.c6950869.js",
+    "src": "pages/selectcamera.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js",
+      "_camerainfo.bed069c7.js"
+    ]
+  },
+  "pages/swnotify.js": {
+    "file": "assets/swnotify.da026cc2.js",
+    "src": "pages/swnotify.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js"
+    ]
+  },
+  "pages/termsofuse.js": {
+    "file": "assets/termsofuse.9d3f5c3f.js",
+    "src": "pages/termsofuse.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js",
+      "_legal.ec5a9509.js"
+    ]
+  },
+  "_legal.ec5a9509.js": {
+    "file": "assets/legal.ec5a9509.js"
+  },
+  "pages/privacypolicy.js": {
+    "file": "assets/privacypolicy.2d7bf989.js",
+    "src": "pages/privacypolicy.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_vendor.f8864ac5.js",
+      "_legal.ec5a9509.js"
+    ]
   }
 }

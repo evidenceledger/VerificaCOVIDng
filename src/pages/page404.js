@@ -1,10 +1,10 @@
 import { AbstractPage } from './abstractpage'
 import { html } from 'uhtml';
 
-export class Page404 extends AbstractPage {
+export default class Page404 extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("Page404")
     }
 
     enter(pageData) {
@@ -19,4 +19,3 @@ export class Page404 extends AbstractPage {
         this.render(theHtml)
     }
 }
-

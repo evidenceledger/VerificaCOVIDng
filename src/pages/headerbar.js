@@ -42,12 +42,12 @@ export function HeaderBar() {
         </div>
         
         <div class="bar-block xlarge color-primary hide" id="mobileMenu">
-            <a onclick='${() => gotoPage("verifier", "AskUserToStoreQR")}' class="bar-item large btn-menu focus-visible-only">${T("Scan my QR code")}</a>
-            <a onclick='${() => gotoPage("selectLanguage")}'
+            <a onclick='${() => gotoPage("ScanQrPage", "AskUserToStoreQR")}' class="bar-item large btn-menu focus-visible-only">${T("Scan my QR code")}</a>
+            <a onclick='${() => gotoPage("SelectLanguage")}'
                 class="bar-item large btn-menu focus-visible-only">${T("Language")}</a>
-            <a onclick='${() => gotoPage("selectCamera")}' class="bar-item large btn-menu focus-visible-only">${T("Camera")}</a>
-            <a onclick='${() => gotoPage("termsOfUse")}' class="bar-item large btn-menu focus-visible-only">${T("Terms & Conditions")}</a>
-            <a onclick='${() => gotoPage("privacyPolicy")}' class="bar-item large btn-menu focus-visible-only">${T("Privacy policy")}</a>
+            <a onclick='${() => gotoPage("SelectCamera")}' class="bar-item large btn-menu focus-visible-only">${T("Camera")}</a>
+            <a onclick='${() => gotoPage("TermsOfUse")}' class="bar-item large btn-menu focus-visible-only">${T("Terms & Conditions")}</a>
+            <a onclick='${() => gotoPage("PrivacyPolicy")}' class="bar-item large btn-menu focus-visible-only">${T("Privacy policy")}</a>
         </div>
       `;
 
@@ -56,4 +56,25 @@ export function HeaderBar() {
 
 }
 
+
+export function DefaultIntroPage() {
+    
+    let theHtml = html`<div class="sect-white">
+        <h2 class="margin-bottom" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
+        <p>${T("$intro01")}</p>
+
+        <div class="padding-16 center">
+
+            <div class="mb-32"></div>
+            <div class="loader"></div>
+            <p>Loading ...</p>
+
+
+        </div>
+    </div>`;
+
+    render(document.querySelector('main'), theHtml);
+    return;
+
+}
 

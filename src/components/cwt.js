@@ -1,6 +1,168 @@
 import { inflate } from "pako";
 import { log } from "../log";
 
+// Import support for x509 certificates
+import * as x509 from "@peculiar/x509";
+
+// **************************************
+// Support for the Trusted Lists
+// **************************************
+
+// Embed the trusted lists
+//import eu_jwk_keys from "./json/eu_jwk_keys.json"
+import spanish_tl from '../json/spanish_tl.json'
+import prePublicKeys from "../json/pre_jwk_keys.json"
+import valueSets from "../json/value-sets.json"
+
+// https://covid-status.service.nhsx.nhs.uk/pubkeys/keys.json
+import ukRawKeys from "../json/uk_jwk_keys.json"
+
+async function importKey(certPem) {
+    const cert = new x509.X509Certificate(certPem);
+    const pubk = cert.publicKey.rawData
+    var publicKey
+    try {
+        publicKey = await window.crypto.subtle.importKey(
+            "spki",
+            pubk,
+            {
+                name: "ECDSA",
+                namedCurve: "P-256"
+            },
+            true,
+            ["verify"]
+        );
+        
+    } catch (error) {
+        try {
+            publicKey = await window.crypto.subtle.importKey(
+                "spki",
+                pubk,
+                {
+                    name: "RSA-PSS",
+                    hash: "SHA-256"
+                },
+                true,
+                ["verify"]
+            );
+    
+        } catch (error) {
+            throw "Key is neither RSA not ECDSA key type"
+        }
+    }
+    return publicKey
+}
+
+async function preprocessTL(tl_in) {
+    console.log("Preprocessing Trusted Keys")
+
+    let tl_out = {}
+    for (let i = 0; i < tl_in.length; i = i + 1) {
+        let kid = tl_in[i]["kid"]
+        let certPem = tl_in[i]["certificado"]
+        let pubKey = await importKey(certPem)
+        tl_out[kid] = pubKey
+    }
+    window.eu_trusted_keys = tl_out
+    console.log("Trusted Keys processed")
+}
+
+
+// Search for a public key in the several trusted lists
+async function getTrustedKey(kid) {
+
+    let undefinedKey = {
+        kid: kid,
+        publicKey: undefined,
+        list: undefined,
+        format: undefined
+    }
+
+    if (!kid) { log.myerror("kid is undefined"); return undefinedKey; }
+    
+    // First, try to get it from the PRODUCTION EU list
+    // let entry = window.eu_trusted_keys[kid]
+    // if (entry) {
+    //     console.log(`kid "${kid}" found in EU_PRO trusted list`)
+    //     return {
+    //         kid: kid,
+    //         publicKey: entry.jwk,
+    //         list: "EU_PRO",
+    //         format: "jwk"
+    //     }
+    // }
+    // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+
+    // Wait on the promise to process keys to make sure the keys are preprocessed
+    console.log("Waiting for Trusted Keys to be preprocessed")
+    await window.promiseLoadKeys
+    console.log("Trusted Keys have been processed")
+
+    let entry = window.eu_trusted_keys[kid]
+    if (entry) {
+        console.log(`kid "${kid}" found in EU_PRO trusted list`)
+        return {
+            kid: kid,
+            publicKey: entry,
+            list: "EU_PRO",
+            format: "native"
+        }
+    }
+    log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+
+
+    // Now check in the PRODUCTION listfrom the UK
+    for (let i = 0; i < ukRawKeys.length; i++) {
+        if (ukRawKeys[i].kid == kid) {
+            console.log(`kid "${kid}" found in UK_PRO trusted list`)
+            return {
+                kid: kid,
+                publicKey: ukRawKeys[i].publicKey,
+                list: "UK_PRO",
+                format: "spki"
+            }
+        }
+    }
+    log.mywarn(`kid "${kid}" not found in UK_PRO trusted list`)
+
+    // And finally in the PREPRODUCTION EU list
+    if (prePublicKeys.includes(kid)) {
+        log.mywarn(`kid "${kid}" found in EU PREPRODUCTION trusted list`)
+        return {
+            kid: kid,
+            publicKey: undefined,
+            list: "EU_PREPRODUCTION",
+            format: undefined
+        }
+    }
+    log.myerror(`KEY ${kid} not found in any Trusted List`)
+    return undefinedKey;
+
+}
+
+export var vs = {
+    get: function (key, valueSetName) {
+        if (!key) { return "N/A" }
+
+        let valueSet = valueSets[valueSetName];
+        if (!valueSet) { return key; }
+
+        let values = valueSet["valueSetValues"];
+        if (!values) { return key; }
+
+        let value = values[key];
+        if (!value) { return key; }
+
+        return value["display"];
+    },
+};
+
+// Set the initial value of the EU Trusted List, to be refreshed later
+// Use a global scope variable so it can be refreshed later
+//window.eu_trusted_keys = eu_jwk_keys
+window.promiseLoadKeys = preprocessTL(spanish_tl)
+
+
 //********************************
 // CRYPTO KEY SUPPORT
 //********************************

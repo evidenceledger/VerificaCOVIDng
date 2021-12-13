@@ -1,10 +1,10 @@
 import { AbstractPage } from './abstractpage'
 import { html } from 'lit-html';
 
-export class displayNormalQR extends AbstractPage {
+export default class DisplayNormalQR extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("DisplayNormalQR")
     }
 
     enter(qrData) {
@@ -37,4 +37,3 @@ export class displayNormalQR extends AbstractPage {
         this.render(theHtml)
     }
 }
-

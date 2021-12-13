@@ -2,10 +2,10 @@ import { AbstractPage } from './abstractpage'
 import { html } from 'uhtml';
 import { QRCode } from 'easyqrcodejs'
 
-export class DisplayQR extends AbstractPage {
+export default class DisplayQR extends AbstractPage {
 
     constructor(id) {
-        super(id)
+        super("DisplayQR")
     }
 
     enter() {
@@ -32,4 +32,3 @@ export class DisplayQR extends AbstractPage {
         this.render(theHtml)
     }
 }
-

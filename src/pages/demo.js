@@ -22,7 +22,7 @@ export class DemoPage extends AbstractPage {
 
         let theHtml = html`
         <!-- =========================================== -->
-        <!-- HOME PAGE for demos. It has several roles   -->
+        <!-- HOME PAGE for DemoPages. It has several roles   -->
         <!-- and the user can choose                     -->
         <!-- =========================================== -->
         
@@ -34,28 +34,28 @@ export class DemoPage extends AbstractPage {
                 </div>
             </a>
             
-            <a @click=${() => gotoPage("verifier")}>
+            <a @click=${() => gotoPage("ScanQrPage")}>
                 <div class="panel">
                     <h3>I am a Verifier</h3>
                     <p>Check validity of a certificate</p>
                 </div>
             </a>
 
-            <a @click=${() => gotoPage("displayhcert", vaccinationQR)}>
+            <a @click=${() => gotoPage("DisplayHcert", vaccinationQR)}>
                 <div class="panel">
                     <h3>Vaccination QR</h3>
                     <p>Only for testing</p>
                 </div>
             </a>
 
-            <a @click=${() => gotoPage("displayhcert", testQR)}>
+            <a @click=${() => gotoPage("DisplayHcert", testQR)}>
                 <div class="panel">
                     <h3>Test QR</h3>
                     <p>Only for testing</p>
                 </div>
             </a>
             
-            <a @click=${() => gotoPage("displayhcert", recoveryQR)}>
+            <a @click=${() => gotoPage("DisplayHcert", recoveryQR)}>
                 <div class="panel">
                     <h3>Recovery QR</h3>
                     <p>Only for testing</p>

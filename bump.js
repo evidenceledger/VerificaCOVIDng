@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const versionFileName = "src/version.txt"
+const versionFileName = "src/public/version.txt"
 
 var text = Date()
 console.log("Version:", text)

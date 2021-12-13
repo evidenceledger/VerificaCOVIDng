@@ -1,24 +1,4 @@
-import { AbstractPage } from "./abstractpage";
-import { html } from 'uhtml';
-
-export default class Faqs extends AbstractPage {
-
-    constructor(id) {
-        super("Faqs")
-    }
-
-    toggleFaqs(hola) {
-        let x = document.getElementById(hola)
-        x.classList.toggle("show")
-    }
-
-    hideFaqs() {
-        let x = document.getElementById("faqsitem")
-        x.classList.remove("show")
-    }
-
-    async enter() {
-        let theHtml = html`
+import{A as s}from"./index.aae5c249.js";import{h as i}from"./vendor.f8864ac5.js";class n extends s{constructor(a){super("Faqs")}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let a=i`
         <div class="w3-container" style="padding:10px 0px;">
             <ul class="w3-ul w3-card-4" >
                 <li> 
@@ -151,14 +131,4 @@ export default class Faqs extends AbstractPage {
                     </span>
             </ul>
         </div>
-        `
-        this.render(theHtml)
-    }
-
-    
-}
-
-function toggleFaqs() {
-    let x = document.getElementById("faqsitem")
-    x.classList.toggle("show")
-}
+        `;this.render(a)}}export{n as default};

@@ -1,14 +1,4 @@
-import { AbstractPage } from "./abstractpage";
-import { html } from 'uhtml';
-
-export default class Help extends AbstractPage {
-
-    constructor(id) {
-        super("Help")
-    }
-
-    async enter() {
-        let theHtml = html`
+import{A as a}from"./index.aae5c249.js";import{h as e}from"./vendor.f8864ac5.js";class s extends a{constructor(t){super("Help")}async enter(){let t=e`
         <div class="container padding-16" style="text-align: justify;">
 
             <p style="margin-bottom: 10px;">${T("$help01")}</p>
@@ -28,7 +18,4 @@ export default class Help extends AbstractPage {
             </div>
             <p style="margin-bottom: 40px">${T("$help10")}<a href="mailto:verificacovid.salut@gencat.cat">verificacovid.salut@gencat.cat</a></p>
         </div>
-        `
-        this.render(theHtml)
-    }
-}
+        `;this.render(t)}}export{s as default};
