@@ -1,4 +1,4 @@
-import{h as d}from"./vendor.f8864ac5.js";import{A as n,l as o}from"./index.86574d5b.js";import{C as c,v as h,o as g,w as v,e as f}from"./warning.f108b091.js";import"./_commonjsHelpers.4e997714.js";class b extends n{constructor(a){super("DisplayMyHcert")}async enter(a){if(a=window.localStorage.getItem("MYEUDCC"),a==null){this.render(d`
+import{h as d}from"./vendor.f8864ac5.js";import{A as n,l as o}from"./index.cceea1d8.js";import{C as c,v as h,o as g,w as v,e as f}from"./warning.2fc444c8.js";import"./_commonjsHelpers.4e997714.js";class w extends n{constructor(a){super("DisplayMyHcert")}async enter(a){if(a=window.localStorage.getItem("MYEUDCC"),a==null){this.render(d`
             <div id="hcertFailed" class="w3-panel bkg-fail">
                 <h2>${T("There is no certificate.")}</h2>
             </div>
@@ -35,4 +35,4 @@ import{h as d}from"./vendor.f8864ac5.js";import{A as n,l as o}from"./index.86574
                 </div>
            
             </div>
-        `}}export{b as default};
+        `}}export{w as default};
