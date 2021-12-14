@@ -12,6 +12,7 @@ export default class SelectCamera extends AbstractPage {
         console.log("Select camera")
 
         let preferredVideoDevices = await getPreferredVideoDevice()
+        alert(preferredVideoDevices.videoDevices.length)
         console.log(preferredVideoDevices)
         if (preferredVideoDevices.videoDevices.length == 0) {
             this.render(html`<p>No camera available</p>`)
