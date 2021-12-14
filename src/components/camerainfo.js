@@ -98,7 +98,7 @@ export async function getPreferredVideoDevice() {
     // Select specific device only for Android devices
     if ("Android" == getPlatformOS()) {
         // The main recommended back camera is the last one in the list
-        defaultPreferredCamera = videoDevices[window.videoDevices.length - 1]
+        defaultPreferredCamera = videoDevices[videoDevices.length - 1]
     }
 
     alert(`Num of video devices: ${videoDevices.length}`)
