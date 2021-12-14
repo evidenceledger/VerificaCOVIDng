@@ -1,4 +1,4 @@
-import{h as o}from"./vendor.f8864ac5.js";import{A as e}from"./index.21f6afec.js";import"./BrowserQRCodeReader.076087ed.js";import"./camerainfo.5d042dd2.js";class d extends e{constructor(r){super("Intro")}enter(){window.controls&&window.controls.stop();let r=o`<div class="sect-white">
+import{h as o}from"./vendor.f8864ac5.js";import{A as e}from"./index.c7c00288.js";import"./BrowserQRCodeReader.076087ed.js";import"./camerainfo.4311a7fd.js";class c extends e{constructor(r){super("Intro")}enter(){window.controls&&window.controls.stop();let r=o`<div class="sect-white">
             <h2 class="margin-bottom" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
             <p>${T("$intro01")}</p>
 
@@ -10,4 +10,4 @@ import{h as o}from"./vendor.f8864ac5.js";import{A as e}from"./index.21f6afec.js"
                 </button>
 
             </div>
-        </div>`;this.render(r)}}export{d as default};
+        </div>`;this.render(r)}}export{c as default};

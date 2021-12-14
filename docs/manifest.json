@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/index.21f6afec.js",
+    "file": "assets/index.c7c00288.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -36,35 +36,35 @@
     "isDynamicEntry": true
   },
   "pages/intropage.js": {
-    "file": "assets/intropage.43d90ed9.js",
+    "file": "assets/intropage.d59c9afa.js",
     "src": "pages/intropage.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
       "_BrowserQRCodeReader.076087ed.js",
-      "_camerainfo.5d042dd2.js"
+      "_camerainfo.4311a7fd.js"
     ]
   },
   "_BrowserQRCodeReader.076087ed.js": {
     "file": "assets/BrowserQRCodeReader.076087ed.js"
   },
-  "_camerainfo.5d042dd2.js": {
-    "file": "assets/camerainfo.5d042dd2.js"
+  "_camerainfo.4311a7fd.js": {
+    "file": "assets/camerainfo.4311a7fd.js"
   },
   "pages/scanqr.js": {
-    "file": "assets/scanqr.ae7a2f70.js",
+    "file": "assets/scanqr.48901f2e.js",
     "src": "pages/scanqr.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
       "_BrowserQRCodeReader.076087ed.js",
-      "_camerainfo.5d042dd2.js"
+      "_camerainfo.4311a7fd.js"
     ]
   },
   "pages/faqs.js": {
-    "file": "assets/faqs.4f66d263.js",
+    "file": "assets/faqs.7a4e52c4.js",
     "src": "pages/faqs.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,7 +73,7 @@
     ]
   },
   "pages/refreshkeys.js": {
-    "file": "assets/refreshkeys.b7d8106d.js",
+    "file": "assets/refreshkeys.e848b57b.js",
     "src": "pages/refreshkeys.js",
     "isDynamicEntry": true,
     "imports": [
@@ -82,7 +82,7 @@
     ]
   },
   "i18n/i18.js": {
-    "file": "assets/i18.a2b1d474.js",
+    "file": "assets/i18.60bf9c92.js",
     "src": "i18n/i18.js",
     "isDynamicEntry": true,
     "imports": [
@@ -91,7 +91,7 @@
     ]
   },
   "pages/help.js": {
-    "file": "assets/help.540559bb.js",
+    "file": "assets/help.72533b56.js",
     "src": "pages/help.js",
     "isDynamicEntry": true,
     "imports": [
@@ -100,18 +100,18 @@
     ]
   },
   "pages/hcertpage.js": {
-    "file": "assets/hcertpage.29e2f24c.js",
+    "file": "assets/hcertpage.76ac44cb.js",
     "src": "pages/hcertpage.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.f994c2f8.js",
+      "_warning.7a80e439.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
-  "_warning.f994c2f8.js": {
-    "file": "assets/warning.f994c2f8.js",
+  "_warning.7a80e439.js": {
+    "file": "assets/warning.7a80e439.js",
     "imports": [
       "index.html",
       "__commonjsHelpers.4e997714.js"
@@ -121,18 +121,18 @@
     "file": "assets/_commonjsHelpers.4e997714.js"
   },
   "pages/myhcertpage.js": {
-    "file": "assets/myhcertpage.369088fd.js",
+    "file": "assets/myhcertpage.4da5f75e.js",
     "src": "pages/myhcertpage.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.f994c2f8.js",
+      "_warning.7a80e439.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "pages/microwallet.js": {
-    "file": "assets/microwallet.eef66d41.js",
+    "file": "assets/microwallet.f4d478de.js",
     "src": "pages/microwallet.js",
     "isDynamicEntry": true,
     "imports": [
@@ -141,7 +141,7 @@
     ]
   },
   "pages/displayqr.js": {
-    "file": "assets/displayqr.ea6ff20b.js",
+    "file": "assets/displayqr.c38c76d9.js",
     "src": "pages/displayqr.js",
     "isDynamicEntry": true,
     "imports": [
@@ -151,17 +151,17 @@
     ]
   },
   "pages/selectcamera.js": {
-    "file": "assets/selectcamera.89a2f63a.js",
+    "file": "assets/selectcamera.3bb010cb.js",
     "src": "pages/selectcamera.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
       "_vendor.f8864ac5.js",
-      "_camerainfo.5d042dd2.js"
+      "_camerainfo.4311a7fd.js"
     ]
   },
   "pages/swnotify.js": {
-    "file": "assets/swnotify.feb09ebc.js",
+    "file": "assets/swnotify.5b1da3a3.js",
     "src": "pages/swnotify.js",
     "isDynamicEntry": true,
     "imports": [
@@ -170,7 +170,7 @@
     ]
   },
   "pages/termsofuse.js": {
-    "file": "assets/termsofuse.c1d6500d.js",
+    "file": "assets/termsofuse.1a27e4f7.js",
     "src": "pages/termsofuse.js",
     "isDynamicEntry": true,
     "imports": [
@@ -183,7 +183,7 @@
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/privacypolicy.js": {
-    "file": "assets/privacypolicy.265fb9dc.js",
+    "file": "assets/privacypolicy.e2b67acb.js",
     "src": "pages/privacypolicy.js",
     "isDynamicEntry": true,
     "imports": [

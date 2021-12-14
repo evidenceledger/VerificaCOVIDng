@@ -40,11 +40,9 @@ export default class ScanQrPage extends AbstractPage {
     }
 
     async enter(displayPage) {
-        console.log("SCANQR Enter: ", displayPage)
 
         if (!displayPage) {
             displayPage = "DisplayHcert"
-            console.log()
         }
 
         // If debugging, just try to decode the test QR
@@ -55,26 +53,32 @@ export default class ScanQrPage extends AbstractPage {
 
         // Use the camera explicitly configured by the user
         var selectedCameraId = localStorage.getItem("selectedCamera")
+        console.log("User selected camera:", selectedCameraId)
 
         // If nothing configured, try to use last one used, if any
         if (!selectedCameraId) {
             selectedCameraId = this.selectedCameraId
+            console.log("Last used camera:", selectedCameraId)
         }
  
         // If we are in Android and this is the first time, try to select the most appropriate camera
         // This will request permission from the user
         if (!selectedCameraId && ("Android" == getPlatformOS())) {
+            console.log("We are in Andoid and this is the first time")
             let allVideoDevices;
             try {
                 allVideoDevices = await getPreferredVideoDevice()
+                console.log("Video devices in Android:", allVideoDevices)
             } catch (error) {
                 console.error("Error requesting camera access", error)
             }
             if (allVideoDevices && allVideoDevices.defaultPreferredCamera) {
                 selectedCameraId = allVideoDevices.defaultPreferredCamera.deviceId
+                console.log("Selected camera in Android:", selectedCameraId)
             }
 
             if (!selectedCameraId) {
+                console.log("In Android and no selected camera")
                 this.render(this.messageNoCameraPermissions())
                 return;
             }
@@ -83,6 +87,7 @@ export default class ScanQrPage extends AbstractPage {
 
         // Record the currently selected camera
         this.selectedCameraId = selectedCameraId
+        console.log("Remembering camera used:", selectedCameraId)
 
         let theHtml = html`${this.videoElem}`;
 
@@ -91,6 +96,7 @@ export default class ScanQrPage extends AbstractPage {
 
         let constraints;
         if (!selectedCameraId) {
+            console.log("Constraints without camera")
             constraints = {
                 audio: false,
                 video: {
@@ -99,6 +105,7 @@ export default class ScanQrPage extends AbstractPage {
                 }
             }
         } else {
+            console.log("Constraints with deviceID:", selectedCameraId)
             constraints = {
                 audio: false,
                 video: {

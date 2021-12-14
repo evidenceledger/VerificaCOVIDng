@@ -10,12 +10,9 @@ export default class SelectCamera extends AbstractPage {
 
     async enter() {
         console.log("Select camera")
-        alert("Selecting camera")
 
         try {
             var preferredVideoDevices = await getPreferredVideoDevice()
-            alert(`${preferredVideoDevices}`)
-            console.log(preferredVideoDevices)
             if (preferredVideoDevices.videoDevices.length == 0) {
                 this.render(html`<p>No camera available</p>`)
                 return;
@@ -24,8 +21,9 @@ export default class SelectCamera extends AbstractPage {
             var videoDevices = preferredVideoDevices.videoDevices
     
         } catch (error) {
-            alert(error)
-        }
+            this.render(html`<p>No camera available</p>`)
+            return;
+    }
 
         let theHtml = html`
         <div class="container padding-16">

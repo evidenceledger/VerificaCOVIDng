@@ -1,4 +1,4 @@
-import{A as a}from"./index.21f6afec.js";import{h as t}from"./vendor.f8864ac5.js";class i extends a{constructor(e){super("SWNotify")}enter(){let e=t`
+import{A as a}from"./index.c7c00288.js";import{h as t}from"./vendor.f8864ac5.js";class d extends a{constructor(e){super("SWNotify")}enter(){let e=t`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
@@ -19,4 +19,4 @@ import{A as a}from"./index.21f6afec.js";import{h as t}from"./vendor.f8864ac5.js"
         
             </div>
         </div>
-        `;this.render(e)}}export{i as default};
+        `;this.render(e)}}export{d as default};

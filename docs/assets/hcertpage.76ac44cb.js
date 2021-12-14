@@ -1,4 +1,4 @@
-import{h as o}from"./vendor.f8864ac5.js";import{A as d,l as n}from"./index.21f6afec.js";import{C as c,v as g,o as h,w as v,e as f}from"./warning.f994c2f8.js";import"./_commonjsHelpers.4e997714.js";class $ extends d{constructor(i){super("DisplayHcert")}async enter(i){console.log("HCERT Enter",i);let a,r=!1,t="";try{a=await c.decodeHC1QR(i,!0),r=a[3]}catch(s){n.myerror("Error verifying credential",s),this.render(this.renderGeneralError(s));return}let e={result:"OK",message:T("The certificate is valid.")};r===!1?(e.result="ERROR",e.message=T("Signature validation failed. The certificate is not valid.")):r==="PRE"&&(e.result="WARNING",e.message=T("$warningmsg")),console.log(e),(r===!0||r==="PRE")&&(console.log("Additional verifications"),r=g(a),console.log(r),r!=!0&&(e.result="ERROR",e.message=T(r))),console.log(e);try{t=this.renderDetail(a,e)}catch(s){n.myerror("Error rendering credential",s),this.render(this.renderGeneralError(s));return}let l=o`
+import{h as o}from"./vendor.f8864ac5.js";import{A as d,l as n}from"./index.c7c00288.js";import{C as c,v as g,o as h,w as v,e as m}from"./warning.7a80e439.js";import"./_commonjsHelpers.4e997714.js";class $ extends d{constructor(i){super("DisplayHcert")}async enter(i){console.log("HCERT Enter",i);let a,r=!1,t="";try{a=await c.decodeHC1QR(i,!0),r=a[3]}catch(s){n.myerror("Error verifying credential",s),this.render(this.renderGeneralError(s));return}let e={result:"OK",message:T("The certificate is valid.")};r===!1?(e.result="ERROR",e.message=T("Signature validation failed. The certificate is not valid.")):r==="PRE"&&(e.result="WARNING",e.message=T("$warningmsg")),console.log(e),(r===!0||r==="PRE")&&(console.log("Additional verifications"),r=g(a),console.log(r),r!=!0&&(e.result="ERROR",e.message=T(r))),console.log(e);try{t=this.renderDetail(a,e)}catch(s){n.myerror("Error rendering credential",s),this.render(this.renderGeneralError(s));return}let l=o`
         ${t}
         <div class="sect-white">
             <button @click=${()=>this.gotoPage("ScanQrPage")} class="btn color-secondary hover-color-secondary
@@ -10,7 +10,7 @@ import{h as o}from"./vendor.f8864ac5.js";import{A as d,l as n}from"./index.21f6a
                 <h3>Failed!</h3>
                 <p>The credential has an invalid format.</p>
             </div>
-            `}renderDetail(i,a){let r=i[1],t="Validated",e=h,l="bkg-success";return a.result==="WARNING"?(t="Warning",e=v,l="bkg-warning"):a.result==="ERROR"&&(t="Not Validated",e=f,l="bkg-error"),o`
+            `}renderDetail(i,a){let r=i[1],t="Validated",e=h,l="bkg-success";return a.result==="WARNING"?(t="Warning",e=v,l="bkg-warning"):a.result==="ERROR"&&(t="Not Validated",e=m,l="bkg-error"),o`
             <div class="container">
 
                 <div id="hcertWarning" class=${`w3-panel ${l}`}>

@@ -88,11 +88,9 @@ export async function getPreferredVideoDevice() {
     // Get all video devices, front and back
     let videoDevices = await getVideoDevices()
     if (!videoDevices) {
-        alert("videoDevices is false")
         return undefinedVideoDevice;
     }
 
-    alert(videoDevices)
     let defaultPreferredCamera;
 
     // Select specific device only for Android devices
@@ -101,7 +99,6 @@ export async function getPreferredVideoDevice() {
         defaultPreferredCamera = videoDevices[videoDevices.length - 1]
     }
 
-    alert(`Num of video devices: ${videoDevices.length}`)
     return {
         defaultPreferredCamera: defaultPreferredCamera,
         videoDevices: videoDevices
