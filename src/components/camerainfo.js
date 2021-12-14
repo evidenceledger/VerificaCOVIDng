@@ -88,9 +88,11 @@ export async function getPreferredVideoDevice() {
     // Get all video devices, front and back
     let videoDevices = await getVideoDevices()
     if (!videoDevices) {
+        alert("videoDevices is false")
         return undefinedVideoDevice;
     }
 
+    alert(videoDevices)
     let defaultPreferredCamera;
 
     // Select specific device only for Android devices
