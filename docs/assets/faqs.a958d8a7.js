@@ -1,4 +1,4 @@
-import{A as s}from"./index.059a446c.js";import{h as i}from"./vendor.f8864ac5.js";class n extends s{constructor(a){super("Faqs")}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let a=i`
+import{A as s}from"./index.312fe7e0.js";import{h as i}from"./vendor.f8864ac5.js";class n extends s{constructor(a){super("Faqs")}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let a=i`
         <div class="w3-container" style="padding:10px 0px;">
             <ul class="w3-ul w3-card-4" >
                 <li> 

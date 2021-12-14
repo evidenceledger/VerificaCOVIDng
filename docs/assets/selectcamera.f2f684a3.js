@@ -1,4 +1,4 @@
-import{A as s}from"./index.059a446c.js";import{h as t}from"./vendor.f8864ac5.js";import{a as c}from"./camerainfo.5eb20fa7.js";class m extends s{constructor(a){super("SelectCamera")}async enter(){console.log("Select camera"),alert("Selecting camera");try{var a=await c();if(alert(a.videoDevices.length),console.log(a),a.videoDevices.length==0){this.render(t`<p>No camera available</p>`);return}var l=a.videoDevices}catch(e){alert(e)}let r=t`
+import{A as s}from"./index.312fe7e0.js";import{h as t}from"./vendor.f8864ac5.js";import{a as c}from"./camerainfo.19fd05b3.js";class m extends s{constructor(a){super("SelectCamera")}async enter(){console.log("Select camera"),alert("Selecting camera");try{var a=await c();if(alert(`${a}`),console.log(a),a.videoDevices.length==0){this.render(t`<p>No camera available</p>`);return}var l=a.videoDevices}catch(e){alert(e)}let r=t`
         <div class="container padding-16">
 
             <ul class="w3-ul w3-card-4">

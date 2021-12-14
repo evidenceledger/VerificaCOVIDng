@@ -101,6 +101,7 @@ export async function getPreferredVideoDevice() {
         defaultPreferredCamera = videoDevices[window.videoDevices.length - 1]
     }
 
+    alert(`Num of video devices: ${videoDevices.length}`)
     return {
         defaultPreferredCamera: defaultPreferredCamera,
         videoDevices: videoDevices
