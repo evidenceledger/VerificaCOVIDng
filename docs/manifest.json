@@ -1,6 +1,6 @@
 {
   "index.html": {
-    "file": "assets/index.90173e4d.js",
+    "file": "assets/index.6ba975c4.js",
     "src": "index.html",
     "isEntry": true,
     "imports": [
@@ -36,7 +36,7 @@
     "isDynamicEntry": true
   },
   "pages/intropage.js": {
-    "file": "assets/intropage.92ca7d40.js",
+    "file": "assets/intropage.61306c99.js",
     "src": "pages/intropage.js",
     "isDynamicEntry": true,
     "imports": [
@@ -53,7 +53,7 @@
     "file": "assets/camerainfo.bed069c7.js"
   },
   "pages/scanqr.js": {
-    "file": "assets/scanqr.b49d2754.js",
+    "file": "assets/scanqr.242adc8b.js",
     "src": "pages/scanqr.js",
     "isDynamicEntry": true,
     "imports": [
@@ -64,7 +64,7 @@
     ]
   },
   "pages/faqs.js": {
-    "file": "assets/faqs.2f5bac1a.js",
+    "file": "assets/faqs.1a4bf64e.js",
     "src": "pages/faqs.js",
     "isDynamicEntry": true,
     "imports": [
@@ -73,7 +73,7 @@
     ]
   },
   "pages/refreshkeys.js": {
-    "file": "assets/refreshkeys.7e8ac3e6.js",
+    "file": "assets/refreshkeys.1a247de6.js",
     "src": "pages/refreshkeys.js",
     "isDynamicEntry": true,
     "imports": [
@@ -82,7 +82,7 @@
     ]
   },
   "i18n/i18.js": {
-    "file": "assets/i18.384f9af2.js",
+    "file": "assets/i18.16141c82.js",
     "src": "i18n/i18.js",
     "isDynamicEntry": true,
     "imports": [
@@ -91,7 +91,7 @@
     ]
   },
   "pages/help.js": {
-    "file": "assets/help.b1881cdf.js",
+    "file": "assets/help.a55efc86.js",
     "src": "pages/help.js",
     "isDynamicEntry": true,
     "imports": [
@@ -100,18 +100,18 @@
     ]
   },
   "pages/hcertpage.js": {
-    "file": "assets/hcertpage.8caed486.js",
+    "file": "assets/hcertpage.03c8911f.js",
     "src": "pages/hcertpage.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.af5c0163.js",
+      "_warning.35d1b665.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
-  "_warning.af5c0163.js": {
-    "file": "assets/warning.af5c0163.js",
+  "_warning.35d1b665.js": {
+    "file": "assets/warning.35d1b665.js",
     "imports": [
       "index.html",
       "__commonjsHelpers.4e997714.js"
@@ -121,18 +121,18 @@
     "file": "assets/_commonjsHelpers.4e997714.js"
   },
   "pages/myhcertpage.js": {
-    "file": "assets/myhcertpage.1bd075cc.js",
+    "file": "assets/myhcertpage.36bb7069.js",
     "src": "pages/myhcertpage.js",
     "isDynamicEntry": true,
     "imports": [
       "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.af5c0163.js",
+      "_warning.35d1b665.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "pages/microwallet.js": {
-    "file": "assets/microwallet.c8fe09ab.js",
+    "file": "assets/microwallet.ac72f203.js",
     "src": "pages/microwallet.js",
     "isDynamicEntry": true,
     "imports": [
@@ -141,7 +141,7 @@
     ]
   },
   "pages/displayqr.js": {
-    "file": "assets/displayqr.e74b3908.js",
+    "file": "assets/displayqr.67ceb808.js",
     "src": "pages/displayqr.js",
     "isDynamicEntry": true,
     "imports": [
@@ -151,7 +151,7 @@
     ]
   },
   "pages/selectcamera.js": {
-    "file": "assets/selectcamera.600ba328.js",
+    "file": "assets/selectcamera.1514190a.js",
     "src": "pages/selectcamera.js",
     "isDynamicEntry": true,
     "imports": [
@@ -161,7 +161,7 @@
     ]
   },
   "pages/swnotify.js": {
-    "file": "assets/swnotify.779916b7.js",
+    "file": "assets/swnotify.fead1b7e.js",
     "src": "pages/swnotify.js",
     "isDynamicEntry": true,
     "imports": [
@@ -170,7 +170,7 @@
     ]
   },
   "pages/termsofuse.js": {
-    "file": "assets/termsofuse.afc483a9.js",
+    "file": "assets/termsofuse.f34d7810.js",
     "src": "pages/termsofuse.js",
     "isDynamicEntry": true,
     "imports": [
@@ -183,7 +183,7 @@
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/privacypolicy.js": {
-    "file": "assets/privacypolicy.3fffb430.js",
+    "file": "assets/privacypolicy.fd4e55eb.js",
     "src": "pages/privacypolicy.js",
     "isDynamicEntry": true,
     "imports": [

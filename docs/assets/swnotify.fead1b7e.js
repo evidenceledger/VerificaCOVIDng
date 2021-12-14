@@ -1,4 +1,4 @@
-import{A as a}from"./index.90173e4d.js";import{h as t}from"./vendor.f8864ac5.js";class i extends a{constructor(e){super("SWNotify")}enter(){let e=t`
+import{A as a}from"./index.6ba975c4.js";import{h as t}from"./vendor.f8864ac5.js";class i extends a{constructor(e){super("SWNotify")}enter(){let e=t`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
