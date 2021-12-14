@@ -17,7 +17,6 @@ export class AbstractPage {
         this.domElem.id = this.pageName
 
         // Register in the router
-        console.log(this)
         router.route(this.pageName, this)
 
         // The page starts hidden

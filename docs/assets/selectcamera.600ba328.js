@@ -1,4 +1,4 @@
-import{A as s}from"./index.aae5c249.js";import{h as a}from"./vendor.f8864ac5.js";import{a as t}from"./camerainfo.bed069c7.js";class n extends s{constructor(e){super("SelectCamera")}async enter(){console.log("Select camera");let e=await t();if(console.log(e),!e){this.render(a`<p>No camera available</p>`);return}e.defaultPreferredCamera&&e.defaultPreferredCamera.label;let i=e.videoDevices,l=a`
+import{A as s}from"./index.90173e4d.js";import{h as a}from"./vendor.f8864ac5.js";import{a as t}from"./camerainfo.bed069c7.js";class n extends s{constructor(e){super("SelectCamera")}async enter(){console.log("Select camera");let e=await t();if(console.log(e),!e){this.render(a`<p>No camera available</p>`);return}e.defaultPreferredCamera&&e.defaultPreferredCamera.label;let i=e.videoDevices,l=a`
         <div class="container padding-16">
 
             <ul class="w3-ul w3-card-4">

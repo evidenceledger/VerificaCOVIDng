@@ -50,7 +50,7 @@ function registerPage(module, mainElem) {
     let pageClass = module.default
 
     let pageInstance = new pageClass()
-    let pageName = pageClass.name
+    let pageName = pageInstance.pageName
     console.log(pageName)
 
     return pageName
