@@ -1,8 +1,9 @@
-import { html } from 'uhtml';
 import { log } from '../log'
-import { CWT } from "../components/cwt"
 import { AbstractPage } from './abstractpage'
+import { CWT } from "../components/cwt"
 import { verifyHcert } from '../components/verifications'
+
+// The images for result of verifications
 import ok_image from "../img/ok.png"
 import error_image from "../img/error.png"
 import warning_image from "../img/warning.png"
@@ -14,8 +15,7 @@ export default class DisplayHcert extends AbstractPage {
     }
 
     async enter(qrContent) {
-        console.log("HCERT Enter", qrContent)
-        let hcert = undefined
+        let hcert
         let verified = false
         let thehtml = ""
 
@@ -66,7 +66,7 @@ export default class DisplayHcert extends AbstractPage {
             return;
         }
 
-        let fullPage = html`
+        let fullPage = this.html`
         ${thehtml}
         <div class="sect-white">
             <button @click=${()=> this.gotoPage("ScanQrPage")} class="btn color-secondary hover-color-secondary
@@ -79,7 +79,7 @@ export default class DisplayHcert extends AbstractPage {
     }
 
     renderGeneralError(error) {
-        return html`
+        return this.html`
             <div id="hcertFailed" class="w3-panel bkg-fail">
                 <h3>Failed!</h3>
                 <p>The credential has an invalid format.</p>
@@ -107,7 +107,7 @@ export default class DisplayHcert extends AbstractPage {
             color = "bkg-error"
         }
 
-        let thehtml = html`
+        let thehtml = this.html`
             <div class="container">
 
                 <div id="hcertWarning" class=${`w3-panel ${color}`}>
@@ -135,3 +135,5 @@ export default class DisplayHcert extends AbstractPage {
     }
 
 }
+
+let page = new DisplayHcert()

@@ -3,7 +3,6 @@ import { AbstractPage } from './abstractpage'
 export default class Spinner extends AbstractPage {
 
     constructor(id) {
-        console.log("SPINNER: inside constructor")
         super("Spinner")
     }
 
@@ -12,3 +11,5 @@ export default class Spinner extends AbstractPage {
         window.location.reload()
     }
 }
+
+let page = new Spinner()

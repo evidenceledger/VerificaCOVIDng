@@ -1,4 +1,4 @@
-import{A as a}from"./index.c7c00288.js";import{h as e}from"./vendor.f8864ac5.js";class s extends a{constructor(t){super("Help")}async enter(){let t=e`
+import{A as e}from"./abstractpage.653c245a.js";import"./index.ebd55170.js";class l extends e{constructor(t){super("Help")}async enter(){let a=this.html`
         <div class="container padding-16" style="text-align: justify;">
 
             <p style="margin-bottom: 10px;">${T("$help01")}</p>
@@ -18,4 +18,4 @@ import{A as a}from"./index.c7c00288.js";import{h as e}from"./vendor.f8864ac5.js"
             </div>
             <p style="margin-bottom: 40px">${T("$help10")}<a href="mailto:verificacovid.salut@gencat.cat">verificacovid.salut@gencat.cat</a></p>
         </div>
-        `;this.render(t)}}export{s as default};
+        `;this.render(a)}}new l;export{l as default};

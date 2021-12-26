@@ -1,8 +1,10 @@
-import { html } from 'uhtml';
 import { log } from '../log'
-import { CWT } from "../components/cwt"
 import { AbstractPage } from './abstractpage'
+
+import { CWT } from "../components/cwt"
 import { verifyHcert } from '../components/verifications'
+
+// Images for the result of verification
 import ok_image from "../img/ok.png"
 import error_image from "../img/error.png"
 import warning_image from "../img/warning.png"
@@ -14,6 +16,7 @@ export default class DisplayMyHcert extends AbstractPage {
     }
 
     async enter(qrContent) {
+        let html = this.html
 
         // Check if we have a certificate in local storage
         qrContent = window.localStorage.getItem("MYEUDCC")
@@ -90,6 +93,8 @@ export default class DisplayMyHcert extends AbstractPage {
     }
 
     renderGeneralError(error) {
+        let html = this.html
+
         return html`
             <div id="hcertFailed" class="w3-panel bkg-fail">
                 <h3>Failed!</h3>
@@ -99,6 +104,8 @@ export default class DisplayMyHcert extends AbstractPage {
     }
 
     renderDetail(cred, verification) {
+        let html = this.html
+
         // The credential
         let payload = cred[1];
 
@@ -146,3 +153,5 @@ export default class DisplayMyHcert extends AbstractPage {
     }
 
 }
+
+let page = new DisplayMyHcert()

@@ -1,4 +1,4 @@
-import{A as t}from"./index.c7c00288.js";import{h as s}from"./vendor.f8864ac5.js";import{l as i}from"./legal.ec5a9509.js";class h extends t{constructor(e){super("TermsOfUse")}enter(){let e=s`
+import{A as t,h as s}from"./abstractpage.653c245a.js";import{l as i}from"./legal.ec5a9509.js";import"./index.ebd55170.js";class r extends t{constructor(e){super("TermsOfUse")}enter(){let e=s`
 
 <div class="sect-white" style="text-align:left">
 
@@ -66,4 +66,4 @@ Any dispute arising or related to the Webiste will be governed by the Spanish La
 
 
 
-`;this.render(e)}}export{h as default};
+`;this.render(e)}}new r;export{r as default};

@@ -1,4 +1,3 @@
-import { html } from 'uhtml';
 import { log } from '../log'
 import { AbstractPage } from './abstractpage'
 
@@ -9,6 +8,7 @@ export default class MicroWallet extends AbstractPage {
     }
 
     async enter() {
+        let html = this.html
 
         // We can receive QRs via the URL or scanning with the camera
 
@@ -53,3 +53,5 @@ export default class MicroWallet extends AbstractPage {
         return
     }
 }
+
+let page = new MicroWallet()

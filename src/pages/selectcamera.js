@@ -1,5 +1,4 @@
 import { AbstractPage } from '../pages/abstractpage'
-import { html } from 'uhtml';
 import { getPreferredVideoDevice } from '../components/camerainfo'
 
 export default class SelectCamera extends AbstractPage {
@@ -9,7 +8,7 @@ export default class SelectCamera extends AbstractPage {
     }
 
     async enter() {
-        console.log("Select camera")
+        let html = this.html
 
         try {
             var preferredVideoDevices = await getPreferredVideoDevice()
@@ -56,3 +55,5 @@ export default class SelectCamera extends AbstractPage {
     }
 
 }
+
+let page = new SelectCamera()

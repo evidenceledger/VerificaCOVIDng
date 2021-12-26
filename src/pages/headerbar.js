@@ -1,5 +1,4 @@
-import {render, html, svg} from 'uhtml';
-
+import { render, html } from 'uhtml';
 
 function toggleMenu() {
     let x = document.getElementById("mobileMenu")
@@ -57,7 +56,7 @@ export function HeaderBar() {
 }
 
 
-export function DefaultIntroPage() {
+export function SplashScreen() {
     
     let theHtml = html`<div class="sect-white">
         <h2 class="margin-bottom" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
@@ -69,11 +68,10 @@ export function DefaultIntroPage() {
             <div class="loader"></div>
             <p>Loading ...</p>
 
-
         </div>
     </div>`;
 
-    render(document.querySelector('main'), theHtml);
+    render(document.querySelector('#SplashScreen'), theHtml);
     return;
 
 }

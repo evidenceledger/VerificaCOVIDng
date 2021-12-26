@@ -89,3 +89,5 @@ export default class SelectLanguage extends AbstractPage {
         window.goHome()
     }
 }
+
+let page = new SelectLanguage()

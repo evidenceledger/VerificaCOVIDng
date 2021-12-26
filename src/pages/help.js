@@ -1,5 +1,4 @@
 import { AbstractPage } from "./abstractpage";
-import { html } from 'uhtml';
 
 export default class Help extends AbstractPage {
 
@@ -8,6 +7,8 @@ export default class Help extends AbstractPage {
     }
 
     async enter() {
+        let html = this.html
+
         let theHtml = html`
         <div class="container padding-16" style="text-align: justify;">
 
@@ -32,3 +33,5 @@ export default class Help extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new Help()

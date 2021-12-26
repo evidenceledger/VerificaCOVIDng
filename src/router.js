@@ -3,25 +3,86 @@
 //
 // Implements gotoPage(pageName, pageData) and goHome()
 // *****************************************************
-import {default as Page404} from './pages/page404'
-//var page404 = new Page404()
-var name404 = Page404.name
+console.log("Loading Router")
 
-// This will hold all pages in a ("pageName", pageClass) structure
-var pages = new Map();
+// For loading lazily the pages
+// It is done as a switch so not to break bundler optimizations
+async function lazyLoadPage(pageName) {
+    switch (pageName) {
+        case "Intro":
+            await import('./pages/intropage');
+            break;
+        case "Page404":
+            await import('./pages/page404');
+            break;
+        case "ScanQrPage":
+            await import('./pages/scanqr');
+            break;
+        case "Faqs":
+            await import('./pages/faqs');
+            break;
+        case "SelectLanguage":
+            await import('./i18n/i18');
+            break;
+        case "Help":
+            await import('./pages/help');
+            break;
+        case "DisplayHcert":
+            await import('./pages/hcertpage');
+            break;
+        case "DisplayMyHcert":
+            await import('./pages/myhcertpage');
+            break;
+        case "MicroWallet":
+            await import('./pages/microwallet');
+            break;
+        case "DisplayQR":
+            await import('./pages/displayqr');
+            break;
+        case "SelectCamera":
+            await import('./pages/selectcamera');
+            break;
+        case "TermsOfUse":
+            await import('./pages/termsofuse');
+            break;
+        case "PrivacyPolicy":
+            await import('./pages/privacypolicy');
+            break;
+        case "SWNotify":
+            await import('./pages/swnotify');
+            break;
 
-// Register a new page name, associated to a class instance
-export function route(pageName, classInstance) {
-    pages.set(pageName, classInstance)
+
+    }
 }
 
 // The default home page where to start and when refreshing the app
-var homePage = ""
+var homePage = "Intro"
+
+// The router needs this page preloaded
+//import { default as Page404 } from './pages/page404'
+
+//var page404 = new Page404()
+//var name404 = Page404.name
+var name404 = "Page404"
+
+// This will hold all pages in a ("pageName", pageClass) structure
+var pages = null
+
+
+// Register a new page name, associated to a class instance
+export function route(pageName, classInstance) {
+    if (!pages) { pages = new Map() }
+    pages.set(pageName, classInstance)
+}
+
 export function setHomePage(page) {
     homePage = page
 }
 
 export async function goHome() {
+    // Make sure the Splash Screen is hidden
+    document.getElementById("SplashScreen").style.display = "none"
     if (homePage != undefined) {
         await gotoPage(homePage);
     }
@@ -33,6 +94,9 @@ window.goHome = goHome
 // It is up to the page to define the structure of pageData
 export async function gotoPage(pageName, pageData) {
     console.log("Inside gotoPage:", pageName)
+
+    // Lazyload the page
+    await lazyLoadPage(pageName)
 
     // If pageName is not a registered page, go to the 404 error page
     // passing the target page as pageData
@@ -71,7 +135,7 @@ async function processPageEntered(pageName, pageData, historyData) {
         return;
     }
 
-    let targetPage = pages.get(pageName)  
+    let targetPage = pages.get(pageName)
 
     // If the target page is not a registered page, go to the Page404 page,
     // passing the target page as pageData

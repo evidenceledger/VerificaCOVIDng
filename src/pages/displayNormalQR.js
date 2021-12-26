@@ -1,5 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'lit-html';
 
 export default class DisplayNormalQR extends AbstractPage {
 
@@ -8,6 +7,7 @@ export default class DisplayNormalQR extends AbstractPage {
     }
 
     enter(qrData) {
+        let html = this.html
 
         let isURL = false
         if (qrData.startsWith("https://") || qrData.startsWith("http://")) {
@@ -37,3 +37,5 @@ export default class DisplayNormalQR extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new DisplayNormalQR()

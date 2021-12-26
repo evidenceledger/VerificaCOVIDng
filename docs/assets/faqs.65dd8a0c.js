@@ -1,4 +1,4 @@
-import{A as s}from"./index.c7c00288.js";import{h as i}from"./vendor.f8864ac5.js";class n extends s{constructor(a){super("Faqs")}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let a=i`
+import{A as i}from"./abstractpage.653c245a.js";import"./index.ebd55170.js";class l extends i{constructor(a){super("Faqs")}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let s=this.html`
         <div class="w3-container" style="padding:10px 0px;">
             <ul class="w3-ul w3-card-4" >
                 <li> 
@@ -131,4 +131,4 @@ import{A as s}from"./index.c7c00288.js";import{h as i}from"./vendor.f8864ac5.js"
                     </span>
             </ul>
         </div>
-        `;this.render(a)}}export{n as default};
+        `;this.render(s)}}new l;export{l as default};

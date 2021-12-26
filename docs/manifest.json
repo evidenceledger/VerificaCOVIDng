@@ -1,16 +1,13 @@
 {
   "index.html": {
-    "file": "assets/index.c7c00288.js",
+    "file": "assets/index.ebd55170.js",
     "src": "index.html",
     "isEntry": true,
-    "imports": [
-      "_vendor.f8864ac5.js"
-    ],
     "dynamicImports": [
       "pages/intropage.js",
+      "pages/page404.js",
       "pages/scanqr.js",
       "pages/faqs.js",
-      "pages/refreshkeys.js",
       "i18n/i18.js",
       "pages/help.js",
       "pages/hcertpage.js",
@@ -18,17 +15,14 @@
       "pages/microwallet.js",
       "pages/displayqr.js",
       "pages/selectcamera.js",
-      "pages/swnotify.js",
       "pages/termsofuse.js",
       "pages/privacypolicy.js",
+      "pages/swnotify.js",
       "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs"
     ],
     "css": [
       "assets/index.85b8ad63.css"
     ]
-  },
-  "_vendor.f8864ac5.js": {
-    "file": "assets/vendor.f8864ac5.js"
   },
   "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs": {
     "file": "assets/workbox-window.prod.es5.a2fa118e.js",
@@ -36,82 +30,82 @@
     "isDynamicEntry": true
   },
   "pages/intropage.js": {
-    "file": "assets/intropage.d59c9afa.js",
+    "file": "assets/intropage.028ddc93.js",
     "src": "pages/intropage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_vendor.f8864ac5.js",
-      "index.html",
-      "_BrowserQRCodeReader.076087ed.js",
-      "_camerainfo.4311a7fd.js"
+      "_abstractpage.653c245a.js",
+      "index.html"
     ]
   },
-  "_BrowserQRCodeReader.076087ed.js": {
-    "file": "assets/BrowserQRCodeReader.076087ed.js"
+  "_abstractpage.653c245a.js": {
+    "file": "assets/abstractpage.653c245a.js",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "pages/page404.js": {
+    "file": "assets/page404.0a04d3c8.js",
+    "src": "pages/page404.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_abstractpage.653c245a.js",
+      "index.html"
+    ]
+  },
+  "pages/scanqr.js": {
+    "file": "assets/scanqr.75c97f8d.js",
+    "src": "pages/scanqr.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_abstractpage.653c245a.js",
+      "index.html",
+      "_camerainfo.4311a7fd.js"
+    ]
   },
   "_camerainfo.4311a7fd.js": {
     "file": "assets/camerainfo.4311a7fd.js"
   },
-  "pages/scanqr.js": {
-    "file": "assets/scanqr.48901f2e.js",
-    "src": "pages/scanqr.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "_vendor.f8864ac5.js",
-      "index.html",
-      "_BrowserQRCodeReader.076087ed.js",
-      "_camerainfo.4311a7fd.js"
-    ]
-  },
   "pages/faqs.js": {
-    "file": "assets/faqs.7a4e52c4.js",
+    "file": "assets/faqs.65dd8a0c.js",
     "src": "pages/faqs.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js"
-    ]
-  },
-  "pages/refreshkeys.js": {
-    "file": "assets/refreshkeys.e848b57b.js",
-    "src": "pages/refreshkeys.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js"
+      "_abstractpage.653c245a.js",
+      "index.html"
     ]
   },
   "i18n/i18.js": {
-    "file": "assets/i18.60bf9c92.js",
+    "file": "assets/i18.a606bd4d.js",
     "src": "i18n/i18.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js"
+      "_abstractpage.653c245a.js",
+      "index.html"
     ]
   },
   "pages/help.js": {
-    "file": "assets/help.72533b56.js",
+    "file": "assets/help.76d7cb60.js",
     "src": "pages/help.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js"
+      "_abstractpage.653c245a.js",
+      "index.html"
     ]
   },
   "pages/hcertpage.js": {
-    "file": "assets/hcertpage.76ac44cb.js",
+    "file": "assets/hcertpage.251907d0.js",
     "src": "pages/hcertpage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.7a80e439.js",
+      "_abstractpage.653c245a.js",
+      "_warning.03c9a936.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
-  "_warning.7a80e439.js": {
-    "file": "assets/warning.7a80e439.js",
+  "_warning.03c9a936.js": {
+    "file": "assets/warning.03c9a936.js",
     "imports": [
       "index.html",
       "__commonjsHelpers.4e997714.js"
@@ -121,75 +115,75 @@
     "file": "assets/_commonjsHelpers.4e997714.js"
   },
   "pages/myhcertpage.js": {
-    "file": "assets/myhcertpage.4da5f75e.js",
+    "file": "assets/myhcertpage.cdd6fd4f.js",
     "src": "pages/myhcertpage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_vendor.f8864ac5.js",
       "index.html",
-      "_warning.7a80e439.js",
+      "_abstractpage.653c245a.js",
+      "_warning.03c9a936.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "pages/microwallet.js": {
-    "file": "assets/microwallet.f4d478de.js",
+    "file": "assets/microwallet.1e54c8a1.js",
     "src": "pages/microwallet.js",
     "isDynamicEntry": true,
     "imports": [
-      "_vendor.f8864ac5.js",
+      "_abstractpage.653c245a.js",
       "index.html"
     ]
   },
   "pages/displayqr.js": {
-    "file": "assets/displayqr.c38c76d9.js",
+    "file": "assets/displayqr.d202a3b3.js",
     "src": "pages/displayqr.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js",
-      "__commonjsHelpers.4e997714.js"
+      "_abstractpage.653c245a.js",
+      "__commonjsHelpers.4e997714.js",
+      "index.html"
     ]
   },
   "pages/selectcamera.js": {
-    "file": "assets/selectcamera.3bb010cb.js",
+    "file": "assets/selectcamera.3453aad2.js",
     "src": "pages/selectcamera.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js",
-      "_camerainfo.4311a7fd.js"
-    ]
-  },
-  "pages/swnotify.js": {
-    "file": "assets/swnotify.5b1da3a3.js",
-    "src": "pages/swnotify.js",
-    "isDynamicEntry": true,
-    "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js"
+      "_abstractpage.653c245a.js",
+      "_camerainfo.4311a7fd.js",
+      "index.html"
     ]
   },
   "pages/termsofuse.js": {
-    "file": "assets/termsofuse.1a27e4f7.js",
+    "file": "assets/termsofuse.9e76a91f.js",
     "src": "pages/termsofuse.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js",
-      "_legal.ec5a9509.js"
+      "_abstractpage.653c245a.js",
+      "_legal.ec5a9509.js",
+      "index.html"
     ]
   },
   "_legal.ec5a9509.js": {
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/privacypolicy.js": {
-    "file": "assets/privacypolicy.e2b67acb.js",
+    "file": "assets/privacypolicy.6a409667.js",
     "src": "pages/privacypolicy.js",
     "isDynamicEntry": true,
     "imports": [
-      "index.html",
-      "_vendor.f8864ac5.js",
-      "_legal.ec5a9509.js"
+      "_abstractpage.653c245a.js",
+      "_legal.ec5a9509.js",
+      "index.html"
+    ]
+  },
+  "pages/swnotify.js": {
+    "file": "assets/swnotify.fc604bc6.js",
+    "src": "pages/swnotify.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_abstractpage.653c245a.js",
+      "index.html"
     ]
   }
 }

@@ -40,6 +40,7 @@ export default class ScanQrPage extends AbstractPage {
     }
 
     async enter(displayPage) {
+        let html = this.html
 
         if (!displayPage) {
             displayPage = "DisplayHcert"
@@ -210,6 +211,7 @@ export default class ScanQrPage extends AbstractPage {
     }
     
     messageNoCameraPermissions() {
+        let html = this.html
 
         let theHtml = html`
         <div class="container">
@@ -239,5 +241,4 @@ export default class ScanQrPage extends AbstractPage {
 
 }
 
-
-
+let page = new ScanQrPage()

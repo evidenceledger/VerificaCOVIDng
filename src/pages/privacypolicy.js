@@ -1,5 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
 import legalpng from '../img/legal.png'
 
 
@@ -10,6 +9,7 @@ export default class PrivacyPolicy extends AbstractPage {
     }
 
     enter() {
+        let html = this.html
 
         let theHtml = html`
 
@@ -87,10 +87,10 @@ If the user would like to obtain more information of the Website’s Privacy Pol
 
 </div>
 
-
-
 `
 
         this.render(theHtml)
     }
 }
+
+let page = new PrivacyPolicy()

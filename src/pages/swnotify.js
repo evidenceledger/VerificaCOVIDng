@@ -1,7 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml'
-
-var gotoPage = window.gotoPage
 
 export default class SWNotify extends AbstractPage {
 
@@ -9,14 +6,22 @@ export default class SWNotify extends AbstractPage {
         super("SWNotify")
     }
 
-    enter() {
+    enter(pageData) {
+        let html = this.html
+
+        let msg
+        if (pageData && pageData.isUpdate) {
+            msg = T("Application updated")
+        } else {
+            msg = T("Application available")
+        }
 
         let theHtml = html`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
                 <header class="w3-container color-primary" style="padding:10px">
-                    <h1>${T("Application updated")}</h1>
+                    <h1>${msg}</h1>
                 </header>
         
                 <div class="w3-container w3-padding-16">
@@ -37,3 +42,5 @@ export default class SWNotify extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new SWNotify()

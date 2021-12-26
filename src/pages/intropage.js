@@ -1,6 +1,4 @@
-import { html } from 'uhtml';
 import { AbstractPage } from './abstractpage'
-import './scanqr'
 
 export default class Intro extends AbstractPage {
 
@@ -9,6 +7,7 @@ export default class Intro extends AbstractPage {
     }
 
     enter() {
+        let html = this.html
 
         // Reset the decoder just in case the camera was still working
         if (window.controls) {
@@ -33,3 +32,5 @@ export default class Intro extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new Intro()

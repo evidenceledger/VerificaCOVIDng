@@ -84,3 +84,5 @@ Any dispute arising or related to the Webiste will be governed by the Spanish La
         this.render(theHtml)
     }
 }
+
+let page = new TermsOfUse()

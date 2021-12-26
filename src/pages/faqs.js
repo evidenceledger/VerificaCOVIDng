@@ -1,5 +1,4 @@
 import { AbstractPage } from "./abstractpage";
-import { html } from 'uhtml';
 
 export default class Faqs extends AbstractPage {
 
@@ -18,6 +17,8 @@ export default class Faqs extends AbstractPage {
     }
 
     async enter() {
+        let html = this.html
+
         let theHtml = html`
         <div class="w3-container" style="padding:10px 0px;">
             <ul class="w3-ul w3-card-4" >
@@ -162,3 +163,5 @@ function toggleFaqs() {
     let x = document.getElementById("faqsitem")
     x.classList.toggle("show")
 }
+
+let page = new Faqs()

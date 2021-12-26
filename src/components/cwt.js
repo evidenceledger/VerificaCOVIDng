@@ -53,19 +53,19 @@ async function importKey(certPem) {
     return publicKey
 }
 
-async function preprocessTL(tl_in) {
-    console.log("Preprocessing Trusted Keys")
+// async function preprocessTL(tl_in) {
+//     console.log("Preprocessing Trusted Keys")
 
-    let tl_out = {}
-    for (let i = 0; i < tl_in.length; i = i + 1) {
-        let kid = tl_in[i]["kid"]
-        let certPem = tl_in[i]["certificado"]
-        let pubKey = await importKey(certPem)
-        tl_out[kid] = pubKey
-    }
-    window.eu_trusted_keys = tl_out
-    console.log("Trusted Keys processed")
-}
+//     let tl_out = {}
+//     for (let i = 0; i < tl_in.length; i = i + 1) {
+//         let kid = tl_in[i]["kid"]
+//         let certPem = tl_in[i]["certificado"]
+//         let pubKey = await importKey(certPem)
+//         tl_out[kid] = pubKey
+//     }
+//     window.eu_trusted_keys = tl_out
+//     console.log("Trusted Keys processed")
+// }
 
 
 // Search for a public key in the several trusted lists
@@ -94,21 +94,37 @@ async function getTrustedKey(kid) {
     // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
 
     // Wait on the promise to process keys to make sure the keys are preprocessed
-    console.log("Waiting for Trusted Keys to be preprocessed")
-    await window.promiseLoadKeys
-    console.log("Trusted Keys have been processed")
+    // console.log("Waiting for Trusted Keys to be preprocessed")
+    // await window.promiseLoadKeys
+    // console.log("Trusted Keys have been processed")
 
-    let entry = window.eu_trusted_keys[kid]
-    if (entry) {
-        console.log(`kid "${kid}" found in EU_PRO trusted list`)
-        return {
-            kid: kid,
-            publicKey: entry,
-            list: "EU_PRO",
-            format: "native"
+    // First, try to get it from the PRODUCTION EU list
+    for (let i = 0; i < spanish_tl.length; i++) {
+        if (spanish_tl[i].kid == kid) {
+            console.log(`kid "${kid}" found in EU_PRO trusted list`)
+            let certPem = spanish_tl[i]["certificado"]
+            let pubKey = await importKey(certPem)
+            return {
+                kid: kid,
+                publicKey: pubKey,
+                list: "EU_PRO",
+                format: "native"
+            }
         }
     }
     log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+
+    // let entry = window.eu_trusted_keys[kid]
+    // if (entry) {
+    //     console.log(`kid "${kid}" found in EU_PRO trusted list`)
+    //     return {
+    //         kid: kid,
+    //         publicKey: entry,
+    //         list: "EU_PRO",
+    //         format: "native"
+    //     }
+    // }
+    // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
 
 
     // Now check in the PRODUCTION listfrom the UK
@@ -160,7 +176,7 @@ export var vs = {
 // Set the initial value of the EU Trusted List, to be refreshed later
 // Use a global scope variable so it can be refreshed later
 //window.eu_trusted_keys = eu_jwk_keys
-window.promiseLoadKeys = preprocessTL(spanish_tl)
+//window.promiseLoadKeys = preprocessTL(spanish_tl)
 
 
 //********************************
@@ -352,13 +368,11 @@ class DGCKey {
     }
 
     static async verify(key, signature, bytes) {
-        console.log("KEy====", key)
         if (key.type != "public") {
             console.log(key)
             throw new Error("Not a public key");
         }
 
-        console.log("Inside VERIFY", key);
         let algo = key.algorithm
         console.log("Key algorithm", algo)
 

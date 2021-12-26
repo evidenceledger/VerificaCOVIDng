@@ -1,5 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
 import { HeaderBar } from './headerbar';
 
 
@@ -10,6 +9,7 @@ export default class RefreshKeys extends AbstractPage {
     }
 
     async enter() {
+        let html = this.html
 
         await refreshTrustedKeys()
 
@@ -51,3 +51,5 @@ async function refreshTrustedKeys() {
     return;
 }
 window.refreshTrustedKeys = refreshTrustedKeys
+
+let page = new RefreshKeys()

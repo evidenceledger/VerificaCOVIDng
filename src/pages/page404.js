@@ -1,5 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
 
 export default class Page404 extends AbstractPage {
 
@@ -8,7 +7,7 @@ export default class Page404 extends AbstractPage {
     }
 
     enter(pageData) {
-        console.log("PAGE404: enter page")
+        let html = this.html
 
         let theHtml = html`
         <div class="w3-container">
@@ -19,3 +18,5 @@ export default class Page404 extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new Page404()

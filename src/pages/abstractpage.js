@@ -1,13 +1,18 @@
 import { HeaderBar } from './headerbar'
 import * as router from '../router';
-import {render, html, svg} from 'uhtml';
-
+import { render, html } from 'uhtml';
+// Translation support
+import '../i18n/tr.js'
 
 export class AbstractPage {
+    html;           // The uhtml html function, for subclasses
     domElem;        // The DOM Element that holds the page
     pageName;       // The name of the page for routing
 
     constructor(id) {
+
+        // Set the html tag function so subclasses do not have to import uhtml
+        this.html = html
 
         // Create a <div> tag to contain the page
         this.domElem = document.createElement('div')
@@ -16,7 +21,7 @@ export class AbstractPage {
         this.pageName = id
         this.domElem.id = this.pageName
 
-        // Register in the router
+        // Register the page in the router
         router.route(this.pageName, this)
 
         // The page starts hidden
@@ -25,6 +30,8 @@ export class AbstractPage {
         // Insert into the DOM inside the <main> element
         var mainElem = document.querySelector('main')
         mainElem.appendChild(this.domElem)
+
+        console.log("Page constructor:", id)
 
     }
 

@@ -1,5 +1,4 @@
 import { AbstractPage } from './abstractpage'
-import { html } from 'uhtml';
 import { QRCode } from 'easyqrcodejs'
 
 export default class DisplayQR extends AbstractPage {
@@ -9,6 +8,7 @@ export default class DisplayQR extends AbstractPage {
     }
 
     enter() {
+        let html = this.html
 
         const myqr = window.localStorage.getItem("MYEUDCC")
         console.log(myqr)
@@ -32,3 +32,5 @@ export default class DisplayQR extends AbstractPage {
         this.render(theHtml)
     }
 }
+
+let page = new DisplayQR()

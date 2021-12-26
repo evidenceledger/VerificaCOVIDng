@@ -1,4 +1,4 @@
-import{A as t}from"./index.c7c00288.js";import{h as a}from"./vendor.f8864ac5.js";import{l as i}from"./legal.ec5a9509.js";class h extends t{constructor(e){super("PrivacyPolicy")}enter(){let e=a`
+import{A as a}from"./abstractpage.653c245a.js";import{l as i}from"./legal.ec5a9509.js";import"./index.ebd55170.js";class o extends a{constructor(e){super("PrivacyPolicy")}enter(){let t=this.html`
 
 <div class="sect-white" style="text-align:left">
 
@@ -74,6 +74,4 @@ If the user would like to obtain more information of the Website’s Privacy Pol
 
 </div>
 
-
-
-`;this.render(e)}}export{h as default};
+`;this.render(t)}}new o;export{o as default};

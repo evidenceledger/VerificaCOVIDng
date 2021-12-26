@@ -5,5 +5,6 @@ module.exports = {
   ],
   "swDest": "docs/sw.js",
   "clientsClaim": true,
-  "skipWaiting": true
+  "skipWaiting": true,
+  "sourcemap": true
 };

@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <script type="module" src="./app.js"></script>
+
     <link rel="stylesheet" href="./app.css">
     <link rel="stylesheet" href="./css/w3full.css">
     <meta charset="utf-8" />
@@ -28,53 +30,39 @@
     <meta name="apple-mobile-web-app-title" content="Verificació de certificats COVID EU" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
-    <script type="module" src="./app.js"></script>
 
 </head>
 
 <body>
 
 <header>
+    <div class="bar xlarge color-primary">
+        <div class="bar-item" style="padding:10px">Evidenceledger
+        </div>
+        <a class="bar-item btn-menu right focus-visible-only">☰</a>
+    </div>
 </header>
+<script>
+    console.log("Loading SplashScreen")
+</script>
+<div id="SplashScreen">
+    <div class="sect-white">
+        <h2 class="margin-bottom" style="word-break:break-word">EU Digital COVID Credential Verifier</h2>
+    
+        <div class="padding-16 center">
+
+            <div class="mb-32"></div>
+            <div class="loader"></div>
+
+        </div>
+    </div>
+</div>
 
 <main>
 </main>
 
 <footer>
 </footer>
-
-<script type="module">
-// *******************************************************
-// Translation support. This is a function in global scope
-// *******************************************************
-
-// Use "ca" as default language unless set explicitly by the
-// user in the application.
-var preferredLanguage = "ca"
-let l = localStorage.getItem("preferredLanguage")
-if (l) {preferredLanguage = l}
-// Set preferred language in global scope, for easy module access
-window.preferredLanguage = preferredLanguage
-
-import {translations} from "./i18n/translations.js"
-
-function T(key) {
-    if ((window.preferredLanguage === "en") && (key.charAt(0) != "$")) { return key }
-
-    let entry = translations[key]
-    if (entry === undefined) { return key }
-    let translated = entry[window.preferredLanguage]
-    if (translated === undefined) { return key }
-    return translated
-}
-window.T = T
-
-import { render, html } from 'uhtml';
-import { HeaderBar, DefaultIntroPage } from './pages/headerbar.js'
-HeaderBar();
-DefaultIntroPage()
-</script>
-
 
 </body>
 

@@ -2,7 +2,6 @@
 // Logging and error management
 // **************************************************
 
-
 // Logging level (if false, only log Errors)
 const LOG_ALL = true
 
@@ -35,7 +34,7 @@ export async function mywarn(_desc, ...additional) {
             let e = new Warning(_desc)
             msg = e.stack
         } catch {}
-        console.warn(_desc, ...additional)
+        console.warn(msg, ...additional)
         mylog_entry("W", msg, ...additional)
     }
 }

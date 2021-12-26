@@ -1,7 +1,6 @@
-import { html } from 'uhtml';
 import { log } from '../log'
-import { CWT } from "../components/cwt"
 import { AbstractPage } from './abstractpage'
+import { CWT } from "../components/cwt"
 import { verifyHcert } from '../components/verifications'
 
 export default class AskUserToStoreQR extends AbstractPage {
@@ -11,6 +10,7 @@ export default class AskUserToStoreQR extends AbstractPage {
     }
 
     async enter(qrcode) {
+        let html = this.html
 
         let verification = await this.verifyQRCertificate(qrcode)
 
@@ -130,3 +130,5 @@ export default class AskUserToStoreQR extends AbstractPage {
     }
     
 }
+
+let page = new AskUserToStoreQR()

@@ -1,9 +1,9 @@
-import{A as a}from"./index.c7c00288.js";import{h as t}from"./vendor.f8864ac5.js";class d extends a{constructor(e){super("SWNotify")}enter(){let e=t`
+import{A as r}from"./abstractpage.653c245a.js";import"./index.ebd55170.js";class s extends r{constructor(e){super("SWNotify")}enter(e){let t=this.html,a;e&&e.isUpdate?a=T("Application updated"):a=T("Application available");let i=t`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
                 <header class="w3-container color-primary" style="padding:10px">
-                    <h1>${T("Application updated")}</h1>
+                    <h1>${a}</h1>
                 </header>
         
                 <div class="w3-container w3-padding-16">
@@ -19,4 +19,4 @@ import{A as a}from"./index.c7c00288.js";import{h as t}from"./vendor.f8864ac5.js"
         
             </div>
         </div>
-        `;this.render(e)}}export{d as default};
+        `;this.render(i)}}new s;export{s as default};
