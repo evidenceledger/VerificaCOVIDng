@@ -1,0 +1,37 @@
+import { AbstractPage, register } from './AbstractPage'
+import { log } from '../log'
+
+function shortDate(timestamp) {
+    let date = new Date(timestamp)
+//    return `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()+1}`
+    return `${date.toISOString()}`
+}
+
+register("LogsPage", class LogsPage extends AbstractPage {
+
+    constructor(id) {
+        super(id)
+    }
+
+    enter() {
+        let html = this.html
+
+        let items = []
+        for (let i = 0; i < log.num_items(); i++) {
+            items.push(log.item(i))
+        }
+
+        let theHtml = html`<div class="container">
+            <h2 class="mb-16 wball">${T("Logs")}</h2>
+
+            <ul>
+                ${items.map(
+                ({timestamp, desc}, i) => html`<li class="bb-1 wball">${shortDate(timestamp)}-${desc}</li>`
+                )}
+            </ul>
+
+        </div>`;
+
+        this.render(theHtml)
+    }
+})

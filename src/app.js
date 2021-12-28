@@ -12,16 +12,11 @@ import { log } from "./log";
 // The micro-router for page transitions
 import { goHome, gotoPage } from './router'
 
-// The page for notification of application updates
-//import './pages/swnotify'
-// For lazy-loading of the pages of the application
-//import { loadAllPages } from './all_pages'
-
 // Get the version of the application and store in database
 async function getAndUpdateVersion() {
     let response = await fetch("/version.txt")
     if (!response.ok) {
-        log.myerror("fetch for version.txt failed");
+        log.error("fetch for version.txt failed");
         return;
     }
     // Store the version in global Window object and in local storage
@@ -33,7 +28,6 @@ async function getAndUpdateVersion() {
 }
 
 
-// This function is called on first load and when a refresh is triggered in any page
 // When called the DOM is fully loaded and safe to manipulate
 window.addEventListener('DOMContentLoaded', async (event) => {
 

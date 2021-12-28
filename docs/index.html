@@ -2,6 +2,20 @@
 <html lang="en">
 
 <head>
+    <script>
+        // Set here the default home page for the app, before loading app.js
+        window.homePage = "IntroPage"
+        // Configure the menu items:
+        // {page:"NameOfPage", text:"Text of menu", params: object to pass to page}
+        window.menuItems = [
+            { page: "ScanQrNativePage", text: "Scan native", params: "" },
+            { page: "SelectLanguage", text: "Language", params: "" },
+            { page: "SelectCamera", text: "Camera" },
+            { page: "TermsOfUse", text: "Terms & Conditions" },
+            { page: "PrivacyPolicy", text: "Privacy policy" },
+            { page: "LogsPage", text: "Show technical logs" }
+        ]
+    </script>
     
 
     
@@ -31,8 +45,8 @@
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
 
 
-  <script type="module" crossorigin src="./assets/index.ebd55170.js"></script>
-  <link rel="stylesheet" href="./assets/index.85b8ad63.css">
+  <script type="module" crossorigin src="./assets/w3full.5148bcf4.js"></script>
+  <link rel="stylesheet" href="./assets/w3full.64703156.css">
 </head>
 
 <body>
@@ -44,18 +58,13 @@
         <a class="bar-item btn-menu right focus-visible-only">☰</a>
     </div>
 </header>
-<script>
-    console.log("Loading SplashScreen")
-</script>
 <div id="SplashScreen">
     <div class="sect-white">
-        <h2 class="margin-bottom" style="word-break:break-word">EU Digital COVID Credential Verifier</h2>
+        <h2 class="mb-16 wball">EU Digital COVID Credential Verifier</h2>
     
-        <div class="padding-16 center">
-
+        <div class="pd-16 center">
             <div class="mb-32"></div>
             <div class="loader"></div>
-
         </div>
     </div>
 </div>

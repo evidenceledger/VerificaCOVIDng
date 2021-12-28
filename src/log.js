@@ -5,71 +5,96 @@
 // Logging level (if false, only log Errors)
 const LOG_ALL = true
 
-// Basic persistent rotating log on top of IndexedDB
-const MAX_LOG_ENTRIES = 1000
+// Basic rotating log. When buffer is full, new entry overwrites oldest one
+export var log = {
+    MAX_LOG_ENTRIES: 100,
+    logItems: [],
+    next_item: 0,
 
-class Warning extends Error {
-    constructor(...params) {
-      // Pass remaining arguments (including vendor specific ones) to parent constructor
-      super(...params)
-  
-      // Maintains proper stack trace for where our error was thrown (only available on V8)
-      if (Error.captureStackTrace) {
-        Error.captureStackTrace(this, Warning)
-      }
-  
-      this.name = 'Warning'
-    }
-  }
+    mylog_entry(_level, _desc, _item) {
+    
+        // Create the object to store
+        var logItem = {
+            timestamp: Date.now(),
+            level: _level,
+            desc: _desc,
+            item: _item
+        }
+    
+        // Store the object
+    
+        // If the list is not yet full, append a new entry to the end
+        if (this.logItems.length < this.MAX_LOG_ENTRIES) {
+            this.logItems.push(logItem)
+            return;
+        }
+    
+        // The list is alredy full, overwrite the oldest one and keep track of it
+        this.logItems[this.next_item] = logItem
+        this.next_item = this.next_item + 1
+        if (this.next_item == this.MAX_LOG_ENTRIES) {
+            this.next_item = 0
+        }
+        return;
+    
+    },
+        
+    log(_desc) {
+        if (LOG_ALL) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            console.log(_desc, args)
+            this.mylog_entry("N", _desc, args)
+        }
+    },
 
-async function mylog_entry(_level, _desc, ...additional) {
-    return;
-}
+    
+    warn(_desc, ...additional) {
+        if (LOG_ALL) {
+            let msg = _desc
+            // Get the stack trace if available
+            try {
+                let e = new Warning(_desc)
+                msg = e.stack
+            } catch {}
+            console.warn(msg, ...additional)
+            this.mylog_entry("W", msg, ...additional)
+        }
+    }, 
 
-export async function mywarn(_desc, ...additional) {
-    if (LOG_ALL) {
+    error(_desc, ...additional) {
         let msg = _desc
         // Get the stack trace if available
         try {
-            let e = new Warning(_desc)
+            let e = new Error(_desc)
             msg = e.stack
         } catch {}
-        console.warn(msg, ...additional)
-        mylog_entry("W", msg, ...additional)
+    
+        console.error(msg, ...additional)
+        this.mylog_entry("E", msg, ...additional)
+    },  
+
+    olderror(_desc) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        console.error(_desc, args)
+        this.mylog_entry("E", _desc, args)
+    },
+
+    num_items() {
+        if (this.logItems.length < this.MAX_LOG_ENTRIES) { return this.logItems.length }
+        return this.MAX_LOG_ENTRIES
+    },
+
+    item(index) {
+        if (index >= this.num_items()) {
+            return undefined
+        }
+
+        if (this.logItems.length < this.MAX_LOG_ENTRIES) {
+            return this.logItems[index]
+        } else {
+            let real_index = (this.next_item + index) % this.MAX_LOG_ENTRIES
+            return this.logItems[real_index]
+        }
     }
+        
 }
-
-export async function myerror(_desc, ...additional) {
-    let msg = _desc
-    // Get the stack trace if available
-    try {
-        let e = new Error(_desc)
-        msg = e.stack
-    } catch {}
-
-    console.error(msg, ...additional)
-    mylog_entry("E", msg, ...additional)
-}
-
-export async function recentLogs() {
-    return undefined;
-    // var rlogs = await db.logs.reverse().limit(200).toArray()
-    // return rlogs
-}
-
-// Clears the logs table, preserving the other tables
-export async function clearLogs() {
-    return;
-    // await db.logs.clear()
-    // alert("Logs cleared")
-    // // Reload application in the same page
-    // location.reload()
-}
-
-export var log = {
-    mywarn: mywarn,
-    myerror: myerror,
-    recentLogs: recentLogs,
-    clearLogs: clearLogs,
-};
-

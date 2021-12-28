@@ -8,17 +8,33 @@ import * as x509 from "@peculiar/x509";
 // Support for the Trusted Lists
 // **************************************
 
-// Embed the trusted lists
-//import eu_jwk_keys from "./json/eu_jwk_keys.json"
+// Official EU Trusted List from the Spanish Ministry of Health
+// https://cvd-gcp.sanidad.gob.es/cvdcovid-gcp/spth/listarCertificados
+// To avoid overloading the official server, we download the list periodically
+// to a server and 'bake' it into the app
+// This means that all apps use the list from our server (typically a CDN) and the 
+// official server is only used periodically once for all apps
 import spanish_tl from '../json/spanish_tl.json'
-import prePublicKeys from "../json/pre_jwk_keys.json"
-import valueSets from "../json/value-sets.json"
 
+// The list of UK keys (before they were integrated in the EU Trusted List)
+// Eventually it will not be needed
 // https://covid-status.service.nhsx.nhs.uk/pubkeys/keys.json
 import ukRawKeys from "../json/uk_jwk_keys.json"
 
+// This is a list with the Pre-production keys. The app gives a warning message if it
+// verifies successfully a certificate signed with one of these keys
+import prePublicKeys from "../json/pre_jwk_keys.json"
+
+// The list of value sets for verification, downloaded periodically to the server from
+// the Ministry of Health of Sweden
+import valueSets from "../json/value-sets.json"
+
+// Converts a Public key in PEM format into a Subtle Crypto native key
 async function importKey(certPem) {
+    // Decode the PEM into a x509 certificate
     const cert = new x509.X509Certificate(certPem);
+
+    // Extract the Public Key and try to convert it first to EC and then to RSA
     const pubk = cert.publicKey.rawData
     var publicKey
     try {
@@ -53,24 +69,10 @@ async function importKey(certPem) {
     return publicKey
 }
 
-// async function preprocessTL(tl_in) {
-//     console.log("Preprocessing Trusted Keys")
-
-//     let tl_out = {}
-//     for (let i = 0; i < tl_in.length; i = i + 1) {
-//         let kid = tl_in[i]["kid"]
-//         let certPem = tl_in[i]["certificado"]
-//         let pubKey = await importKey(certPem)
-//         tl_out[kid] = pubKey
-//     }
-//     window.eu_trusted_keys = tl_out
-//     console.log("Trusted Keys processed")
-// }
-
-
 // Search for a public key in the several trusted lists
 async function getTrustedKey(kid) {
 
+    // Return this structure in case we do not find any matching key
     let undefinedKey = {
         kid: kid,
         publicKey: undefined,
@@ -81,51 +83,23 @@ async function getTrustedKey(kid) {
     if (!kid) { log.myerror("kid is undefined"); return undefinedKey; }
     
     // First, try to get it from the PRODUCTION EU list
-    // let entry = window.eu_trusted_keys[kid]
-    // if (entry) {
-    //     console.log(`kid "${kid}" found in EU_PRO trusted list`)
-    //     return {
-    //         kid: kid,
-    //         publicKey: entry.jwk,
-    //         list: "EU_PRO",
-    //         format: "jwk"
-    //     }
-    // }
-    // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
-
-    // Wait on the promise to process keys to make sure the keys are preprocessed
-    // console.log("Waiting for Trusted Keys to be preprocessed")
-    // await window.promiseLoadKeys
-    // console.log("Trusted Keys have been processed")
-
-    // First, try to get it from the PRODUCTION EU list
     for (let i = 0; i < spanish_tl.length; i++) {
         if (spanish_tl[i].kid == kid) {
             console.log(`kid "${kid}" found in EU_PRO trusted list`)
             let certPem = spanish_tl[i]["certificado"]
             let pubKey = await importKey(certPem)
-            return {
-                kid: kid,
-                publicKey: pubKey,
-                list: "EU_PRO",
-                format: "native"
+            // Return the key if we successfully imported it
+            if (pubKey) {
+                return {
+                    kid: kid,
+                    publicKey: pubKey,
+                    list: "EU_PRO",
+                    format: "native"
+                }    
             }
         }
     }
     log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
-
-    // let entry = window.eu_trusted_keys[kid]
-    // if (entry) {
-    //     console.log(`kid "${kid}" found in EU_PRO trusted list`)
-    //     return {
-    //         kid: kid,
-    //         publicKey: entry,
-    //         list: "EU_PRO",
-    //         format: "native"
-    //     }
-    // }
-    // log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
-
 
     // Now check in the PRODUCTION listfrom the UK
     for (let i = 0; i < ukRawKeys.length; i++) {
@@ -141,9 +115,9 @@ async function getTrustedKey(kid) {
     }
     log.mywarn(`kid "${kid}" not found in UK_PRO trusted list`)
 
-    // And finally in the PREPRODUCTION EU list
+    // And finally in the PREPRODUCTION list
     if (prePublicKeys.includes(kid)) {
-        log.mywarn(`kid "${kid}" found in EU PREPRODUCTION trusted list`)
+        log.mywarn(`kid "${kid}" found in PREPRODUCTION trusted list`)
         return {
             kid: kid,
             publicKey: undefined,
@@ -152,31 +126,31 @@ async function getTrustedKey(kid) {
         }
     }
     log.myerror(`KEY ${kid} not found in any Trusted List`)
+
+    // Key not found in any list. return the undefined key structure
     return undefinedKey;
 
 }
 
-export var vs = {
-    get: function (key, valueSetName) {
-        if (!key) { return "N/A" }
+// Translate a value in the certificate using the Value Sets
+function getFromValueSet (key, valueSetName) {
+    if (!key) { return "N/A" }
 
-        let valueSet = valueSets[valueSetName];
-        if (!valueSet) { return key; }
+    // Get the specified value set type
+    let valueSet = valueSets[valueSetName];
+    if (!valueSet) { return key; }
 
-        let values = valueSet["valueSetValues"];
-        if (!values) { return key; }
+    // Get the set of values for the specified Value Set
+    let values = valueSet["valueSetValues"];
+    if (!values) { return key; }
 
-        let value = values[key];
-        if (!value) { return key; }
+    // Get the value corresponding to the key in the certificate
+    let value = values[key];
+    if (!value) { return key; }
 
-        return value["display"];
-    },
-};
-
-// Set the initial value of the EU Trusted List, to be refreshed later
-// Use a global scope variable so it can be refreshed later
-//window.eu_trusted_keys = eu_jwk_keys
-//window.promiseLoadKeys = preprocessTL(spanish_tl)
+    // Get the display value associated to the coded value
+    return value["display"];
+}
 
 
 //********************************
@@ -207,9 +181,11 @@ function str2ab(str) {
     return buf;
 }
 
+// Utility class for managing Crypto Subtle native keys
 class DGCKey {
     constructor() { }
 
+    // Import from Subject PKI format (eg. the UK Trusted List)
     static async fromSPKI(SPKI) {
         const binaryDerString = window.atob(SPKI);
         // convert from a binary string to an ArrayBuffer
@@ -234,7 +210,7 @@ class DGCKey {
         return key;
     }
 
-
+    // Import from JWK (JSON Web Key) format
     static async fromJWK(jwk) {
         // Create a CryptoKey from JWK format
 
@@ -274,6 +250,7 @@ class DGCKey {
         return key;
     }
 
+    // Generate an Elliptic Curve key pair
     static async generateECDSAKeyPair() {
         // Create an ECDSA/P-256 CryptoKey
 
@@ -294,6 +271,7 @@ class DGCKey {
         return keyPair;
     }
 
+    // Generate a symmetric encryption key
     static async generateEncryptionKey() {
         // Generate a symmetric key for encrypting credentials when in transit
         // The credentials (and other material) will be encrypted when sent to the
@@ -367,7 +345,10 @@ class DGCKey {
         return signature;
     }
 
+    // Verify a signature, either with EC or RSA key
     static async verify(key, signature, bytes) {
+
+        // Accept only Public Keys
         if (key.type != "public") {
             console.log(key)
             throw new Error("Not a public key");
@@ -391,6 +372,7 @@ class DGCKey {
             throw `Invalid signature algorithm: ${key.algorithm.name}`;
         }
 
+        // Verify the signature. Returns undefined if it fails
         let result
         try {
             result = await window.crypto.subtle.verify(
@@ -1321,41 +1303,41 @@ export class CWT {
             // Process each type of certificate
             if (payload["certType"] === T_VACCINATION) {
 
-                payload["diseaseTargeted"] = vs.get(c.get("tg"), "disease-agent-targeted");
-                payload["vaccineProphylaxis"] = vs.get(c.get("vp"), "vaccine-prophylaxis")
-                payload["medicinalProduct"] = vs.get(c.get("mp"), "vaccine-medicinal-product")
-                payload["manufacturer"] = vs.get(c.get("ma"), "vaccine-mah-manf")
+                payload["diseaseTargeted"] = getFromValueSet(c.get("tg"), "disease-agent-targeted");
+                payload["vaccineProphylaxis"] = getFromValueSet(c.get("vp"), "vaccine-prophylaxis")
+                payload["medicinalProduct"] = getFromValueSet(c.get("mp"), "vaccine-medicinal-product")
+                payload["manufacturer"] = getFromValueSet(c.get("ma"), "vaccine-mah-manf")
 
                 payload["doseNumber"] = c.get("dn");
                 payload["doseTotal"] = c.get("sd");
                 payload["dateVaccination"] = c.get("dt");
 
-                payload["country"] = vs.get(c.get("co"), "country-2-codes")
+                payload["country"] = getFromValueSet(c.get("co"), "country-2-codes")
                 payload["certificateIssuer"] = c.get("is");
                 payload["uniqueIdentifier"] = c.get("ci");
 
             } else if (payload["certType"] === T_TEST) {
 
-                payload["diseaseTargeted"] = vs.get(c.get("tg"), "disease-agent-targeted");
-                payload["typeTest"] = vs.get(c.get("tt"), "test-type");
+                payload["diseaseTargeted"] = getFromValueSet(c.get("tg"), "disease-agent-targeted");
+                payload["typeTest"] = getFromValueSet(c.get("tt"), "test-type");
                 payload["testName"] = c.get("nm");
-                payload["manufacturer"] = vs.get(c.get("ma"), "test-manf")
+                payload["manufacturer"] = getFromValueSet(c.get("ma"), "test-manf")
                 payload["timeSample"] = c.get("sc");
-                payload["testResult"] = vs.get(c.get("tr"), "test-result")
+                payload["testResult"] = getFromValueSet(c.get("tr"), "test-result")
                 payload["testingCentre"] = c.get("tc");
 
-                payload["country"] = vs.get(c.get("co"), "country-2-codes")
+                payload["country"] = getFromValueSet(c.get("co"), "country-2-codes")
                 payload["certificateIssuer"] = c.get("is");
                 payload["uniqueIdentifier"] = c.get("ci");
 
             } else if (payload["certType"] === T_RECOVERY) {
 
-                payload["diseaseTargeted"] = vs.get(c.get("tg"), "disease-agent-targeted");
+                payload["diseaseTargeted"] = getFromValueSet(c.get("tg"), "disease-agent-targeted");
                 payload["datePositive"] = c.get("fr");
                 payload["dateFrom"] = c.get("df");
                 payload["dateUntil"] = c.get("du");
 
-                payload["country"] = vs.get(c.get("co"), "country-2-codes")
+                payload["country"] = getFromValueSet(c.get("co"), "country-2-codes")
                 payload["certificateIssuer"] = c.get("is");
                 payload["uniqueIdentifier"] = c.get("ci");
 
@@ -1576,55 +1558,6 @@ export class CWT {
                         return;
                 }
         }
-    }
-
-}
-
-export class HCERT {
-    constructor() { }
-
-    static async renderSummary(key, cred) {
-        // The credential
-
-        // Decode credential without verification
-        let hcert = await CWT.decodeHC1QR(
-            cred["encoded"],
-            false
-        );
-
-        // Get the payload part
-        let payload = hcert[1];
-        console.log("renderSummary", cred)
-
-        // Calculate the display name and date for the card
-        let displayName = "Unrecognized";
-        let cred_date = "Unrecognized";
-
-        if (payload["certType"] == "v") {
-            displayName = "EU COVID VACCINATION";
-            cred_date = payload.dateVaccination;
-        } else if (payload["certType"] == "t") {
-            displayName = "EU COVID TEST";
-            cred_date = payload.timeSample;
-        } else if (payload["certType"] == "r") {
-            displayName = "EU COVID RECOVERY";
-            cred_date = payload.dateFrom;
-        }
-
-        // Render the HTML
-        let html = `
-        <div class="card my-3 shadow">
-            <a onclick="displayCredentialFromKey('${key}')">
-            <div class="card-body">
-                <h5 class="card-title">${payload.fullName}</h5>
-                <p>${displayName}</p>
-                <p>${cred_date}</p>
-            </div>
-            </a>
-        </div>
-        `;
-
-        return html;
     }
 
 }

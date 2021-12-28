@@ -9,10 +9,6 @@
     }
 }
 :root {font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
-/* :root {
-    --forecolor-primary:  white!important;
-    --bgcolor-primary:  #919597!important;
-} */
 :root {
     --fore-color-primary:  white!important;
     --bg-color-primary:  #102a3a!important;
@@ -29,7 +25,7 @@ html{overflow-x:hidden;box-sizing: border-box;}
 *, *::before, *::after {
   box-sizing: inherit;
 }
-html,body,p,h1,h2,h3,h4,h5 {margin: 0;padding: 0;}
+html,body,p,ul,li,h1,h2,h3,h4,h5 {margin: 0;padding: 0;}
 html {box-sizing: border-box;}
 body{max-width:980px}
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
@@ -48,19 +44,20 @@ img{vertical-align:middle}
 .left{float:left!important}
 .right{float:right!important}
 
-.margin-bottom{margin-bottom: 15px;}
 .fw-8{font-weight: 800;}
 .mb-16{margin-bottom: 16px;}
 .mb-32{margin-bottom: 32px;}
 .mb-100{margin-bottom: 100px;}
+.pd-16{padding-top:16px!important;padding-bottom:16px!important}
 .hide{display:none}
 .show{display:block}
+.wball{word-break: break-all;}
+.bb-1{border: 1px solid black;}
 
 .row:after,.row:before{content:"";display:table;clear:both}
 .third{float:left;width:100%}
 @media (min-width:601px){.third{width:33.33333%}}
 
-.padding-16{padding-top:16px!important;padding-bottom:16px!important}
 .bar{width:100%;overflow:hidden;}
 .bar .bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
 .bar-block .bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
@@ -72,8 +69,9 @@ img{vertical-align:middle}
 .btn-menu{color:var(--header-forecolor);background-color: var(--header-bgcolor)}
 .round-xlarge{border-radius:16px}
 .focus-visible-only:focus-visible {outline: 2px solid black !important;}
-.right{float:right!important}
 section,.section{padding:0.01em 10px;margin-top:0px;margin-bottom:10px;}
+.container{padding:0px 10px}
+
 .sect-white {
     padding: 25px 15px 50px 15px;
     background-color: white;

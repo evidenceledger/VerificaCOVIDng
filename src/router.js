@@ -3,79 +3,87 @@
 //
 // Implements gotoPage(pageName, pageData) and goHome()
 // *****************************************************
-console.log("Loading Router")
+import { log } from './log'
 
-// For loading lazily the pages
+// The following function loads lazily the pages
+// We have to specify all pages composing the application
 // It is done as a switch so not to break bundler optimizations
+// Each page registers itself with the router when importing the module
 async function lazyLoadPage(pageName) {
     switch (pageName) {
-        case "Intro":
-            await import('./pages/intropage');
+        case "ScanQrNativePage":
+            await import('./pages/ScanQrNativePage');
+            break;
+        case "IntroPage":
+            await import('./pages/IntroPage');
             break;
         case "Page404":
-            await import('./pages/page404');
+            await import('./pages/Page404');
             break;
         case "ScanQrPage":
-            await import('./pages/scanqr');
+            await import('./pages/ScanQrPage');
             break;
         case "Faqs":
-            await import('./pages/faqs');
+            await import('./pages/Faqs');
             break;
         case "SelectLanguage":
-            await import('./i18n/i18');
+            await import('./i18n/SelectLanguage');
             break;
         case "Help":
-            await import('./pages/help');
+            await import('./pages/Help');
             break;
         case "DisplayHcert":
-            await import('./pages/hcertpage');
+            await import('./pages/DisplayHcert');
             break;
         case "DisplayMyHcert":
-            await import('./pages/myhcertpage');
+            await import('./pages/DisplayMyHcert');
             break;
         case "MicroWallet":
-            await import('./pages/microwallet');
+            await import('./pages/MicroWallet');
             break;
         case "DisplayQR":
-            await import('./pages/displayqr');
+            await import('./pages/DisplayQR');
             break;
         case "SelectCamera":
-            await import('./pages/selectcamera');
+            await import('./pages/SelectCamera');
             break;
         case "TermsOfUse":
-            await import('./pages/termsofuse');
+            await import('./pages/TermsOfUse');
             break;
         case "PrivacyPolicy":
-            await import('./pages/privacypolicy');
+            await import('./pages/PrivacyPolicy');
             break;
         case "SWNotify":
-            await import('./pages/swnotify');
+            await import('./pages/SWNotify');
             break;
-
-
+        case "LogsPage":
+            await import('./pages/LogsPage');
+            break;
     }
 }
 
 // The default home page where to start and when refreshing the app
-var homePage = "Intro"
+// Change this to suit your needs
+var homePage = window.homePage
+if (!homePage) {
+    throw "No homePage was set."
+}
 
-// The router needs this page preloaded
-//import { default as Page404 } from './pages/page404'
-
-//var page404 = new Page404()
-//var name404 = Page404.name
+// The name of the page when we try to go to a nonexistent page
 var name404 = "Page404"
 
 // This will hold all pages in a ("pageName", pageClass) structure
 var pages = null
 
-
 // Register a new page name, associated to a class instance
 export function route(pageName, classInstance) {
+    // Create the map on the first call
     if (!pages) { pages = new Map() }
+    // Populate the map
     pages.set(pageName, classInstance)
 }
 
+// Set the default home page for the application
 export function setHomePage(page) {
     homePage = page
 }
@@ -95,13 +103,13 @@ window.goHome = goHome
 export async function gotoPage(pageName, pageData) {
     console.log("Inside gotoPage:", pageName)
 
-    // Lazyload the page
+    // Lazyload the page. This is a no-op if the module is already loades
     await lazyLoadPage(pageName)
 
     // If pageName is not a registered page, go to the 404 error page
     // passing the target page as pageData
     if (pages.get(pageName) === undefined) {
-        console.error("Target page does not exist: ", pageName);
+        log.error("Target page does not exist: ", pageName);
         pageData = pageName
         pageName = name404
     }
@@ -131,7 +139,7 @@ async function processPageEntered(pageName, pageData, historyData) {
             }
         }
     } catch (error) {
-        console.error("Trying to call exit", error);
+        log.error("Trying to call exit", error);
         return;
     }
 
@@ -158,7 +166,7 @@ async function processPageEntered(pageName, pageData, historyData) {
         }
 
     } catch (error) {
-        console.error("Calling enter()", error);
+        log.error("Calling enter()", error);
         return;
     }
 
