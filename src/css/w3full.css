@@ -1,8 +1,5 @@
 ﻿
 
-ul {
-  list-style: none;
-}
 
 button,
 input,
@@ -154,12 +151,9 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-transparent,.w3-hover-none:hover{background-color:transparent!important}
 .w3-hover-none:hover{box-shadow:none!important}
 /* Additional styles */
-body{max-width:980px}
-
 
 /* Utilities classes */
 
-.container{padding:0px 10px}
 .panel{padding: 10px; margin: 10px 0px; box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
 .subsection{padding: 0rem;}
 .valor{font-weight:600}

@@ -1,13 +1,13 @@
-import { AbstractPage } from './abstractpage'
-import { html } from 'lit-html';
+import { AbstractPage, register } from './abstractpage'
 
-export class displayNormalQR extends AbstractPage {
+register("DisplayNormalQR", class DisplayNormalQR extends AbstractPage {
 
     constructor(id) {
         super(id)
     }
 
     enter(qrData) {
+        let html = this.html
 
         let isURL = false
         if (qrData.startsWith("https://") || qrData.startsWith("http://")) {
@@ -16,10 +16,10 @@ export class displayNormalQR extends AbstractPage {
 
         let theHtml = html`
         <div class="container" style="margin-top:50px;">
-            <h2 class="w3-margin-bottom w3-center">Received QR</h2>
+            <h2 class="mb-16 center">Received QR</h2>
             <p class="w3-large" style="word-break: break-all;">${qrData}</p>
         
-            <div class="w3-bar w3-padding-16 w3-center" style="max-width:70%;margin:50px auto;">
+            <div class="w3-bar pd-16 w3-center" style="max-width:70%;margin:50px auto;">
 
                 <a href="javascript:void(0)" @click=${()=> window.history.back()} class="btn left color-secondary hover-color-secondary
                     w3-large w3-round-xlarge">Back</a>
@@ -36,5 +36,4 @@ export class displayNormalQR extends AbstractPage {
 
         this.render(theHtml)
     }
-}
-
+})
