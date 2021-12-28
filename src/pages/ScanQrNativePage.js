@@ -141,7 +141,7 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
             return;
         }
 
-        this.videoElem.srcObject = mediaStream;
+        this.videoElem.srcObject = stream;
         this.videoElem.onloadedmetadata = function (e) {
             this.videoElem.play();
         };
