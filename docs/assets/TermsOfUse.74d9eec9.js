@@ -1,4 +1,4 @@
-import{r as t,A as s,h as i}from"./AbstractPage.2d6cb208.js";import{l as r}from"./legal.ec5a9509.js";import"./w3full.5148bcf4.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
+import{r as t,A as s,h as i}from"./AbstractPage.d25cfa01.js";import{l as r}from"./legal.ec5a9509.js";import"./w3full.df12da0f.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
 
 <div class="sect-white" style="text-align:left">
 
