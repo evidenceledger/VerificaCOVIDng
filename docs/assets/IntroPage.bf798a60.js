@@ -1,4 +1,4 @@
-import{r,A as s}from"./AbstractPage.3fc6ca1f.js";import"./w3full.c5c6fd34.js";r("IntroPage",class extends s{constructor(t){super(t)}enter(){let e=this.html`<div class="sect-white">
+import{r,A as s}from"./AbstractPage.5c8880bf.js";import"./w3full.ce7e6cae.js";r("IntroPage",class extends s{constructor(e){super(e)}enter(){let t=this.html`<div class="sect-white">
             <h2 class="mb-16" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
             <p>${T("$intro01")}</p>
 
@@ -10,4 +10,4 @@ import{r,A as s}from"./AbstractPage.3fc6ca1f.js";import"./w3full.c5c6fd34.js";r(
                 </button>
 
             </div>
-        </div>`;this.render(e)}});
+        </div>`;this.render(t)}});

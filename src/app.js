@@ -14,7 +14,7 @@ import { goHome, gotoPage } from './router'
 
 // Get the version of the application and store in database
 async function getAndUpdateVersion() {
-    let response = await fetch("/version.txt")
+    let response = await fetch("./version.txt")
     if (!response.ok) {
         log.error("fetch for version.txt failed");
         return;
