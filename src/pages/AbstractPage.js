@@ -46,6 +46,11 @@ export class AbstractPage {
         await router.gotoPage(pageName, pageData)
     }
 
+    static async gotoPageStatic(pageName, pageData) {
+        // This is a utility function to help subclasses
+        await router.gotoPage(pageName, pageData)
+    }
+
     render(theHtml) {
         // This is called by subclasses to render its contents
         // Show the page
@@ -60,3 +65,6 @@ export class AbstractPage {
 export function register(pageName, classDefinition) {
     let instance = new classDefinition(pageName)
 }
+
+export { render, html } from 'uhtml'
+export { goHome, gotoPage } from '../router'

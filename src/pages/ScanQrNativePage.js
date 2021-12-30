@@ -1,5 +1,5 @@
 import { log } from '../log'
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register, html, gotoPage } from './AbstractPage'
 import { getPreferredVideoDevice, getPlatformOS } from '../components/camerainfo'
 
 // This is to facilitate debugging of certificates
@@ -17,17 +17,20 @@ const QR_URL = 1
 const QR_MULTI = 2
 const QR_HC1 = 3
 
+
 register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
-    nativeBarcodeDetector;
-    codeReader;     // Instance of QR Code Reader reused across invocations
-    controls;
-    videoElem;      // DOMElement where the video is displayed, reused across invocations
-    selectedCameraId;   // The last used camera ID
+    displayPage                 // The page name used to display the HC1 QR code
+    detectionInterval = 200     // Milliseconds between attempts to decode QR
+    videoElem                   // DOMElement where the video is displayed, reused across invocations
+    nativeBarcodeDetector       // Instance of the native barcode detector object
+    lastUsedCameraId            // The last used camera ID
+    videoElement
 
     constructor(id) {
+    
         super(id);
 
-        // Check if supported
+        // Check if native barcode detection is supported
         if (!('BarcodeDetector' in window)) {
             log.error('Barcode Detector is not supported by this browser.')
         } else {
@@ -37,27 +40,18 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
             this.nativeBarcodeDetector = new BarcodeDetector({ formats: ['qr_code'] });
         }
 
-        // Create the 'video' element and attach the event handler
-        this.videoElem = document.createElement("video")
-        this.videoElem.style.display = "none"
-        this.videoElem.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
-        this.videoElem.oncanplay = this.canPlay
+        this.videoElement = {}
 
     }
 
     async enter(displayPage) {
-        let html = this.html
-
-        if (!this.nativeBarcodeDetector) {
-            this.render(this.messageNoCameraPermissions())
-            return;
-        }
 
         // displayPage is the page that should display the scanned QR
         // If not specified, we default to the DisplayHcert page
         if (!displayPage) {
             displayPage = "DisplayHcert"
         }
+        this.displayPage = displayPage
 
         // If debugging, just try to decode the test QR
         if (debugging) {
@@ -65,13 +59,75 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
             return
         }
 
+        if (!this.nativeBarcodeDetector) {
+            this.render(this.messageNoCameraPermissions())
+            return;
+        }
+
+        // Select the camera and store locally for later uses
+        this.lastUsedCameraId = await this.selectCamera()
+        if (!this.lastUsedCameraId) {
+            this.render(this.messageNoCameraPermissions())
+            return;
+        }
+
+        // Display the screen with the video element
+        // The 'ref' in the template will set the 'current' property in the specified object
+        // to the video DOM element. In this case, the video DOM element can be accessed later at
+        // this.videoElement.current
+        let theHtml = html`
+        <video ref=${this.videoElement} oncanPlay=${()=>this.canPlay()}></video>
+        `;
+        this.render(theHtml)
+
+        let constraints;
+        if (!this.lastUsedCameraId) {
+            console.log("Constraints without camera")
+            constraints = {
+                audio: false,
+                video: {
+                    width: { ideal: 1080, max: 1920 },
+                    facingMode: "environment"
+                }
+            }
+        } else {
+            console.log("Constraints with deviceID:", this.lastUsedCameraId)
+            constraints = {
+                audio: false,
+                video: {
+                    width: { ideal: 1080, max: 1920 },
+                    deviceId: this.lastUsedCameraId
+                }
+            }
+        }
+
+        let stream;
+        try {
+            // Request a stream which forces the system to ask the user
+            stream = await navigator.mediaDevices.getUserMedia(constraints);
+
+            // Assign the camera stream to the video element in the page
+            // Eventually, the event 'canPlay' will be fired signallig video is ready to be displayed
+            this.videoElement.current.srcObject = stream
+            console.log(stream)
+
+        } catch (error) {
+            log.error("Error getting stream", error)
+            this.render(this.messageErrorGettingStream())
+            return;
+        }
+
+    }
+
+    async selectCamera() {
+
         // Try to use the camera explicitly configured by the user
         var selectedCameraId = localStorage.getItem("selectedCamera")
         console.log("User selected camera:", selectedCameraId)
 
         // If nothing configured, try to use last one used, if any
         if (!selectedCameraId) {
-            selectedCameraId = this.selectedCameraId
+            selectedCameraId = this.lastUsedCameraId
             console.log("Last used camera:", selectedCameraId)
         }
 
@@ -94,144 +150,142 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
 
             if (!selectedCameraId) {
                 console.log("In Android and no selected camera")
-                this.render(this.messageNoCameraPermissions())
-                return;
             }
 
         }
 
-        // Record the currently selected camera
-        this.selectedCameraId = selectedCameraId
-        console.log("Remembering camera used:", selectedCameraId)
+        return selectedCameraId;
 
-        // Display the screen with the video element
-        let theHtml = html`${this.videoElem}`;
+    }
 
-        // Prepare the screen, waiting for the video
-        this.render(theHtml)
+    async canPlay() {
+        console.log("Video can play, try to detect QR")
+        // The video stream is ready, show the 'video' element
+        this.videoElement.current.style.display = "block"
 
-        let constraints;
-        if (!selectedCameraId) {
-            console.log("Constraints without camera")
-            constraints = {
-                audio: false,
-                video: {
-                    width: { ideal: 1080, max: 1920 },
-                    facingMode: "environment"
-                }
-            }
-        } else {
-            console.log("Constraints with deviceID:", selectedCameraId)
-            constraints = {
-                audio: false,
-                video: {
-                    width: { ideal: 1080, max: 1920 },
-                    deviceId: selectedCameraId
-                }
-            }
-        }
+        // Start playing the video from the camera
+        this.videoElement.current.play()
 
-        let stream;
-        try {
-            // Request a stream to force the system to ask the user
-            stream = await navigator.mediaDevices.getUserMedia(constraints);
-        } catch (error) {
-            log.error("Error getting stream", e)
-            this.render(this.messageErrorGettingStream())
-            return;
-        }
-
-        this.videoElem.srcObject = stream;
-        this.videoElem.onloadedmetadata = function (e) {
-            this.videoElem.play();
-        };
-
+        // Start the detector of QR codes directly in the video element
         this.detectCode()
 
     }
 
-    canPlay(e) {
-        // The video stream is ready, show the 'video' element
-        e.target.style.display = "block"
-    }
-
     // Detect code function 
-    detectCode() {
-        // Start detecting codes on to the video element
-        this.nativeBarcodeDetector.detect(this.videoElem).then(codes => {
-            // If no codes exit function
-            if (codes.length === 0) {
-                console.log("No QR code detected")
-                return;
-            }
-
-            for (const barcode of codes) {
-                // Log the barcode to the console
-                console.log(barcode)
-            }
-        }).catch(err => {
+    async detectCode() {
+        // Detect QR codes in the video element
+        let codes
+        try {
+            codes = await this.nativeBarcodeDetector.detect(this.videoElement.current)
+        } catch (error) {
             // Log an error if one happens
-            console.error(err);
-        })
-    }
-
-    async exit() {
-        // Reset the decoder just in case the camera was still working
-        if (this.controls) {
-            this.controls.stop()
-        }
-        this.videoElem.style.display = "none"
-    }
-
-    async processQRpiece(readerResult, displayPage) {
-        let qrData = readerResult.text
-
-        let qrType = this.detectQRtype(readerResult)
-        console.log("QRTYPE", qrType)
-        if (qrType !== QR_HC1) {
-            return false;
+            log.error(err);
+            return;
         }
 
-        // Display data of a normal QR
-        if (qrType === QR_UNKNOWN || qrType === QR_URL) {
-            this.gotoPage("DisplayNormalQR", qrData)
-            return true;
+        // If not detected, try again
+        if (codes.length === 0) {
+            setTimeout(() => this.detectCode(), this.detectionInterval)
+            return;
+        }
+
+        // There may be several QR codes detected
+        // We will process the first one that is recognized
+        let qrType = QR_UNKNOWN
+        let qrData
+        for (const barcode of codes) {
+            // Log the barcode to the console
+            console.log(barcode)
+            qrData = barcode.rawValue
+            qrType = this.detectQRtype(qrData)
+            if (qrType != QR_UNKNOWN) {
+                // Exit from the loop as soon as we recognize a QR type
+                break;
+            }
+        }
+
+        // If no QR code recognized, keep trying
+        if (qrType === QR_UNKNOWN) {
+            setTimeout(() => this.detectCode(), this.detectionInterval)
+            return;
         }
 
         // Handle HCERT data
         if (qrType === QR_HC1) {
-            console.log("Going to ", displayPage)
-            this.gotoPage(displayPage, qrData)
+            console.log("Going to ", this.displayPage)
+            gotoPage(this.displayPage, qrData)
             return true;
+        }
+
+
+
+    }
+
+    async exit() {
+        // Reset the decoder just in case the camera was still working
+        this.videoElement.current.style.display = "none"
+
+        // Release resources
+        if (this.videoElement.current.srcObject !== undefined) {
+            this.videoElement.current.srcObject.getVideoTracks().forEach((track) => {
+                track.stop();
+            });
         }
 
     }
 
-    detectQRtype(readerResult) {
-        // Try to detect the type of data received
-        let qrData = readerResult.text
+    // Try to detect the type of data received
+    detectQRtype(qrData) {
 
-        console.log("detectQRtype:", qrData);
-        if (!qrData.startsWith) {
-            log.myerror("detectQRtype: data is not string")
+        if (!qrData || !qrData.startsWith) {
+            log.error("detectQRtype: data is not string")
+            return QR_UNKNOWN;
         }
 
-        if (qrData.startsWith("https")) {
-            // We require secure connections
-            // Normal QR: we receive a URL where the real data is located
-            return QR_URL;
+        if (qrData.startsWith("HC1:")) {
+            return QR_HC1;
         } else if (qrData.startsWith("multi|w3cvc|")) {
             // A multi-piece JWT
             return QR_MULTI;
-        } else if (qrData.startsWith("HC1:")) {
-            return QR_HC1;
+        } else if (qrData.startsWith("https")) {
+            // Normal QR with a URL where the real data is located
+            // We require secure connections with https
+            return QR_URL;
         } else {
             return QR_UNKNOWN
         }
     }
 
+    errorMessage(title, message) {
+
+        let theHtml = html`
+        <div class="container">
+            <div class="w3-card-4 center" style="margin-top:100px;">
+        
+                <header class="container color-primary" style="padding:10px">
+                    <h1>${title}</h1>
+                </header>
+        
+                <div class="container pd-16">
+                    <p>${message}</p>
+                    <p>${T("Please click Accept to refresh the page.")}</p>
+                </div>
+        
+                <div class="pd-16">
+        
+                    <button @click=${()=> window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge
+                        w3-round-xlarge">${T("Accept")}</button>
+        
+                </div>
+        
+            </div>
+        </div>
+        `
+        return theHtml
+
+    }
+
     messageErrorGettingStream() {
-        let html = this.html
 
         let theHtml = html`
         <div class="container">
@@ -260,9 +314,7 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
 
     }
 
-
     messageNoCameraPermissions() {
-        let html = this.html
 
         let theHtml = html`
         <div class="container">
@@ -292,6 +344,7 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
     }
 
 })
+
 
 
 
