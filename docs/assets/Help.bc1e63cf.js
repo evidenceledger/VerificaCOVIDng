@@ -1,4 +1,4 @@
-import{r as e,A as l}from"./AbstractPage.d25cfa01.js";import"./w3full.df12da0f.js";e("Help",class extends l{constructor(t){super(t)}async enter(){let a=this.html`
+import{r as e,A as l}from"./AbstractPage.3fc6ca1f.js";import"./w3full.c5c6fd34.js";e("Help",class extends l{constructor(t){super(t)}async enter(){let a=this.html`
         <div class="container pd-16" style="text-align: justify;">
 
             <p style="margin-bottom: 10px;">${T("$help01")}</p>

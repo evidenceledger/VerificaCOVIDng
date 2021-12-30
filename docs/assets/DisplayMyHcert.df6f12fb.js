@@ -1,4 +1,4 @@
-import{l as o}from"./w3full.df12da0f.js";import{r as n,A as c}from"./AbstractPage.d25cfa01.js";import{C as h,v as g,o as m,w as v,e as f}from"./warning.877851ea.js";import"./_commonjsHelpers.4e997714.js";n("DisplayMyHcert",class extends c{constructor(t){super(t)}async enter(t){let i=this.html;if(t=window.localStorage.getItem("MYEUDCC"),t==null){this.render(i`
+import{l as o}from"./w3full.c5c6fd34.js";import{r as n,A as c}from"./AbstractPage.3fc6ca1f.js";import{C as h,v as g,o as m,w as v,e as f}from"./warning.b2dd8e6f.js";import"./_commonjsHelpers.4e997714.js";n("DisplayMyHcert",class extends c{constructor(t){super(t)}async enter(t){let i=this.html;if(t=window.localStorage.getItem("MYEUDCC"),t==null){this.render(i`
             <div id="hcertFailed" class="w3-panel bkg-fail">
                 <h2>${T("There is no certificate.")}</h2>
             </div>
