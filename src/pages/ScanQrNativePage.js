@@ -21,10 +21,12 @@ const QR_HC1 = 3
 register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
     displayPage                 // The page name used to display the HC1 QR code
     detectionInterval = 200     // Milliseconds between attempts to decode QR
-    videoElem                   // DOMElement where the video is displayed, reused across invocations
+    videoElement                // DOMElement where the video is displayed, reused across invocations
     nativeBarcodeDetector       // Instance of the native barcode detector object
+    jsQR                        // Barcode detector in JavaScript
     lastUsedCameraId            // The last used camera ID
-    videoElement
+    canvasElement
+    canvasSpace
 
     constructor(id) {
     
@@ -32,7 +34,9 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
 
         // Check if native barcode detection is supported
         if (!('BarcodeDetector' in window)) {
-            log.error('Barcode Detector is not supported by this browser.')
+            console.log('Barcode Detector is not supported by this browser.')
+            // Try to import the jsQR library
+            this.jsQRPromise = import('jsqr')
         } else {
             console.log('Barcode Detector supported!');
 
@@ -41,6 +45,8 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
         }
 
         this.videoElement = {}
+        this.canvasElement = document.createElement('canvas')
+        this.canvasSpace = this.canvasElement.getContext("2d")
 
     }
 
@@ -60,16 +66,12 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
         }
 
         if (!this.nativeBarcodeDetector) {
-            this.render(this.messageNoCameraPermissions())
-            return;
+            let mod = await this.jsQRPromise
+            this.jsQR = mod.default
         }
 
         // Select the camera and store locally for later uses
         this.lastUsedCameraId = await this.selectCamera()
-        if (!this.lastUsedCameraId) {
-            this.render(this.messageNoCameraPermissions())
-            return;
-        }
 
         // Display the screen with the video element
         // The 'ref' in the template will set the 'current' property in the specified object
@@ -86,7 +88,7 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
             constraints = {
                 audio: false,
                 video: {
-                    width: { ideal: 1080, max: 1920 },
+                    // width: { ideal: 1080, max: 1920 },
                     facingMode: "environment"
                 }
             }
@@ -95,7 +97,7 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
             constraints = {
                 audio: false,
                 video: {
-                    width: { ideal: 1080, max: 1920 },
+                    // width: { ideal: 1080, max: 1920 },
                     deviceId: this.lastUsedCameraId
                 }
             }
@@ -105,6 +107,11 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
         try {
             // Request a stream which forces the system to ask the user
             stream = await navigator.mediaDevices.getUserMedia(constraints);
+            let videoTracks = stream.getVideoTracks()
+            for (let i = 0; i < videoTracks.length; i++) {
+                let caps = videoTracks[i].getCapabilities()
+                console.log(caps)
+            }
 
             // Assign the camera stream to the video element in the page
             // Eventually, the event 'canPlay' will be fired signallig video is ready to be displayed
@@ -173,35 +180,78 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
 
     // Detect code function 
     async detectCode() {
-        // Detect QR codes in the video element
-        let codes
-        try {
-            codes = await this.nativeBarcodeDetector.detect(this.videoElement.current)
-        } catch (error) {
-            // Log an error if one happens
-            log.error(err);
-            return;
-        }
 
-        // If not detected, try again
-        if (codes.length === 0) {
-            setTimeout(() => this.detectCode(), this.detectionInterval)
-            return;
-        }
-
-        // There may be several QR codes detected
-        // We will process the first one that is recognized
         let qrType = QR_UNKNOWN
         let qrData
-        for (const barcode of codes) {
-            // Log the barcode to the console
-            console.log(barcode)
-            qrData = barcode.rawValue
-            qrType = this.detectQRtype(qrData)
-            if (qrType != QR_UNKNOWN) {
-                // Exit from the loop as soon as we recognize a QR type
-                break;
+
+        // Detect QR codes in the video element
+        if (this.nativeBarcodeDetector) {
+
+            let codes
+            try {
+                codes = await this.nativeBarcodeDetector.detect(this.videoElement.current)
+            } catch (error) {
+                // Log an error if one happens
+                log.error(err);
+                return;
             }
+    
+            // If not detected, try again
+            if (codes.length === 0) {
+                setTimeout(() => this.detectCode(), this.detectionInterval)
+                return;
+            }
+    
+            // There may be several QR codes detected
+            // We will process the first one that is recognized
+            for (const barcode of codes) {
+                // Log the barcode to the console
+                console.log(barcode)
+                qrData = barcode.rawValue
+                qrType = this.detectQRtype(qrData)
+                if (qrType != QR_UNKNOWN) {
+                    // Exit from the loop as soon as we recognize a QR type
+                    break;
+                }
+            }
+    
+        } else {
+
+            
+            // Set the canvas size to match the video stream
+            // canvasElement.height = video.videoHeight;
+            // canvasElement.width = video.videoWidth;
+            //let elwidth = Math.min(screen.availWidth - 60, 350);
+            let displayWidth = this.videoElement.current.videoWidth
+            let displayHeight = this.videoElement.current.videoHeight
+
+            // Get a video frame and decode an image data using the canvas element
+            this.canvasSpace.drawImage(this.videoElement.current, 0, 0, displayWidth, displayHeight);
+            var imageData = this.canvasSpace.getImageData(
+                0,
+                0,
+                displayWidth,
+                displayHeight
+            );
+
+            try {
+                // Try to decode the image as a QR code
+                var code = this.jsQR(imageData.data, imageData.width, imageData.height, {
+                    inversionAttempts: "dontInvert",
+                });
+            } catch (error) {
+                console.error("jsQR:", error)
+            }
+
+            // If unsuccessful, exit requesting to be called again at next animation frame
+            if (!code) {
+                setTimeout(() => this.detectCode(), this.detectionInterval)
+                return;
+            }
+
+            qrData = code.data
+            qrType = this.detectQRtype(qrData)
+
         }
 
         // If no QR code recognized, keep trying

@@ -1,4 +1,4 @@
-import{r as a,A as l}from"./AbstractPage.5c8880bf.js";import"./w3full.ce7e6cae.js";a("Help",class extends l{constructor(t){super(t)}async enter(){let e=this.html`
+import{r as e,A as l}from"./AbstractPage.7cdc723e.js";import"./w3full.ca34ba64.js";e("Help",class extends l{constructor(t){super(t)}async enter(){let a=this.html`
         <div class="container pd-16" style="text-align: justify;">
 
             <p style="margin-bottom: 10px;">${T("$help01")}</p>
@@ -18,4 +18,4 @@ import{r as a,A as l}from"./AbstractPage.5c8880bf.js";import"./w3full.ce7e6cae.j
             </div>
             <p style="margin-bottom: 40px">${T("$help10")}<a href="mailto:verificacovid.salut@gencat.cat">verificacovid.salut@gencat.cat</a></p>
         </div>
-        `;this.render(e)}});
+        `;this.render(a)}});
