@@ -1,4 +1,4 @@
-import{r as a,A as s}from"./AbstractPage.18a62ded.js";import{l as i}from"./legal.ec5a9509.js";import"./app.067879c9.js";a("PrivacyPolicy",class extends s{constructor(e){super(e)}enter(){let t=this.html`
+import{r as a,A as s}from"./AbstractPage.91f3c767.js";import{l as i}from"./legal.ec5a9509.js";import"./app.dd500ff7.js";a("PrivacyPolicy",class extends s{constructor(e){super(e)}enter(){let t=this.html`
 
 <div class="m-2" style="text-align:left">
 

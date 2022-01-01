@@ -1,4 +1,4 @@
-import{r as s,A as r}from"./AbstractPage.18a62ded.js";import"./app.067879c9.js";s("SWNotify",class extends r{constructor(e){super(e)}enter(e){let a=this.html,t;e&&e.isUpdate?t=T("Application updated"):t=T("Application available");let i=a`
+import{r as s,A as r}from"./AbstractPage.91f3c767.js";import"./app.dd500ff7.js";s("SWNotify",class extends r{constructor(e){super(e)}enter(e){let a=this.html,t;e&&e.isUpdate?t=T("Application updated"):t=T("Application available");let i=a`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
