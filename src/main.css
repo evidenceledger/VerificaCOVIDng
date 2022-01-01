@@ -16,6 +16,6 @@
 
 @layer components {
     .btn-primary {
-      @apply color-secondary font-semibold py-3 px-4 text-lg rounded-lg drop-shadow-lg;
+      @apply color-secondary font-semibold py-3 px-4 text-xl rounded-lg drop-shadow-lg;
     }
   }

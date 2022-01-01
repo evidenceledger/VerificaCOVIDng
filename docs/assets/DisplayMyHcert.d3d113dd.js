@@ -1,4 +1,4 @@
-import{l as n}from"./app.dd500ff7.js";import{r as o,A as c}from"./AbstractPage.91f3c767.js";import{C as h,v as g,o as m,w as v,e as f}from"./warning.98a897b8.js";import"./_commonjsHelpers.b8add541.js";o("DisplayMyHcert",class extends c{constructor(i){super(i)}async enter(i){let t=this.html;if(i=window.localStorage.getItem("MYEUDCC"),i==null){this.render(t`
+import{l as n}from"./app.0ab7b43d.js";import{r as o,A as c}from"./AbstractPage.5982b473.js";import{C as h,v as g,o as m,w as v,e as u}from"./warning.b979bc71.js";import"./_commonjsHelpers.b8add541.js";o("DisplayMyHcert",class extends c{constructor(i){super(i)}async enter(i){let t=this.html;if(i=window.localStorage.getItem("MYEUDCC"),i==null){this.render(t`
             <div id="hcertFailed" class="w3-panel bkg-fail">
                 <h2>${T("There is no certificate.")}</h2>
             </div>
@@ -13,7 +13,7 @@ import{l as n}from"./app.dd500ff7.js";import{r as o,A as c}from"./AbstractPage.9
                 <h3>Failed!</h3>
                 <p>The credential has an invalid format.</p>
             </div>
-            `}renderDetail(i,t){let a=this.html,r=i[1],s="Validated",e=m,d="bkg-success";return t.result==="WARNING"?(s="Warning",e=v,d="bkg-warning"):t.result==="ERROR"&&(s="Not Validated",e=f,d="bkg-error"),a`
+            `}renderDetail(i,t){let a=this.html,r=i[1],s="Validated",e=m,d="bkg-success";return t.result==="WARNING"?(s="Warning",e=v,d="bkg-warning"):t.result==="ERROR"&&(s="Not Validated",e=u,d="bkg-error"),a`
             <div class="container">
 
                 <div id="hcertWarning" class=${`w3-panel ${d}`}>

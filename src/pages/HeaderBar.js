@@ -39,7 +39,7 @@ export function HeaderBar() {
 
 <div class="color-primary text-lg pl-2.5 hidden" id="dropMenu">
     ${window.menuItems.map(
-        ({page, params, text}) => html`<a class="block text-lg py-0.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
+        ({page, params, text}) => html`<a class="block text-base font-medium py-0.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
     )}
 </div>
       `;
