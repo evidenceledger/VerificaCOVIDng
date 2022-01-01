@@ -3,13 +3,11 @@ import { render, html } from 'uhtml';
 function toggleMenu() {
     let x = document.getElementById("dropMenu")
     x.classList.toggle("hidden")
-    x.style = "font-size: 16px;"
 }
 function hideMenu() {
     let x = document.getElementById("dropMenu")
     if (x) {
         x.classList.add("hidden")
-        x.style = "font-size: 16px;"
     }
 }
 function resetAndGoHome(e) {
@@ -41,7 +39,7 @@ export function HeaderBar() {
 
 <div class="color-primary pl-2.5 hidden" id="dropMenu">
     ${window.menuItems.map(
-        ({page, params, text}) => html`<a class="block font-medium py-0.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
+        ({page, params, text}) => html`<a class="block font-medium py-0.5" onclick=${()=>gotoPage(page, params)} style="font-size: 16px">${text}</a>`
     )}
 </div>
       `;
