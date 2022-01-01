@@ -10,7 +10,7 @@ register("Help", class Help extends AbstractPage {
         let html = this.html
 
         let theHtml = html`
-        <div class="container pd-16" style="text-align: justify;">
+        <div class="container ptb-16" style="text-align: justify;">
 
             <p style="margin-bottom: 10px;">${T("$help01")}</p>
             <p>${T("$help02")}</p>

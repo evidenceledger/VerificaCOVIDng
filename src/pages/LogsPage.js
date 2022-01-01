@@ -21,8 +21,9 @@ register("LogsPage", class LogsPage extends AbstractPage {
             items.push(log.item(i))
         }
 
-        let theHtml = html`<div class="container">
-            <h2 class="mb-16 wball">${T("Logs")}</h2>
+        let theHtml = html`
+        <div class="container">
+            <h2 class="mb-16 wball">${T("Displaying the technical logs")}</h2>
 
             <ul>
                 ${items.map(

@@ -1,14 +1,19 @@
+// @ts-check
+
 // *****************************************************
 // This is a micro-router with just-enough functionality
 //
 // Implements gotoPage(pageName, pageData) and goHome()
 // *****************************************************
-import { log } from './log'
+import { log } from './log';
 
 // The following function loads lazily the pages
 // We have to specify all pages composing the application
 // It is done as a switch so not to break bundler optimizations
 // Each page registers itself with the router when importing the module
+/**
+ * @param {string} pageName
+ */
 async function lazyLoadPage(pageName) {
     switch (pageName) {
         case "ScanQrNativePage":
@@ -27,7 +32,7 @@ async function lazyLoadPage(pageName) {
             await import('./pages/Faqs');
             break;
         case "SelectLanguage":
-            await import('./i18n/SelectLanguage');
+            await import('./pages/SelectLanguage');
             break;
         case "Help":
             await import('./pages/Help');
@@ -64,6 +69,7 @@ async function lazyLoadPage(pageName) {
 
 // The default home page where to start and when refreshing the app
 // Change this to suit your needs
+// @ts-ignore
 var homePage = window.homePage
 if (!homePage) {
     throw "No homePage was set."
@@ -76,6 +82,10 @@ var name404 = "Page404"
 var pages = null
 
 // Register a new page name, associated to a class instance
+/**
+ * @param {string} pageName
+ * @param {object} classInstance
+ */
 export function route(pageName, classInstance) {
     // Create the map on the first call
     if (!pages) { pages = new Map() }

@@ -83,8 +83,7 @@ register("DisplayMyHcert", class DisplayMyHcert extends AbstractPage {
         let fullPage = html`
         ${thehtml}
         <div class="sect-white">
-            <button @click=${()=> this.gotoPage("DisplayQR")} class="btn color-secondary hover-color-secondary
-            w3-xlarge w3-round-xlarge">
+            <button class="btn-primary" @click=${()=> this.gotoPage("DisplayQR")}>
             ${T("Display QR")}</button>
         </div>
         `

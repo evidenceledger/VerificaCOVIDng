@@ -25,24 +25,23 @@ register("SelectCamera", class SelectCamera extends AbstractPage {
     }
 
         let theHtml = html`
-        <div class="container pd-16">
+        <h2 class="text-center text-lg font-semibold my-3">Select a camera</h2>
 
-            <ul class="w3-ul w3-card-4">
-            ${videoDevices.map((camera) =>
+        <ul>
+        ${videoDevices.map((camera) =>
 
-                html`
-                <li class="bar">
-                    <a @click=${()=>this.setCamera(camera.deviceId)} href="javascript:void(0)">
-                        <div class="bar-item" style="padding:8px;">
-                            <div class="h5" style="vertical-align:middle;">${camera.label}</div>
-                        </div>
-                    </a>
-                </li>`
-                
-                )}
-            </ul>
+            html`
+            <li class="mx-4 my-2 shadow-md">
+                <a @click=${()=>this.setCamera(camera.deviceId)} href="javascript:void(0)">
+                    <div class="flex p-3">
+                    <p class="text-lg font-medium">${camera.label}</p>
+                    </div>
+                </a>
+            </li>`
+            
+            )}
+        </ul>
 
-        </div>
         `
         this.render(theHtml)
     }

@@ -24,14 +24,14 @@ register("SWNotify", class SWNotify extends AbstractPage {
                     <h1>${msg}</h1>
                 </header>
         
-                <div class="w3-container pd-16">
+                <div class="w3-container ptb-16">
                     <p>${T("There is a new version of the application and it has already been updated.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=>window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=>window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         

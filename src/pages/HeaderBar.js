@@ -1,13 +1,13 @@
 import { render, html } from 'uhtml';
 
 function toggleMenu() {
-    let x = document.getElementById("mobileMenu")
-    x.classList.toggle("hide")
+    let x = document.getElementById("dropMenu")
+    x.classList.toggle("hidden")
 }
 function hideMenu() {
-    let x = document.getElementById("mobileMenu")
+    let x = document.getElementById("dropMenu")
     if (x) {
-        x.classList.add("hide")
+        x.classList.add("hidden")
     }
 }
 function resetAndGoHome(e) {
@@ -29,42 +29,17 @@ function T(e) {
     return (e)
 }
 
-
-export function OldHeaderBar() {
-    
-    let theHtml = html`
-<div class="bar xlarge color-primary">
-    <div class="bar-item" onclick="${() => resetAndGoHome()}" style="padding:10px">Evidenceledger</div>
-    <a onclick="${() => toggleMenu()}" class="bar-item btn-menu right focus-visible-only">☰</a>
-</div>
-
-<div class="bar-block xlarge color-primary hide" id="mobileMenu">
-<a onclick='${() => gotoPage("ScanQrNativePage")}' class="bar-item large btn-menu focus-visible-only">${T("Scan native")}</a>
-<a onclick='${() => gotoPage("SelectLanguage")}' class="bar-item large btn-menu focus-visible-only">${T("Language")}</a>
-    <a onclick='${() => gotoPage("SelectCamera")}' class="bar-item large btn-menu focus-visible-only">${T("Camera")}</a>
-    <a onclick='${() => gotoPage("TermsOfUse")}' class="bar-item large btn-menu focus-visible-only">${T("Terms & Conditions")}</a>
-    <a onclick='${() => gotoPage("PrivacyPolicy")}' class="bar-item large btn-menu focus-visible-only">${T("Privacy policy")}</a>
-    <a onclick='${() => gotoPage("LogsPage")}' class="bar-item large btn-menu focus-visible-only">${T("Show technical logs")}</a>
-</div>
-      `;
-
-    render(document.querySelector('header'), theHtml);
-    hideMenu()
-    return;
-
-}
-
 export function HeaderBar() {
     
     let theHtml = html`
-<div class="bar xlarge color-primary">
-    <div class="bar-item" onclick="${() => resetAndGoHome()}" style="padding:10px">Evidenceledger</div>
-    <a onclick="${() => toggleMenu()}" class="bar-item btn-menu right focus-visible-only">☰</a>
+<div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
+    <div class="p-2.5" onclick="${() => resetAndGoHome()}">EvidenceLedger</div>
+    <a class="py-2.5 pr-3.5" onclick="${() => toggleMenu()}">☰</a>
 </div>
 
-<div class="bar-block xlarge color-primary hide" id="mobileMenu">
+<div class="color-primary text-lg pl-2.5 hidden" id="dropMenu">
     ${window.menuItems.map(
-        ({page, params, text}) => html`<a onclick=${()=>gotoPage(page, params)} class="bar-item large btn-menu focus-visible-only">${text}</a>`
+        ({page, params, text}) => html`<a class="block py-0.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
     )}
 </div>
       `;
@@ -81,7 +56,7 @@ export function SplashScreen() {
         <h2 class="mb-16" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
         <p>${T("$intro01")}</p>
 
-        <div class="pd-16 center">
+        <div class="ptb-16 center">
 
             <div class="mb-32"></div>
             <div class="loader"></div>

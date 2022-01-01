@@ -1,4 +1,4 @@
-import{r as s,A as i}from"./AbstractPage.7cdc723e.js";import"./w3full.ca34ba64.js";s("SWNotify",class extends i{constructor(e){super(e)}enter(e){let a=this.html,t;e&&e.isUpdate?t=T("Application updated"):t=T("Application available");let r=a`
+import{r as s,A as r}from"./AbstractPage.18a62ded.js";import"./app.067879c9.js";s("SWNotify",class extends r{constructor(e){super(e)}enter(e){let a=this.html,t;e&&e.isUpdate?t=T("Application updated"):t=T("Application available");let i=a`
         <div class="container">
             <div class="w3-card-4 w3-center" style="margin-top:100px;">
         
@@ -6,17 +6,17 @@ import{r as s,A as i}from"./AbstractPage.7cdc723e.js";import"./w3full.ca34ba64.j
                     <h1>${t}</h1>
                 </header>
         
-                <div class="w3-container pd-16">
+                <div class="w3-container ptb-16">
                     <p>${T("There is a new version of the application and it has already been updated.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=>window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=>window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         
             </div>
         </div>
-        `;this.render(r)}});
+        `;this.render(i)}});

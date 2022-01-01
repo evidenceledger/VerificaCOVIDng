@@ -316,15 +316,14 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
                     <h1>${title}</h1>
                 </header>
         
-                <div class="container pd-16">
+                <div class="container ptb-16">
                     <p>${message}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=> window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge
-                        w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=> window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         
@@ -345,15 +344,14 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
                     <h1>${T("Error getting video stream")}</h1>
                 </header>
         
-                <div class="container pd-16">
+                <div class="container ptb-16">
                     <p>${T("There was an error trying to start the camera.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=> window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge
-                        w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=> window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         
@@ -374,15 +372,14 @@ register("ScanQrNativePage", class ScanQrNativePage extends AbstractPage {
                     <h1>${T("No camera access")}</h1>
                 </header>
         
-                <div class="container pd-16">
+                <div class="container ptb-16">
                     <p>${T("You need to allow camera access to be able to scan a QR.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=> window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge
-                        w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=> window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         

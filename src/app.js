@@ -7,12 +7,18 @@
 // HeaderBar();
 // SplashScreen()
 
+import './main.css'
 // Logging support
 import { log } from "./log";
 // The micro-router for page transitions
 import { goHome, gotoPage } from './router'
 
 // Get the version of the application and store in database
+
+/**
+ * 
+ * @returns undefined
+ */
 async function getAndUpdateVersion() {
     let response = await fetch("./version.txt")
     if (!response.ok) {

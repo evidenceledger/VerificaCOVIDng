@@ -19,7 +19,7 @@ register("DisplayNormalQR", class DisplayNormalQR extends AbstractPage {
             <h2 class="mb-16 center">Received QR</h2>
             <p class="w3-large" style="word-break: break-all;">${qrData}</p>
         
-            <div class="w3-bar pd-16 w3-center" style="max-width:70%;margin:50px auto;">
+            <div class="w3-bar ptb-16 w3-center" style="max-width:70%;margin:50px auto;">
 
                 <a href="javascript:void(0)" @click=${()=> window.history.back()} class="btn left color-secondary hover-color-secondary
                     w3-large w3-round-xlarge">Back</a>

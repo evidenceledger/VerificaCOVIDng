@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register, html } from './AbstractPage'
 
 register("IntroPage", class IntroPage extends AbstractPage {
 
@@ -7,20 +7,17 @@ register("IntroPage", class IntroPage extends AbstractPage {
     }
 
     enter() {
-        let html = this.html
+        //let html = this.html
 
-        let theHtml = html`<div class="sect-white">
-            <h2 class="mb-16" style="word-break:break-word">${T("EU Digital COVID Credential Verifier")}</h2>
-            <p>${T("$intro01")}</p>
+        let theHtml = html`
+        <div class="px-4 text-center">
+            <h2 class="my-6 text-xl font-bold break-words">${T("EU Digital COVID Credential Verifier")}</h2>
+            <p class="text-base font-medium mb-6">${T("$intro01")}</p>
 
-            <div class="pd-16 center">
+            <button class="btn-primary" onclick='${() => this.gotoPage("ScanQrPage")}'>
+                ${T("Start verifying")}
+            </button>
 
-                <button onclick='${() => this.gotoPage("ScanQrPage")}' class="btn color-secondary hover-color-secondary
-                    xlarge round-xlarge focus-visible-only">
-                    ${T("Start verifying")}
-                </button>
-
-            </div>
         </div>`;
 
         this.render(theHtml)

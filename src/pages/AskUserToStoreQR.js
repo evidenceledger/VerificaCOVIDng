@@ -17,14 +17,14 @@ register("AskUserToStoreQR", class AskUserToStoreQR extends AbstractPage {
         if (verification.result == "ERROR") {
             this.render(html`
             <div class="container center">
-                <div id="hcertFailed" class="w3-panel bkg-error pd-16">
+                <div id="hcertFailed" class="w3-panel bkg-error ptb-16">
                     <h3>Failed!</h3>
                     <p>${verification.message}.</p>
                 </div>
 
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=>window.location.replace(location.origin)} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Cancel")}</button>
+                    <button class="btn-primary" @click=${()=>window.location.replace(location.origin)}>${T("Cancel")}</button>
         
                 </div>
             </div>
@@ -43,14 +43,14 @@ register("AskUserToStoreQR", class AskUserToStoreQR extends AbstractPage {
                     <h1>${T("You received a new EU COVID certificate!")}</h1>
                 </header>
         
-                <div class="w3-container pd-16">
+                <div class="w3-container ptb-16">
                     <p>${T("You can save it in this device for easy access later.")}</p>
                     <p>${T("Please click Save to save the certificate.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=>this.saveQRCertificate()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Save")}</button>
+                    <button class="btn-primary" @click=${()=>this.saveQRCertificate()}>${T("Save")}</button>
         
                 </div>
         

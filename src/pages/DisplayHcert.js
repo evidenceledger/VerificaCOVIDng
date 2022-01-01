@@ -8,6 +8,10 @@ import ok_image from "../img/ok.png"
 import error_image from "../img/error.png"
 import warning_image from "../img/warning.png"
 
+var testQR = "HC1:NCFOXN%TSMAHN-H%WKPL9/BP:BCP6M-AH0VC1ROT$SD PO%I$TQ3.P:.IO6T+6NNO4*J8OX4W$C2VLWLIVO5ON1: B.T1RTOF:P ZPEX9Z0QTU1B+HON1MU9%*JJR3Z+INTICZUKSR*LA/CJ6IAXPMHQ1*P1TU19UEOQ1OH6CN5ILGBUHSHA.W2YJ2/E2VZ1W6A8C9IEP2SAC/9B95ZE9Q$95:UENEUW66469366JDO$9KZ56DE/.QC$Q3J62:6LZ6O59++9-G9+E93ZMV70- CC8C90JK.A+ C/8DXEDKG0CGJ5AL5:4/60O3P:XRUVI/E2$4JY/K0:S6QNROF GVV378.GTGV /KH-KVLV5KN+*431TF68UXD-I69NTCW4HKLT*QGTA W7G 7N31BUUSS1SC5X%06W0H*OVIUH$AA2A PK7+O8ZEBPJT8IDBSQ7O574J98%.BWUN*7K:JVR%DAQOU/CZ$9N$LN0G$X8G+MJNRFNB4CRDMA 203F2.3"
+
+var debugging = true
+
 register("DisplayHcert", class DisplayHcert extends AbstractPage {
 
     constructor(id) {
@@ -19,12 +23,16 @@ register("DisplayHcert", class DisplayHcert extends AbstractPage {
         let verified = false
         let thehtml = ""
 
+        if (debugging) {
+            qrContent = testQR
+        }
+
         // Decode credential verifying it at the same time
         try {
             hcert = await CWT.decodeHC1QR(qrContent, true);
             verified = hcert[3]
         } catch (error) {
-            log.myerror("Error verifying credential", error)
+            log.error("Error verifying credential", error)
             this.render(this.renderGeneralError(error))
             return;
         }
@@ -61,17 +69,19 @@ register("DisplayHcert", class DisplayHcert extends AbstractPage {
             // Render the credential
             thehtml = this.renderDetail(hcert, verification);
         } catch (error) {
-            log.myerror("Error rendering credential", error)
+            log.error("Error rendering credential", error)
             this.render(this.renderGeneralError(error))
             return;
         }
 
         let fullPage = this.html`
-        ${thehtml}
-        <div class="sect-white">
-            <button @click=${()=> this.gotoPage("ScanQrPage")} class="btn color-secondary hover-color-secondary
-            w3-xlarge w3-round-xlarge">
+        <div class="text-center">
+
+            ${thehtml}
+
+            <button class="btn-primary" @click=${()=> this.gotoPage("ScanQrPage")}>
             ${T("Verify another")}</button>
+
         </div>
         `
         this.render(fullPage)
@@ -80,7 +90,7 @@ register("DisplayHcert", class DisplayHcert extends AbstractPage {
 
     renderGeneralError(error) {
         return this.html`
-            <div id="hcertFailed" class="w3-panel bkg-fail">
+            <div id="hcertFailed" class="w3-panel bg-fail">
                 <h3>Failed!</h3>
                 <p>The credential has an invalid format.</p>
             </div>
@@ -94,40 +104,40 @@ register("DisplayHcert", class DisplayHcert extends AbstractPage {
         // Parameters in case of correct validation
         let title = "Validated"
         let image = ok_image
-        let color = "bkg-success"
+        let color = "bg-success"
 
         // Modify the parameters if WARNING or ERROR
         if (verification.result === "WARNING") {
             title = "Warning"
             image = warning_image
-            color = "bkg-warning"
+            color = "bg-warning"
         } else if (verification.result === "ERROR") {
             title = "Not Validated"
             image = error_image
-            color = "bkg-error"
+            color = "bg-error"
         }
 
         let thehtml = this.html`
-            <div class="container">
 
-                <div id="hcertWarning" class=${`w3-panel ${color}`}>
-                    <img src=${image}  alt="" />
-                    <h3>${T(title)}</h3>
-                    <p>${verification.message}</p>
-                </div>
-
-                <div class="section">
-                    <div class="subsection">
-                        <div class="etiqueta">${T("Surname and forename")}</div>
-                        <div class="valor h4">${payload.fullName}</div>
-                    </div>
-                    <div class="subsection">
-                        <div class="etiqueta">${T("Date of birth")}</div>
-                        <div class="valor h4">${payload.dateOfBirth}</div>
-                    </div>
-                </div>
-           
+        <div class=${`py-3 mb-3 shadow-lg ${color}`}>
+            <div class="flex justify-center">
+                <img class="mr-2" src=${image}  alt="" />
+                <h3 class="my-auto text-xl font-bold ml-2">${T(title)}</h3>                
             </div>
+            <p class="text-lg">${verification.message}</p>
+        </div>
+
+        <div class="mb-5">
+            <div class="subsection">
+                <div class="etiqueta">${T("Surname and forename")}</div>
+                <div class="text-xl font-semibold">${payload.fullName}</div>
+            </div>
+            <div class="subsection">
+                <div class="etiqueta">${T("Date of birth")}</div>
+                <div class="text-xl font-semibold">${payload.dateOfBirth}</div>
+            </div>
+        </div>
+           
         `;
 
 

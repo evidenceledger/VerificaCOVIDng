@@ -4,7 +4,7 @@ import { AbstractPage, register } from './AbstractPage'
 import { getPreferredVideoDevice, getPlatformOS } from '../components/camerainfo'
 
 // This is to facilitate debugging of certificates
-var testQRdata = "HC1:NC"
+var testQRdata = "HC1:NCFOXNYT7"
 
 var testQR = {
     text: testQRdata
@@ -219,14 +219,14 @@ register("ScanQrPage", class ScanQrPage extends AbstractPage {
                     <h1>${T("No camera access")}</h1>
                 </header>
         
-                <div class="container pd-16">
+                <div class="container ptb-16">
                     <p>${T("You need to allow camera access to be able to scan a QR.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
         
-                <div class="pd-16">
+                <div class="ptb-16">
         
-                    <button @click=${()=>window.location.reload()} class="btn color-secondary hover-color-secondary w3-xlarge w3-round-xlarge">${T("Accept")}</button>
+                    <button class="btn-primary" @click=${()=>window.location.reload()}>${T("Accept")}</button>
         
                 </div>
         
