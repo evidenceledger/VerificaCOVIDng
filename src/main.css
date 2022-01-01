@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+html {max-height:1000000px;}
+
 :root {
     --fore-color-primary:  white!important;
     --bg-color-primary:  #102a3a!important;
