@@ -17,24 +17,22 @@ register("SWNotify", class SWNotify extends AbstractPage {
         }
 
         let theHtml = html`
-        <div class="container">
-            <div class="w3-card-4 w3-center" style="margin-top:100px;">
+        <div class="max-w-sm mx-auto px-6">
+            <div class=" rounded text-center overflow-hidden shadow-lg mx-auto" style="margin-top:100px;">
         
-                <header class="w3-container color-primary" style="padding:10px">
-                    <h1>${msg}</h1>
+                <header class="color-primary" style="padding:10px">
+                    <h1 class="text-lg">${msg}</h1>
                 </header>
         
-                <div class="w3-container ptb-16">
+                <div class="py-6">
                     <p>${T("There is a new version of the application and it has already been updated.")}</p>
                     <p>${T("Please click Accept to refresh the page.")}</p>
                 </div>
-        
-                <div class="ptb-16">
-        
-                    <button class="btn-primary" @click=${()=>window.location.reload()}>${T("Accept")}</button>
-        
+                
+                <div class="mb-4">
+                <button class="btn-primary" onclick=${()=>window.location.reload()}>${T("Accept")}</button>        
                 </div>
-        
+
             </div>
         </div>
         `
