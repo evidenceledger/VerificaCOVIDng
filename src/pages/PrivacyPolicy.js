@@ -78,10 +78,10 @@ The data protection delegate of AXONTEAM S.A. is Accent Jurídic, S.L. and can b
 If there were a breach of security in the activities related to the data process, the internal procedure will be activated.
 </p>
 
-<p class="mb-2">
+<p class="mb-20">
 If the user would like to obtain more information of the Website’s Privacy Policy, he/she must direct the query to the data protection delegate of Axonteam by writing an email to:
+<a class="font-semibold" href="mailto:dpo@accentjuridic.com">dpo@accentjuridic.com</a>
 </p>
-<a class="font-semibold mb-20" href="mailto:dpo@accentjuridic.com">dpo@accentjuridic.com</a>
 
 </div>
 
