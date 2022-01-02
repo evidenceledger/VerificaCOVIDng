@@ -29,37 +29,9 @@ function T(e) {
     return (e)
 }
 
-var fullHB = html`
-<div class="color-primary drop-shadow-lg">
-    <ul class="overflow-hidden">
-        <li class="inline">
-            <a class="text-lg p-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
-        </li>
-        <li class="inline">
-            <a class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
-        </li>
-    </ul>
 
-    <ul>
-        ${window.menuItems.map(
-            ({page, params, text}) => html`<li><a class="block text-lg p-2.5" onclick=${()=>gotoPage(page, params)}>${text}</a></li>`
-        )}
-    </ul>
-</div>
-      `;
 
-var onlyHB = html`
-<div class="color-primary drop-shadow-lg">
-    <ul class="overflow-hidden">
-        <li class="inline">
-            <a class="text-lg p-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
-        </li>
-        <li class="inline">
-            <a class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
-        </li>
-    </ul>
-</div>
-      `;
+
 
 function newresetAndGoHome(e) {
     HeaderBar()
@@ -72,11 +44,36 @@ function newresetAndGoHome(e) {
 export function HeaderBar(menu = false) {
     let header = document.querySelector('header')
 
+    var subMenu = html``
+    var flag = !menu
+
     if (menu) {
-        render(header, fullHB);
-    } else {
-        render(header, onlyHB)
+        subMenu = html`
+        <ul>
+            ${window.menuItems.map(
+                ({page, params, text}) => html`<li><a class="block text-lg p-2" onclick=${()=>gotoPage(page, params)}>${text}</a></li>`
+            )}
+        </ul>
+        `;
     }
+
+    var fullHB = html`
+    <div class="color-primary drop-shadow-lg">
+        <ul class="overflow-hidden py-2.5">
+            <li class="inline pl-3">
+                <a class="text-lg" onclick=${() => newresetAndGoHome()}>EvidenceLedger</a>
+            </li>
+            <li class="inline pr-3 float-right">
+                <a class="text-lg" onclick=${() => HeaderBar(flag)}>☰</a>
+            </li>
+        </ul>
+
+        ${subMenu}
+    
+    </div>
+          `;
+    
+    render(header, fullHB)
 
     return;
 

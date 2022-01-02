@@ -1,4 +1,4 @@
-import{r as i,A as l}from"./app.986ac445.js";import"./vendor.f8864ac5.js";i("Faqs",class extends l{constructor(a){super(a)}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let s=this.html`
+import{r as i,A as l}from"./app.13b325d9.js";import"./vendor.f8864ac5.js";i("Faqs",class extends l{constructor(a){super(a)}toggleFaqs(a){document.getElementById(a).classList.toggle("show")}hideFaqs(){document.getElementById("faqsitem").classList.remove("show")}async enter(){let s=this.html`
         <div class="w3-container" style="padding:10px 0px;">
             <ul class="w3-ul w3-card-4" >
                 <li> 
