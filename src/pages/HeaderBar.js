@@ -51,7 +51,7 @@ export function HeaderBar(menu = false) {
         subMenu = html`
         <ul>
             ${window.menuItems.map(
-                ({page, params, text}) => html`<li><a class="block text-lg p-2" onclick=${()=>gotoPage(page, params)}>${text}</a></li>`
+                ({page, params, text}) => html`<li><a class="block text-lg pl-3 py-2" onclick=${()=>gotoPage(page, params)}>${text}</a></li>`
             )}
         </ul>
         `;
@@ -61,10 +61,10 @@ export function HeaderBar(menu = false) {
     <div class="color-primary drop-shadow-lg">
         <ul class="overflow-hidden py-2.5">
             <li class="inline pl-3">
-                <a class="text-lg" onclick=${() => newresetAndGoHome()}>EvidenceLedger</a>
-            </li>
-            <li class="inline pr-3 float-right">
                 <a class="text-lg" onclick=${() => HeaderBar(flag)}>☰</a>
+            </li>
+            <li class="inline pl-3">
+                <a class="text-lg" onclick=${() => newresetAndGoHome()}>EvidenceLedger</a>
             </li>
         </ul>
 
