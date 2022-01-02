@@ -48,7 +48,7 @@ var onlyHB = html`
 <div class="text-xl font-medium color-primary drop-shadow-lg">
     <div class="flex justify-between ">
         <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
-        <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
+        <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
     </div>
 
 </div>
