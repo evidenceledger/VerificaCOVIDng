@@ -2,8 +2,8 @@
   "_vendor.f8864ac5.js": {
     "file": "assets/vendor.f8864ac5.js"
   },
-  "_app.34bbd7ed.js": {
-    "file": "assets/app.34bbd7ed.js",
+  "_app.2013b920.js": {
+    "file": "assets/app.2013b920.js",
     "imports": [
       "_vendor.f8864ac5.js"
     ],
@@ -35,11 +35,11 @@
     "isDynamicEntry": true
   },
   "pages/ScanQrNativePage.js": {
-    "file": "assets/ScanQrNativePage.16dd27e1.js",
+    "file": "assets/ScanQrNativePage.7dbaa17d.js",
     "src": "pages/ScanQrNativePage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ],
@@ -51,75 +51,75 @@
     "file": "assets/camerainfo.4311a7fd.js"
   },
   "pages/IntroPage.js": {
-    "file": "assets/IntroPage.a31e933f.js",
+    "file": "assets/IntroPage.6610a43a.js",
     "src": "pages/IntroPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Page404.js": {
-    "file": "assets/Page404.a68f384d.js",
+    "file": "assets/Page404.9abe1c3e.js",
     "src": "pages/Page404.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/ScanQrPage.js": {
-    "file": "assets/ScanQrPage.f12e1d0a.js",
+    "file": "assets/ScanQrPage.b52dfb08.js",
     "src": "pages/ScanQrPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Faqs.js": {
-    "file": "assets/Faqs.aa4bd9ab.js",
+    "file": "assets/Faqs.842274a7.js",
     "src": "pages/Faqs.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/SelectLanguage.js": {
-    "file": "assets/SelectLanguage.089be05d.js",
+    "file": "assets/SelectLanguage.88466fab.js",
     "src": "pages/SelectLanguage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Help.js": {
-    "file": "assets/Help.d0121a32.js",
+    "file": "assets/Help.a21f7e5b.js",
     "src": "pages/Help.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/DisplayHcert.js": {
-    "file": "assets/DisplayHcert.6420cd8c.js",
+    "file": "assets/DisplayHcert.914718f6.js",
     "src": "pages/DisplayHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
-      "_warning.e9fab506.js",
+      "_app.2013b920.js",
+      "_warning.c0134ad4.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
-  "_warning.e9fab506.js": {
-    "file": "assets/warning.e9fab506.js",
+  "_warning.c0134ad4.js": {
+    "file": "assets/warning.c0134ad4.js",
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
@@ -127,51 +127,51 @@
     "file": "assets/_commonjsHelpers.b8add541.js"
   },
   "pages/DisplayMyHcert.js": {
-    "file": "assets/DisplayMyHcert.6db8a77f.js",
+    "file": "assets/DisplayMyHcert.d562b1ee.js",
     "src": "pages/DisplayMyHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
-      "_warning.e9fab506.js",
+      "_app.2013b920.js",
+      "_warning.c0134ad4.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
   "pages/MicroWallet.js": {
-    "file": "assets/MicroWallet.be50424d.js",
+    "file": "assets/MicroWallet.f79ca1da.js",
     "src": "pages/MicroWallet.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/DisplayQR.js": {
-    "file": "assets/DisplayQR.67d2a9c3.js",
+    "file": "assets/DisplayQR.c57875fd.js",
     "src": "pages/DisplayQR.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "__commonjsHelpers.b8add541.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/SelectCamera.js": {
-    "file": "assets/SelectCamera.81a6ec79.js",
+    "file": "assets/SelectCamera.6e72c948.js",
     "src": "pages/SelectCamera.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/TermsOfUse.js": {
-    "file": "assets/TermsOfUse.113404fa.js",
+    "file": "assets/TermsOfUse.c7d996c8.js",
     "src": "pages/TermsOfUse.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js",
       "_legal.ec5a9509.js"
     ]
@@ -180,21 +180,21 @@
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/PrivacyPolicy.js": {
-    "file": "assets/PrivacyPolicy.083f9bd2.js",
+    "file": "assets/PrivacyPolicy.6d7e177d.js",
     "src": "pages/PrivacyPolicy.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_legal.ec5a9509.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/LogsPage.js": {
-    "file": "assets/LogsPage.49d483d5.js",
+    "file": "assets/LogsPage.9610cc1d.js",
     "src": "pages/LogsPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.34bbd7ed.js",
+      "_app.2013b920.js",
       "_vendor.f8864ac5.js"
     ]
   },
