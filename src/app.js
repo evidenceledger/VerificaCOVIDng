@@ -13,6 +13,8 @@ import { log } from "./log";
 // The micro-router for page transitions
 import { goHome, gotoPage } from './router'
 
+import './pages/SWNotify'
+
 // Get the version of the application and store in database
 
 /**

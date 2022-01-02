@@ -58,9 +58,6 @@ async function lazyLoadPage(pageName) {
         case "PrivacyPolicy":
             await import('./pages/PrivacyPolicy');
             break;
-        case "SWNotify":
-            await import('./pages/SWNotify');
-            break;
         case "LogsPage":
             await import('./pages/LogsPage');
             break;

@@ -31,9 +31,15 @@ function T(e) {
 
 var fullHB = html`
 <div class="color-primary drop-shadow-lg">
-    <div class="flex justify-between ">
-        <div class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
-        <a class="text-lg py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
+    <div class="">
+        <ul class="flex justify-between flex-shrink-0">
+            <li>
+                <p class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</p>
+            </li>
+            <li>
+                <a class="text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(false)}">☰</a>
+            </li>
+        </ul>
     </div>
 
     <div>
@@ -46,10 +52,14 @@ var fullHB = html`
 
 var onlyHB = html`
 <div class="color-primary drop-shadow-lg">
-    <div class="flex justify-between ">
-        <div class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
-        <a class="text-lg py-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
-    </div>
+    <ul class="flex justify-between flex-shrink-0">
+        <li>
+            <p class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</p>
+        </li>
+        <li>
+            <a class="text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(true)}">☰</a>
+        </li>
+    </ul>
 
 </div>
       `;
@@ -64,7 +74,6 @@ function newresetAndGoHome(e) {
 
 export function HeaderBar(menu = false) {
     let header = document.querySelector('header')
-    header.innerHTML = ""
 
     if (menu) {
         render(header, fullHB);

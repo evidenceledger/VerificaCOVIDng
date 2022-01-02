@@ -1,9 +1,9 @@
-import{r as t,A as s,h as a}from"./AbstractPage.191c35a0.js";import{l as i}from"./legal.ec5a9509.js";import"./app.93789a39.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=a`
+import{r as t,A as s}from"./app.248fcdfc.js";import{h as i}from"./vendor.f8864ac5.js";import{l as a}from"./legal.ec5a9509.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
 
 <div class="m-2" style="text-align:left">
 
 <h1 class="text-xl font-semibold">Terms of Use</h1>
-<img src=${i} alt="" style="width:20%" >
+<img src=${a} alt="" style="width:20%" >
 
 <h3 class="text-lg font-medium">Identification:</h3>
 <p class="mb-2">
