@@ -31,36 +31,33 @@ function T(e) {
 
 var fullHB = html`
 <div class="color-primary drop-shadow-lg">
-    <div class="">
-        <ul class="flex justify-between flex-shrink-0">
-            <li>
-                <p class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</p>
-            </li>
-            <li>
-                <a class="text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(false)}">☰</a>
-            </li>
-        </ul>
-    </div>
+    <ul class="overflow-hidden">
+        <li class="float-left">
+            <a class="block text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
+        </li>
+        <li class="float-right">
+            <a class="block text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(false)}">☰</a>
+        </li>
+    </ul>
 
-    <div>
+    <ul>
         ${window.menuItems.map(
-            ({page, params, text}) => html`<a class="block text-lg p-2.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
+            ({page, params, text}) => html`<li><a class="block text-lg p-2.5" onclick=${()=>gotoPage(page, params)}>${text}</a></li>`
         )}
-    </div>
+    </ul>
 </div>
       `;
 
 var onlyHB = html`
 <div class="color-primary drop-shadow-lg">
-    <ul class="flex justify-between flex-shrink-0">
-        <li>
-            <p class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</p>
+    <ul class="overflow-hidden">
+        <li class="float-left">
+            <a class="block text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
         </li>
-        <li>
-            <a class="text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(true)}">☰</a>
+        <li class="float-right">
+            <a class="block text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(true)}">☰</a>
         </li>
     </ul>
-
 </div>
       `;
 
