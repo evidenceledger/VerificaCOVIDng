@@ -30,22 +30,27 @@ function T(e) {
 }
 
 var fullHB = html`
-<div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
-    <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
-    <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
-</div>
+<div class="text-xl font-medium color-primary drop-shadow-lg">
+    <div class="flex justify-between ">
+        <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
+        <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
+    </div>
 
-<div class="color-primary pl-2.5" id="dropMenu">
-    ${window.menuItems.map(
-        ({page, params, text}) => html`<a class="block font-medium py-0.5" onclick=${()=>gotoPage(page, params)} style="font-size: 16px">${text}</a>`
-    )}
+    <div>
+        ${window.menuItems.map(
+            ({page, params, text}) => html`<a class="block p-2.5" onclick=${()=>gotoPage(page, params)}>${text}</a>`
+        )}
+    </div>
 </div>
       `;
 
 var onlyHB = html`
-<div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
-    <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
-    <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
+<div class="text-xl font-medium color-primary drop-shadow-lg">
+    <div class="flex justify-between ">
+        <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
+        <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
+    </div>
+
 </div>
       `;
 
