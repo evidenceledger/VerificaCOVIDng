@@ -1,4 +1,4 @@
-import{r as t,A as s}from"./app.bfdba673.js";import{h as i}from"./vendor.f8864ac5.js";import{l as a}from"./legal.ec5a9509.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
+import{r as t,A as s}from"./app.986ac445.js";import{h as i}from"./vendor.f8864ac5.js";import{l as a}from"./legal.ec5a9509.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
 
 <div class="m-2" style="text-align:left">
 

@@ -32,11 +32,11 @@ function T(e) {
 var fullHB = html`
 <div class="color-primary drop-shadow-lg">
     <ul class="overflow-hidden">
-        <li class="float-left">
-            <a class="block text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
+        <li class="inline">
+            <a class="text-lg p-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
         </li>
-        <li class="float-right">
-            <a class="block text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(false)}">☰</a>
+        <li class="inline">
+            <a class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
         </li>
     </ul>
 
@@ -51,11 +51,11 @@ var fullHB = html`
 var onlyHB = html`
 <div class="color-primary drop-shadow-lg">
     <ul class="overflow-hidden">
-        <li class="float-left">
-            <a class="block text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
+        <li class="inline">
+            <a class="text-lg p-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
         </li>
-        <li class="float-right">
-            <a class="block text-lg py-2.5 pr-3.5 float-right" onclick="${() => HeaderBar(true)}">☰</a>
+        <li class="inline">
+            <a class="text-lg p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</a>
         </li>
     </ul>
 </div>
