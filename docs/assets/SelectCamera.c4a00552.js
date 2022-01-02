@@ -1,4 +1,4 @@
-import{r as l,A as c}from"./AbstractPage.6a4fa016.js";import{a as i}from"./camerainfo.4311a7fd.js";import"./app.8e748895.js";l("SelectCamera",class extends c{constructor(e){super(e)}async enter(){let e=this.html;try{var t=await i();if(t.videoDevices.length==0){this.render(e`<p>No camera available</p>`);return}var r=t.videoDevices}catch{this.render(e`<p>No camera available</p>`);return}let s=e`
+import{r as c,A as l}from"./AbstractPage.8cf525c1.js";import{a as i}from"./camerainfo.4311a7fd.js";import"./app.88a6da70.js";c("SelectCamera",class extends l{constructor(e){super(e)}async enter(){let e=this.html;try{var t=await i();if(t.videoDevices.length==0){this.render(e`<p>No camera available</p>`);return}var r=t.videoDevices}catch{this.render(e`<p>No camera available</p>`);return}let s=e`
         <h2 class="text-center text-lg font-semibold my-3">Select a camera</h2>
 
         <ul>

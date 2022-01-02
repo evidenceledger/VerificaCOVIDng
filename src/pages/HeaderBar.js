@@ -29,7 +29,50 @@ function T(e) {
     return (e)
 }
 
-export function HeaderBar() {
+var fullHB = html`
+<div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
+    <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
+    <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(false)}">☰</a>
+</div>
+
+<div class="color-primary pl-2.5" id="dropMenu">
+    ${window.menuItems.map(
+        ({page, params, text}) => html`<a class="block font-medium py-0.5" onclick=${()=>gotoPage(page, params)} style="font-size: 16px">${text}</a>`
+    )}
+</div>
+      `;
+
+var onlyHB = html`
+<div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
+    <div class="p-2.5" onclick="${() => newresetAndGoHome()}">EvidenceLedger</div>
+    <a class="py-2.5 pr-3.5" onclick="${() => HeaderBar(true)}">☰</a>
+</div>
+      `;
+
+function newresetAndGoHome(e) {
+    HeaderBar()
+    if (window.goHome) {
+        goHome()
+    }
+}
+
+
+export function HeaderBar(menu = false) {
+    let header = document.querySelector('header')
+    header.innerHTML = ""
+
+    if (menu) {
+        render(header, fullHB);
+    } else {
+        render(header, onlyHB)
+    }
+
+    return;
+
+}
+
+
+export function OldHeaderBar() {
     
     let theHtml = html`
 <div class="flex justify-between text-xl font-medium color-primary drop-shadow-lg">
@@ -49,6 +92,8 @@ export function HeaderBar() {
     return;
 
 }
+
+
 
 export function SplashScreen() {
     
