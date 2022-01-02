@@ -2,8 +2,8 @@
   "_vendor.f8864ac5.js": {
     "file": "assets/vendor.f8864ac5.js"
   },
-  "_app.7599fc57.js": {
-    "file": "assets/app.7599fc57.js",
+  "_app.34bbd7ed.js": {
+    "file": "assets/app.34bbd7ed.js",
     "imports": [
       "_vendor.f8864ac5.js"
     ],
@@ -26,7 +26,7 @@
       "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs"
     ],
     "css": [
-      "assets/app.e384ca8b.css"
+      "assets/app.9e0c4928.css"
     ]
   },
   "../node_modules/workbox-window/build/workbox-window.prod.es5.mjs": {
@@ -35,11 +35,11 @@
     "isDynamicEntry": true
   },
   "pages/ScanQrNativePage.js": {
-    "file": "assets/ScanQrNativePage.46175968.js",
+    "file": "assets/ScanQrNativePage.16dd27e1.js",
     "src": "pages/ScanQrNativePage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ],
@@ -51,75 +51,75 @@
     "file": "assets/camerainfo.4311a7fd.js"
   },
   "pages/IntroPage.js": {
-    "file": "assets/IntroPage.8447f047.js",
+    "file": "assets/IntroPage.a31e933f.js",
     "src": "pages/IntroPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Page404.js": {
-    "file": "assets/Page404.df067f25.js",
+    "file": "assets/Page404.a68f384d.js",
     "src": "pages/Page404.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/ScanQrPage.js": {
-    "file": "assets/ScanQrPage.f03ca318.js",
+    "file": "assets/ScanQrPage.f12e1d0a.js",
     "src": "pages/ScanQrPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Faqs.js": {
-    "file": "assets/Faqs.eba9c00c.js",
+    "file": "assets/Faqs.aa4bd9ab.js",
     "src": "pages/Faqs.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/SelectLanguage.js": {
-    "file": "assets/SelectLanguage.50f812d3.js",
+    "file": "assets/SelectLanguage.089be05d.js",
     "src": "pages/SelectLanguage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Help.js": {
-    "file": "assets/Help.27402ddb.js",
+    "file": "assets/Help.d0121a32.js",
     "src": "pages/Help.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/DisplayHcert.js": {
-    "file": "assets/DisplayHcert.cc0adc44.js",
+    "file": "assets/DisplayHcert.6420cd8c.js",
     "src": "pages/DisplayHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
-      "_warning.f9a94bcf.js",
+      "_app.34bbd7ed.js",
+      "_warning.e9fab506.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
-  "_warning.f9a94bcf.js": {
-    "file": "assets/warning.f9a94bcf.js",
+  "_warning.e9fab506.js": {
+    "file": "assets/warning.e9fab506.js",
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
@@ -127,51 +127,51 @@
     "file": "assets/_commonjsHelpers.b8add541.js"
   },
   "pages/DisplayMyHcert.js": {
-    "file": "assets/DisplayMyHcert.37b14dbd.js",
+    "file": "assets/DisplayMyHcert.6db8a77f.js",
     "src": "pages/DisplayMyHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
-      "_warning.f9a94bcf.js",
+      "_app.34bbd7ed.js",
+      "_warning.e9fab506.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.b8add541.js"
     ]
   },
   "pages/MicroWallet.js": {
-    "file": "assets/MicroWallet.1498fbc2.js",
+    "file": "assets/MicroWallet.be50424d.js",
     "src": "pages/MicroWallet.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/DisplayQR.js": {
-    "file": "assets/DisplayQR.0e9f1ce0.js",
+    "file": "assets/DisplayQR.67d2a9c3.js",
     "src": "pages/DisplayQR.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "__commonjsHelpers.b8add541.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/SelectCamera.js": {
-    "file": "assets/SelectCamera.dc371124.js",
+    "file": "assets/SelectCamera.81a6ec79.js",
     "src": "pages/SelectCamera.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/TermsOfUse.js": {
-    "file": "assets/TermsOfUse.0a189d8d.js",
+    "file": "assets/TermsOfUse.113404fa.js",
     "src": "pages/TermsOfUse.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js",
       "_legal.ec5a9509.js"
     ]
@@ -180,21 +180,21 @@
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/PrivacyPolicy.js": {
-    "file": "assets/PrivacyPolicy.e2ecf8f5.js",
+    "file": "assets/PrivacyPolicy.083f9bd2.js",
     "src": "pages/PrivacyPolicy.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_legal.ec5a9509.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/LogsPage.js": {
-    "file": "assets/LogsPage.f3925cbf.js",
+    "file": "assets/LogsPage.49d483d5.js",
     "src": "pages/LogsPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.7599fc57.js",
+      "_app.34bbd7ed.js",
       "_vendor.f8864ac5.js"
     ]
   },

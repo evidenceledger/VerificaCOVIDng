@@ -1,4 +1,4 @@
-import{r as t,A as s}from"./app.7599fc57.js";import{h as i}from"./vendor.f8864ac5.js";import{l as a}from"./legal.ec5a9509.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
+import{r as t,A as s}from"./app.34bbd7ed.js";import{h as i}from"./vendor.f8864ac5.js";import{l as a}from"./legal.ec5a9509.js";t("TermsOfUse",class extends s{constructor(e){super(e)}enter(){let e=i`
 
 <div class="m-2" style="text-align:left">
 
@@ -58,7 +58,7 @@ It is important to note that by sending a simple query email through the system 
 </p>
 
 <h3 class="text-lg font-medium">Applicable legislation and jurisdiction</h3>
-<p class="mb-2">
+<p class="mb-20">
 Any dispute arising or related to the Webiste will be governed by the Spanish Law and, the parties waiver any other forum to which they may be entitled, and will submit to the jurisdiction of the courts of the city of Barcelona (Spain).
 </p>
 

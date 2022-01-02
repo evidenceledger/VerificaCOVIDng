@@ -1,4 +1,4 @@
-import{r as a,A as s}from"./app.7599fc57.js";import{l as i}from"./legal.ec5a9509.js";import"./vendor.f8864ac5.js";a("PrivacyPolicy",class extends s{constructor(e){super(e)}enter(){let t=this.html`
+import{r as a,A as s}from"./app.34bbd7ed.js";import{l as i}from"./legal.ec5a9509.js";import"./vendor.f8864ac5.js";a("PrivacyPolicy",class extends s{constructor(e){super(e)}enter(){let t=this.html`
 
 <div class="m-2" style="text-align:left">
 
@@ -69,7 +69,7 @@ If there were a breach of security in the activities related to the data process
 <p class="mb-2">
 If the user would like to obtain more information of the Website’s Privacy Policy, he/she must direct the query to the data protection delegate of Axonteam by writing an email to:
 </p>
-<a class="font-semibold" href="mailto:dpo@accentjuridic.com">dpo@accentjuridic.com</a>
+<a class="font-semibold mb-20" href="mailto:dpo@accentjuridic.com">dpo@accentjuridic.com</a>
 
 </div>
 

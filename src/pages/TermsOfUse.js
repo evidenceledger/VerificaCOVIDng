@@ -71,7 +71,7 @@ It is important to note that by sending a simple query email through the system 
 </p>
 
 <h3 class="text-lg font-medium">Applicable legislation and jurisdiction</h3>
-<p class="mb-2">
+<p class="mb-20">
 Any dispute arising or related to the Webiste will be governed by the Spanish Law and, the parties waiver any other forum to which they may be entitled, and will submit to the jurisdiction of the courts of the city of Barcelona (Spain).
 </p>
 

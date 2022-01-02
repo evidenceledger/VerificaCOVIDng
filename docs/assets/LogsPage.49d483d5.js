@@ -1,4 +1,4 @@
-import{r as n,A as o,l as a}from"./app.7599fc57.js";import"./vendor.f8864ac5.js";function c(s){return`${new Date(s).toISOString()}`}n("LogsPage",class extends o{constructor(t){super(t)}enter(){let t=this.html,l=[];for(let e=0;e<a.num_items();e++)l.push(a.item(e));let i=t`
+import{r as n,A as o,l as a}from"./app.34bbd7ed.js";import"./vendor.f8864ac5.js";function c(s){return`${new Date(s).toISOString()}`}n("LogsPage",class extends o{constructor(t){super(t)}enter(){let t=this.html,l=[];for(let e=0;e<a.num_items();e++)l.push(a.item(e));let i=t`
         <div class="container">
             <h2 class="mb-16 wball">${T("Displaying the technical logs")}</h2>
 
