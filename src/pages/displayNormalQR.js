@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './abstractpage'
+import { AbstractPage, register } from '../components/AbstractPage'
 
 register("DisplayNormalQR", class DisplayNormalQR extends AbstractPage {
 

@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 
 register("Page404", class Page404 extends AbstractPage {
 

@@ -11,57 +11,18 @@ import { log } from './log';
 // We have to specify all pages composing the application
 // It is done as a switch so not to break bundler optimizations
 // Each page registers itself with the router when importing the module
-/**
- * @param {string} pageName
- */
+
+// @ts-ignore
+const pageModules = import.meta.glob('./pages/*.js')
+
+// Make sure the Splash Screen is hidden
+let elem = document.getElementById("SplashScreen")
+if (elem) {
+    elem.style.display = "none"
+}
+
 async function lazyLoadPage(pageName) {
-    switch (pageName) {
-        case "ScanQrNativePage":
-            await import('./pages/ScanQrNativePage');
-            break;
-        case "IntroPage":
-            await import('./pages/IntroPage');
-            break;
-        case "Page404":
-            await import('./pages/Page404');
-            break;
-        case "ScanQrPage":
-            await import('./pages/ScanQrPage');
-            break;
-        case "Faqs":
-            await import('./pages/Faqs');
-            break;
-        case "SelectLanguage":
-            await import('./pages/SelectLanguage');
-            break;
-        case "Help":
-            await import('./pages/Help');
-            break;
-        case "DisplayHcert":
-            await import('./pages/DisplayHcert');
-            break;
-        case "DisplayMyHcert":
-            await import('./pages/DisplayMyHcert');
-            break;
-        case "MicroWallet":
-            await import('./pages/MicroWallet');
-            break;
-        case "DisplayQR":
-            await import('./pages/DisplayQR');
-            break;
-        case "SelectCamera":
-            await import('./pages/SelectCamera');
-            break;
-        case "TermsOfUse":
-            await import('./pages/TermsOfUse');
-            break;
-        case "PrivacyPolicy":
-            await import('./pages/PrivacyPolicy');
-            break;
-        case "LogsPage":
-            await import('./pages/LogsPage');
-            break;
-    }
+    await pageModules[`./pages/${pageName}.js`]()
 }
 
 // The default home page where to start and when refreshing the app
@@ -96,13 +57,20 @@ export function setHomePage(page) {
 }
 
 export async function goHome() {
-    // Make sure the Splash Screen is hidden
-    document.getElementById("SplashScreen").style.display = "none"
+    
     if (homePage != undefined) {
         await gotoPage(homePage);
     }
+
+    for (const path in pageModules) {
+        pageModules[path]().then((mod) => {
+            console.log(path, mod)
+        })
+    }
+
 }
 // Export to global scope so it can be called without importing this module
+// @ts-ignore
 window.goHome = goHome
 
 // gotoPage transitions to the target page passing pageData object
@@ -110,7 +78,7 @@ window.goHome = goHome
 export async function gotoPage(pageName, pageData) {
     console.log("Inside gotoPage:", pageName)
 
-    // Lazyload the page. This is a no-op if the module is already loades
+    // Lazyload the page. This is a no-op if the module is already loaded
     await lazyLoadPage(pageName)
 
     // If pageName is not a registered page, go to the 404 error page
@@ -131,6 +99,7 @@ export async function gotoPage(pageName, pageData) {
     await processPageEntered(pageName, pageData, false);
 }
 // Export to global scope so it can be called without importing this module
+// @ts-ignore
 window.gotoPage = gotoPage
 
 // Handle page transition

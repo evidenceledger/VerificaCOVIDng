@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 import { QRCode } from 'easyqrcodejs'
 
 register("DisplayQR", class DisplayQR extends AbstractPage {

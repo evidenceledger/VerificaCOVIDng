@@ -1,4 +1,4 @@
-import { AbstractPage, register, html } from './AbstractPage'
+import { AbstractPage, register, html } from '../components/AbstractPage'
 
 register("IntroPage", class IntroPage extends AbstractPage {
 

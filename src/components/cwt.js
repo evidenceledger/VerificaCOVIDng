@@ -1227,6 +1227,7 @@ export class CWT {
             let decodedPayload = CWT.decode(payload.buffer);
 
             payload = {};
+            console.log(decodedPayload)
 
             for (let [key, value] of decodedPayload) {
                 switch (key) {

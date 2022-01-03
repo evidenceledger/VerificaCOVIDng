@@ -1,5 +1,5 @@
 import { log } from '../log'
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 import { CWT } from "../components/cwt"
 import { verifyHcert } from '../components/verifications'
 

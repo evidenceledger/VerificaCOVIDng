@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 import { log } from '../log'
 
 function shortDate(timestamp) {

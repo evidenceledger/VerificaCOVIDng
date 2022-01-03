@@ -1,5 +1,5 @@
 import { log } from '../log'
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 
 register("MicroWallet", class MicroWallet extends AbstractPage {
 

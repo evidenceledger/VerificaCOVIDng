@@ -1,4 +1,4 @@
-import { AbstractPage } from './AbstractPage'
+import { AbstractPage } from '../components/AbstractPage'
 import { html } from 'uhtml';
 
 import ukflag from '../i18n/flags/uk.png'

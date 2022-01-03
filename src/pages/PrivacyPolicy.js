@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 import legalpng from '../img/legal.png'
 
 register("PrivacyPolicy", class PrivacyPolicy extends AbstractPage {

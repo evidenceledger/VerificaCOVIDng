@@ -1,4 +1,4 @@
-import { AbstractPage, register } from './AbstractPage'
+import { AbstractPage, register } from '../components/AbstractPage'
 import { getPreferredVideoDevice } from '../components/camerainfo'
 
 register("SelectCamera", class SelectCamera extends AbstractPage {

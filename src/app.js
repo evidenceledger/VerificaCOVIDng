@@ -1,19 +1,21 @@
 // This is the starting point for the application
-// We will bootstrap it and start the loading process for all components
-
 // This module starts executing as soon as parsing of the HTML has finished
-// So it is safe to generate the header and splash screen
-// import { HeaderBar, SplashScreen } from './pages/headerbar.js'
-// HeaderBar();
-// SplashScreen()
+// We will bootstrap the app and start the loading process for all components
 
+// The CSS module
 import './main.css'
+
 // Logging support
 import { log } from "./log";
+
 // The micro-router for page transitions
 import { goHome, gotoPage } from './router'
 
+// We need to import the Service Worker notification screen
 import './pages/SWNotify'
+
+// Go to the home page
+goHome()
 
 // Get the version of the application and store in database
 

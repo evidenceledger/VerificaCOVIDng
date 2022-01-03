@@ -5,10 +5,9 @@
     <script>
         // Set here the default home page for the app, before loading app.js
         window.homePage = "IntroPage"
-        // Configure the menu items:
-        // {page:"NameOfPage", text:"Text of menu", params: object to pass to page}
+        // Configure the menu items, with entries like:
+        //    {page:"NameOfPage", text:"Text of menu", params: object to pass to page}
         window.menuItems = [
-            { page: "ScanQrNativePage", text: "Scan native", params: "" },
             { page: "SelectLanguage", text: "Language", params: "" },
             { page: "SelectCamera", text: "Camera" },
             { page: "TermsOfUse", text: "Terms & Conditions" },
@@ -17,6 +16,7 @@
         ]
     </script>
     <script type="module" src="./app.js"></script>
+    <script type="module" src="./pages/IntroPage"></script>
 
     <!-- <link rel="stylesheet" href="/css/w3full.css" media="print" onload="this.media='all'"> -->
     <meta charset="utf-8" />
@@ -50,15 +50,33 @@
 
 <header>
 </header>
-<div id="SplashScreen">
-    <!-- <div class="sect-white">
-        <h2 class="mb-16 wball">EU Digital COVID Credential Verifier</h2>
-    
-        <div class="ptb-16 center">
-            <div class="mb-32"></div>
-            <div class="loader"></div>
-        </div>
-    </div> -->
+
+<style>
+.loader {
+    margin: auto;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #919597;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+    0% {-webkit-transform: rotate(0deg);}
+    100% {-webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+</style>
+<div id="SplashScreen" style="padding: 25px 15px 50px 15px;text-align: center;">
+    <h2 style="margin-bottom: 16px;">EU Digital COVID Credential Verifier</h2>
+    <div style="padding: 16px 0px;">
+        <div class="loader" style="margin: auto;"></div>
+    </div>
 </div>
 
 <main>
