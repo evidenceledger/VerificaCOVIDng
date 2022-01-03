@@ -71,7 +71,7 @@ register("AskUserToStoreQR", class AskUserToStoreQR extends AbstractPage {
             hcert = await CWT.decodeHC1QR(qrContent, true);
         } catch (error) {
             // An exception means there was a problem with decoding
-            log.myerror("Error verifying credential", error)
+            log.error("Error verifying credential", error)
             return {
                 result: "ERROR",
                 message: T("Signature validation failed. The certificate is not valid.")
@@ -80,7 +80,7 @@ register("AskUserToStoreQR", class AskUserToStoreQR extends AbstractPage {
     
         let technical_verification = hcert[3]
         if (technical_verification == false) {
-            log.myerror("Error verifying credential")
+            log.error("Error verifying credential")
             return {
                 result: "ERROR",
                 message: T("Signature validation failed. The certificate is not valid.")

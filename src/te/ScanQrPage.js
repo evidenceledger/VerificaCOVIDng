@@ -191,7 +191,7 @@ register("ScanQrPage", class ScanQrPage extends AbstractPage {
       
         console.log("detectQRtype:", qrData);
         if (!qrData.startsWith) {
-            log.myerror("detectQRtype: data is not string")
+            log.error("detectQRtype: data is not string")
         }
       
         if (qrData.startsWith("https")) {

@@ -2,8 +2,8 @@
   "_vendor.f8864ac5.js": {
     "file": "assets/vendor.f8864ac5.js"
   },
-  "_app.953d31a2.js": {
-    "file": "assets/app.953d31a2.js",
+  "_app.a68c96d4.js": {
+    "file": "assets/app.a68c96d4.js",
     "imports": [
       "_vendor.f8864ac5.js"
     ],
@@ -31,11 +31,11 @@
     ]
   },
   "pages/IntroPage.js": {
-    "file": "assets/IntroPage.7de22015.js",
+    "file": "assets/IntroPage.7254254f.js",
     "src": "pages/IntroPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
@@ -45,20 +45,20 @@
     "isDynamicEntry": true
   },
   "pages/AskUserToStoreQR.js": {
-    "file": "assets/AskUserToStoreQR.45760184.js",
+    "file": "assets/AskUserToStoreQR.65296176.js",
     "src": "pages/AskUserToStoreQR.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
-      "_verifications.37311a48.js",
+      "_app.a68c96d4.js",
+      "_verifications.3e2b6b33.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
-  "_verifications.37311a48.js": {
-    "file": "assets/verifications.37311a48.js",
+  "_verifications.3e2b6b33.js": {
+    "file": "assets/verifications.3e2b6b33.js",
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
@@ -66,12 +66,12 @@
     "file": "assets/_commonjsHelpers.4e997714.js"
   },
   "pages/DisplayHcert.js": {
-    "file": "assets/DisplayHcert.4636d3b5.js",
+    "file": "assets/DisplayHcert.93abcb69.js",
     "src": "pages/DisplayHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
-      "_verifications.37311a48.js",
+      "_app.a68c96d4.js",
+      "_verifications.3e2b6b33.js",
       "_warning.e1565ac2.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.4e997714.js"
@@ -81,78 +81,78 @@
     "file": "assets/warning.e1565ac2.js"
   },
   "pages/DisplayMyHcert.js": {
-    "file": "assets/DisplayMyHcert.8b2e07c7.js",
+    "file": "assets/DisplayMyHcert.c095bfb2.js",
     "src": "pages/DisplayMyHcert.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
-      "_verifications.37311a48.js",
+      "_app.a68c96d4.js",
+      "_verifications.3e2b6b33.js",
       "_warning.e1565ac2.js",
       "_vendor.f8864ac5.js",
       "__commonjsHelpers.4e997714.js"
     ]
   },
   "pages/DisplayQR.js": {
-    "file": "assets/DisplayQR.d8a07312.js",
+    "file": "assets/DisplayQR.1d3a96c3.js",
     "src": "pages/DisplayQR.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "__commonjsHelpers.4e997714.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Faqs.js": {
-    "file": "assets/Faqs.dac7bc8f.js",
+    "file": "assets/Faqs.f89dd2cc.js",
     "src": "pages/Faqs.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Help.js": {
-    "file": "assets/Help.b9588d51.js",
+    "file": "assets/Help.a0781a4c.js",
     "src": "pages/Help.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/LogsPage.js": {
-    "file": "assets/LogsPage.3ebb8f7c.js",
+    "file": "assets/LogsPage.114e300d.js",
     "src": "pages/LogsPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/MicroWallet.js": {
-    "file": "assets/MicroWallet.56783102.js",
+    "file": "assets/MicroWallet.3843b14e.js",
     "src": "pages/MicroWallet.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/Page404.js": {
-    "file": "assets/Page404.3b1fe8f2.js",
+    "file": "assets/Page404.e0ef746d.js",
     "src": "pages/Page404.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/PrivacyPolicy.js": {
-    "file": "assets/PrivacyPolicy.b472e2f0.js",
+    "file": "assets/PrivacyPolicy.083442c3.js",
     "src": "pages/PrivacyPolicy.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_legal.ec5a9509.js",
       "_vendor.f8864ac5.js"
     ]
@@ -161,11 +161,11 @@
     "file": "assets/legal.ec5a9509.js"
   },
   "pages/ScanQrPage.js": {
-    "file": "assets/ScanQrPage.7820fb1f.js",
+    "file": "assets/ScanQrPage.4ed618d3.js",
     "src": "pages/ScanQrPage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ],
@@ -177,40 +177,40 @@
     "file": "assets/camerainfo.4311a7fd.js"
   },
   "pages/SelectCamera.js": {
-    "file": "assets/SelectCamera.22d42c65.js",
+    "file": "assets/SelectCamera.29e08a80.js",
     "src": "pages/SelectCamera.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_camerainfo.4311a7fd.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/SelectLanguage.js": {
-    "file": "assets/SelectLanguage.cf37f668.js",
+    "file": "assets/SelectLanguage.9cf3cae7.js",
     "src": "pages/SelectLanguage.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },
   "pages/TermsOfUse.js": {
-    "file": "assets/TermsOfUse.51b6916a.js",
+    "file": "assets/TermsOfUse.899005ac.js",
     "src": "pages/TermsOfUse.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js",
       "_legal.ec5a9509.js"
     ]
   },
   "pages/displayNormalQR.js": {
-    "file": "assets/displayNormalQR.0d7139fd.js",
+    "file": "assets/displayNormalQR.8c737f22.js",
     "src": "pages/displayNormalQR.js",
     "isDynamicEntry": true,
     "imports": [
-      "_app.953d31a2.js",
+      "_app.a68c96d4.js",
       "_vendor.f8864ac5.js"
     ]
   },

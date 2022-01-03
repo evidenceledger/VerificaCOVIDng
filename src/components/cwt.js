@@ -80,7 +80,7 @@ async function getTrustedKey(kid) {
         format: undefined
     }
 
-    if (!kid) { log.myerror("kid is undefined"); return undefinedKey; }
+    if (!kid) { log.error("kid is undefined"); return undefinedKey; }
     
     // First, try to get it from the PRODUCTION EU list
     for (let i = 0; i < spanish_tl.length; i++) {
@@ -99,7 +99,7 @@ async function getTrustedKey(kid) {
             }
         }
     }
-    log.mywarn(`kid "${kid}" not found in EU_PRO trusted list`)
+    console.warn(`kid "${kid}" not found in EU_PRO trusted list`)
 
     // Now check in the PRODUCTION listfrom the UK
     for (let i = 0; i < ukRawKeys.length; i++) {
@@ -113,11 +113,11 @@ async function getTrustedKey(kid) {
             }
         }
     }
-    log.mywarn(`kid "${kid}" not found in UK_PRO trusted list`)
+    console.warn(`kid "${kid}" not found in UK_PRO trusted list`)
 
     // And finally in the PREPRODUCTION list
     if (prePublicKeys.includes(kid)) {
-        log.mywarn(`kid "${kid}" found in PREPRODUCTION trusted list`)
+        console.warn(`kid "${kid}" found in PREPRODUCTION trusted list`)
         return {
             kid: kid,
             publicKey: undefined,
@@ -125,7 +125,7 @@ async function getTrustedKey(kid) {
             format: undefined
         }
     }
-    log.myerror(`KEY ${kid} not found in any Trusted List`)
+    log.error(`KEY ${kid} not found in any Trusted List`)
 
     // Key not found in any list. return the undefined key structure
     return undefinedKey;

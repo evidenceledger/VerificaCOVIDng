@@ -38,7 +38,7 @@ register("DisplayMyHcert", class DisplayMyHcert extends AbstractPage {
             hcert = await CWT.decodeHC1QR(qrContent, true);
             verified = hcert[3]
         } catch (error) {
-            log.myerror("Error verifying credential", error)
+            log.error("Error verifying credential", error)
             this.render(this.renderGeneralError(error))
             return;
         }
@@ -75,7 +75,7 @@ register("DisplayMyHcert", class DisplayMyHcert extends AbstractPage {
             // Render the credential
             thehtml = this.renderDetail(hcert, verification);
         } catch (error) {
-            log.myerror("Error rendering credential", error)
+            log.error("Error rendering credential", error)
             this.render(this.renderGeneralError(error))
             return;
         }
